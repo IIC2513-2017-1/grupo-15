@@ -1357,3 +1357,19 @@ FOREIGN KEY ("user_id")
   [1m[35m (9.2ms)[0m  [1m[35mBEGIN[0m
   [1m[35mSQL (6.1ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "project_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "holaholahola"], ["created_at", 2017-04-27 18:42:36 UTC], ["updated_at", 2017-04-27 18:42:36 UTC], ["user_id", 1], ["project_id", 1]]
   [1m[35m (1.8ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 127.0.0.1 at 2017-04-27 15:56:21 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (24.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  Rendered home/index.html.erb within layouts/application (32.2ms)
+Completed 200 OK in 1674ms (Views: 1600.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2017-04-27 15:56:29 -0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (123.0ms)
+  Rendered users/new.html.erb within layouts/application (141.4ms)
+Completed 200 OK in 464ms (Views: 296.7ms | ActiveRecord: 69.0ms)
+
+

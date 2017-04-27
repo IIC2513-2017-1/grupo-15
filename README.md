@@ -2,14 +2,16 @@
 # Grupo 15
 ##Aplicación Crowdfunding
 
-## Entrega 01
+## Entrega 02
 
-Los archivos a revisar son 4:
-
-* Detalle del mockup *Mockup.pdf*
-* Diagrama de modelación *Diagrama_ER.pdf*
-* Documento de casos de uso, *Casos de uso.pdf*
-* Diagrama de actores y casos de uso, *Actores y casos de uso.pdf* 
+# TO DO's
+* Tabla pledges
+* Tabla updates
+* Relación follow entre users/users y users/project
+* Validaciones de modelo
+* Validaciones de bases de datos para modelos faltantes
+* Estructura de vistas
+* Implementación gemas profe (Faker)
 
 Miembros del equipo:
 
