@@ -1,0 +1,8 @@
+<div class="pledges">
+  <h3><%@project.name+"'s Pledges"%></h3>
+      <%= render @project.rewards %>
+
+</div>
+
+<%= link_to 'New reward', new_reward_path %> |
+<%= link_to 'Back', root_path %>
