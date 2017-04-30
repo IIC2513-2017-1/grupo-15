@@ -1,19 +1,19 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @user.name %>
-</p>
-
-<p>
-  <strong>Password:</strong>
-  <%= @user.password %>
-</p>
-
+<h2><%= @user.name+"'s Profile" %></h2>
+<%= link_to 'My projects', edit_user_path(@user) %> | <%= link_to 'Edit profile', edit_user_path(@user) %>
 <p>
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
+<h3>My projects:</h3>
+<ul>
+  <% @user.projects.each do |project| %>
+    <li><%= link_to project.name, edit_project_path(project) %></li>
+  <% end %>
+</ul>
+
+
+
 <%= link_to 'Back', users_path %>

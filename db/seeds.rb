@@ -6,15 +6,43 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(name: "Rodrigo", email: "rr@uc.cl", password: "hola")
-User.create(name: "Andres", email: "aa@uc.cl", password: "hola")
-User.create(name: "Lucas", email: "ll@uc.cl", password: "hola")
-
 Category.create(name:"Music")
 Category.create(name:"Sport")
 Category.create(name:"Technology")
 
-Project.create(name: 'p1', description: 'ahola', start_date: DateTime.new(2013),
-	end_date: DateTime.new(2014), user_id: 1, category_id:1)
+User.create(name: "user", email: "email@uc.cl", password: "hola")
 
-Comment.create(content: 'holaholahola', user_id: 1, project_id: 1)
+4.times do
+	User.create(
+							name: Faker::Name.name,
+							email: Faker::Internet.unique.email,
+							password: "hola"
+							)
+end
+
+6.times do
+	Project.create(
+									name: Faker::Commerce.product_name,
+									description: Faker::Lorem.paragraph(15),
+									start_date: Faker::Time.between(DateTime.now - 1, DateTime.now),
+									end_date: Faker::Time.forward(365, :evening),
+									user_id: User.order('RANDOM()').first.id,
+									category_id: Category.order('RANDOM()').first.id)
+end
+
+6.times do
+	Comment.create(
+									content: Faker::Hipster.sentence,
+								 	user_id: User.order('RANDOM()').first.id,
+								 	project_id: Project.order('RANDOM()').first.id
+								 	)
+end
+
+16.times do
+	Reward.create(
+								title: Faker::Hipster.sentence(2, false, 2),
+								amount: Faker::Commerce.price,
+								description: Faker::Hipster.sentence,
+								project_id: Project.order('RANDOM()').first.id
+								)
+end

@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>Creator</th>
       <th>Description</th>
       <th>Category</th>
       <th>Start date</th>
@@ -18,13 +19,12 @@
     <% @projects.each do |project| %>
       <tr>
         <td><%= project.name %></td>
+        <td><%= project.user.name %></td>
         <td><%= project.description %></td>
         <td><%= project.category.name %></td>
         <td><%= project.start %></td>
         <td><%= project.end %></td>
         <td><%= link_to 'Show', project %></td>
-        <td><%= link_to 'Edit', edit_project_path(project) %></td>
-        <td><%= link_to 'Destroy', project, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,4 +1,4 @@
-<div class="box">
+<div class="reward">
   <p>
     <strong>Title:</strong>
     <%= reward.title %>
@@ -13,4 +13,7 @@
     <strong>Description:</strong>
     <%= reward.description %>
   </p>
+
+  <%= button_to 'Pledge $'+reward.amount.to_s, new_pledge_path(reward.project.id), method:"get" %>
+
 </div>
