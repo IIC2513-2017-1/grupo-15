@@ -1,0 +1,34 @@
+<%= form_for(pledge) do |f| %>
+  <% if pledge.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pledge.errors.count, "error") %> prohibited this pledge from being saved:</h2>
+
+      <ul>
+      <% pledge.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :User %>
+    <%= f.select :user_id, options_for_select(User.all.map{|c| [ c.name, c.id ] }), prompt: "Select a user" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Project %>
+    <%= f.select :project_id, options_for_select(Project.all.map{|c| [ c.name, c.id ] }), prompt: "Select a project" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Reward %>
+    <%= f.select :reward_id, options_for_select(Project.second.rewards.map{|c| [ c.title, c.id ] }), prompt: "Select a reward" %>
+  </div>
+
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

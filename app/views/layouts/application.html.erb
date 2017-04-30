@@ -9,6 +9,24 @@
   </head>
 
   <body>
-    <%= yield %>
+    <header>
+      <nav id="main-menu">
+        <%= link_to 'Home', root_path %>
+        <%= link_to 'Users', users_path %>
+        <%= link_to 'Projects', projects_path %>
+        <%= link_to 'Rewards', new_reward_path %>
+        <%= link_to 'Pledges', pledges_path %>
+        <%= link_to 'Comments', comments_path %>
+      </nav>
+
+      <div id="user-bar">
+        <%= link_to 'Sign Up', new_user_path %>
+      </div>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+    <footer>
+    </footer>
   </body>
 </html>

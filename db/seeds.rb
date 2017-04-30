@@ -10,7 +10,11 @@ User.create(name: "Rodrigo", email: "rr@uc.cl", password: "hola")
 User.create(name: "Andres", email: "aa@uc.cl", password: "hola")
 User.create(name: "Lucas", email: "ll@uc.cl", password: "hola")
 
-Project.create(name: 'p1', description: 'ahola', start_date: DateTime.new(2013), 
-	end_date: DateTime.new(2014), user_id: 1)
+Category.create(name:"Music")
+Category.create(name:"Sport")
+Category.create(name:"Technology")
+
+Project.create(name: 'p1', description: 'ahola', start_date: DateTime.new(2013),
+	end_date: DateTime.new(2014), user_id: 1, category_id:1)
 
 Comment.create(content: 'holaholahola', user_id: 1, project_id: 1)

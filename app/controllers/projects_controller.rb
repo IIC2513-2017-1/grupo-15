@@ -1,10 +1,11 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_categories, :set_rewards, only: [:edit, :new, :show]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
+    @projects = Project.search(params[:search])
   end
 
   # GET /projects/1
@@ -67,8 +68,12 @@ class ProjectsController < ApplicationController
       @project = Project.find(params[:id])
     end
 
+    def set_rewards
+      @rewards = Project.find(params[:id]).rewards ? Project.find(params[:id]).rewards : []
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name, :description, :start_date, :end_date)
+      params.require(:project).permit(:name, :description, :category_id, :user_id, :start_date, :end_date,:search)
     end
 end

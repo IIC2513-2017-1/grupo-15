@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Home</h1>
-
-<%= link_to 'New_User', new_user_path %>
-
-<br>
-
-<%= link_to 'New_Project', new_project_path %>
-
-<br>
-
-<%= link_to 'New_Comment', new_comment_path %>
+<h1>FundUp</h1>
+<h2>Highlighted projects</h2>
+<%= link_to project_path(id: Project.second.id) do %>
+  <div class="preview">
+    <h3><%= Project.second.name %></h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  </div>
+<% end %>
+<div class="categories">
+  <h3>Explore by categories</h3>
+  <ul>
+    <% @categories.each do |category| %>
+      <li><%= link_to category.name, projects_path(search: category.id) %></li>
+    <%end%>
+  </ul>
+</div>

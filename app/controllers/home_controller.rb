@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  
-  def index; end
+  before_action :set_categories, only: [:index]
 
+  def index; end
 end

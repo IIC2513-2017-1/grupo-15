@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pledges</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Project</th>
+      <th>Amount</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @pledges.each do |pledge| %>
+      <tr>
+        <td><%= pledge.user.name %></td>
+        <td><%= pledge.project.name %></td>
+        <% if pledge.reward%>
+          <td><%= "$"+pledge.reward.amount.to_s%></td>
+        <% else %>
+          <td>0</td>
+        <%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Pledge', new_pledge_path %>

@@ -1,24 +1,43 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @project.name %>
-</p>
+<div class="box">
+  <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Description:</strong>
-  <%= @project.description %>
-</p>
+  <h1><%= @project.name %></h1>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @project.start_date %>
-</p>
+  <p>
+    <strong>Creator:</strong>
+    <%= @project.user.name %>
+  </p>
 
-<p>
-  <strong>End date:</strong>
-  <%= @project.end_date %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @project.description %>
+  </p>
+
+  <p>
+    <strong>Start date:</strong>
+    <%= @project.start %>
+  </p>
+
+  <p>
+    <strong>End date:</strong>
+    <%= @project.end %>
+  </p>
+
+  <p>
+    <strong>Category:</strong>
+    <%= @project.category.name %>
+  </p>
+</div>
+
+<div class="pledges">
+  <h3>Pledges</h3>
+  <%if @rewards%>
+    <% @rewards.each do |reward| %>
+      <%= render 'reward', reward: reward %>
+    <% end %>
+  <% end %>
+</div>
 
 <%= link_to 'Edit', edit_project_path(@project) %> |
 <%= link_to 'Back', projects_path %>
