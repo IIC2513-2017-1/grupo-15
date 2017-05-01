@@ -8,5 +8,6 @@ class CreateProjects < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
+    add_index :name, unique: true
   end
 end

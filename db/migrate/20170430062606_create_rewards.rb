@@ -1,9 +1,9 @@
 class CreateRewards < ActiveRecord::Migration[5.0]
   def change
     create_table :rewards do |t|
-      t.string :title
-      t.float :amount
-      t.text :description
+      t.string :title, null: false
+      t.float :amount, null: false
+      t.text :description, null: false
 
       t.timestamps
     end

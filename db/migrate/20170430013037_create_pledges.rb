@@ -1,9 +1,9 @@
 class CreatePledges < ActiveRecord::Migration[5.0]
   def change
     create_table :pledges do |t|
-      t.string :title
-      t.decimal :amount
-      t.string :description
+      t.string :title, null: false
+      t.decimal :amount, null: false
+      t.string :description, null: false
 
       t.timestamps
     end
