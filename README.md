@@ -4,6 +4,8 @@
 
 ## Entrega 02
 
+https://git.heroku.com/safe-journey-94606.git
+
 # TO DO's
 * Tabla pledges
 * Tabla updates
