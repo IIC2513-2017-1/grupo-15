@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+  resources :follows, only: [:new,:create, :destroy]
   resources :updates
   resources :pledges, only: [:index, :new, :create]
   resources :comments

@@ -33,7 +33,9 @@
 
 <div class="pledges">
   <h3>Pledges</h3>
-    <%= render @project.rewards %>
+    <% @project.rewards.each do |reward| %>
+      <%= render 'reward', reward: reward %>
+    <% end %>
 </div>
 
 <div class="comments">
