@@ -1,7 +1,7 @@
 class Project < ApplicationRecord
-	validates :name, presence: true, allow_blank: false
-	validates :start_date, presence: true
-	validates :end_date, presence: true
+	validates :name, presence: true, uniqueness: true, allow_blank: false
+	validates :start_date, presence: true, allow_blank: false
+	validates :end_date, presence: true, allow_blank: false
 	validate :end_date_after_start_date?
 
 	has_many :comments
