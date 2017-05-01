@@ -19,4 +19,4 @@ Miembros del equipo:
 * Lucas Marin
 
 Link App
- https://safe-journey-94606.herokuapp.com
+ https://fundup1.herokuapp.com/
