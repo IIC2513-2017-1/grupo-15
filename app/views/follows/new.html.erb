@@ -1,0 +1,28 @@
+<h1>Creating following relationship</h1>
+
+<%= form_for(@follow) do |f| %>
+  <% if @follow.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(pledge.errors.count, "error") %> prohibited this following relationshit from being saved:</h2>
+
+      <ul>
+      <% @follow.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :Follower %>
+    <%= f.select :follower_id, options_for_select(User.all.map{|c| [ c.name, c.id ] }), prompt: "Select a user" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Following %>
+    <%= f.select :following_id, options_for_select(User.all.map{|c| [ c.name, c.id ] }), prompt: "Select a user" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<%end%>

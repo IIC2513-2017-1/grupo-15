@@ -1,5 +1,9 @@
 class RewardsController < ApplicationController
-  before_action :set_reward, only: [:show, :edit, :update, :destroy]
+  before_action :set_reward, except: [:index, :new]
+
+  def index
+    @project = Project.find(params[:search])
+  end
 
   def new
     @reward = Reward.new

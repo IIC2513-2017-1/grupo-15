@@ -3,6 +3,7 @@
   <p id="notice"><%= notice %></p>
 
   <h1><%= @project.name %></h1>
+  <%= link_to "by "+@project.user.name, @project.user %>
 
   <p>
     <strong>Creator:</strong>
@@ -32,12 +33,19 @@
 
 <div class="pledges">
   <h3>Pledges</h3>
-  <%if @rewards%>
-    <% @rewards.each do |reward| %>
+    <% @project.rewards.each do |reward| %>
       <%= render 'reward', reward: reward %>
     <% end %>
-  <% end %>
 </div>
 
-<%= link_to 'Edit', edit_project_path(@project) %> |
+<div class="comments">
+  <h3>Comment</h3>
+    <%= render @project.comments %>
+  <h3>Add comment</h3>
+  <%= link_to 'New comment', new_comment_path %>
+
+</div>
+
+
+
 <%= link_to 'Back', projects_path %>
