@@ -24,7 +24,7 @@
 
   <div class="field">
     <%= f.label :Reward %>
-    <%= f.select :reward_id, options_for_select(Rewards.map{|c| [ c.title, c.id ] }), prompt: "Select a reward" %>
+    <%= f.select :reward_id, options_for_select(Reward.all.map{|c| [ c.title, c.id ] }), prompt: "Select a reward" %>
   </div>
 
 

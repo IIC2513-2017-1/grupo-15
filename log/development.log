@@ -725,3 +725,143 @@ Processing by UsersController#new as HTML
 Completed 200 OK in 106ms (Views: 64.5ms | ActiveRecord: 20.1ms)
 
 
+Started GET "/" for 127.0.0.1 at 2017-05-01 01:03:37 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.2ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  Rendered home/index.html.erb within layouts/application (53.7ms)
+Completed 200 OK in 515ms (Views: 462.8ms | ActiveRecord: 11.3ms)
+
+
+Started GET "/pledges" for 127.0.0.1 at 2017-05-01 01:03:40 -0300
+Processing by PledgesController#index as HTML
+  Rendering pledges/index.html.erb within layouts/application
+  [1m[36mPledge Load (1.0ms)[0m  [1m[34mSELECT "pledges".* FROM "pledges"[0m
+  Rendered pledges/index.html.erb within layouts/application (11.3ms)
+Completed 200 OK in 60ms (Views: 48.0ms | ActiveRecord: 3.5ms)
+
+
+Started GET "/pledges/new" for 127.0.0.1 at 2017-05-01 01:03:42 -0300
+Processing by PledgesController#new as HTML
+  Rendering pledges/new.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  Rendered pledges/_form.html.erb (356.7ms)
+  Rendered pledges/new.html.erb within layouts/application (368.2ms)
+Completed 500 Internal Server Error in 447ms (ActiveRecord: 14.5ms)
+
+
+  
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::Rewards):
+    24: 
+    25:   <div class="field">
+    26:     <%= f.label :Reward %>
+    27:     <%= f.select :reward_id, options_for_select(Rewards.map{|c| [ c.title, c.id ] }), prompt: "Select a reward" %>
+    28:   </div>
+    29: 
+    30: 
+  
+app/views/pledges/_form.html.erb:27:in `block in _app_views_pledges__form_html_erb__939744078786328922_70077693331700'
+app/views/pledges/_form.html.erb:1:in `_app_views_pledges__form_html_erb__939744078786328922_70077693331700'
+app/views/pledges/new.html.erb:3:in `_app_views_pledges_new_html_erb__4227461048039147749_70077693304440'
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (13.3ms)
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.0ms)
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.2ms)
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (45.6ms)
+Started GET "/pledges/new" for 127.0.0.1 at 2017-05-01 01:04:41 -0300
+Processing by PledgesController#new as HTML
+  Rendering pledges/new.html.erb within layouts/application
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mProject Load (4.7ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  Rendered pledges/_form.html.erb (27.5ms)
+  Rendered pledges/new.html.erb within layouts/application (38.1ms)
+Completed 500 Internal Server Error in 52ms (ActiveRecord: 7.5ms)
+
+
+  
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::Rewards):
+    24: 
+    25:   <div class="field">
+    26:     <%= f.label :Reward %>
+    27:     <%= f.select :reward_id, options_for_select(Rewards.all.map{|c| [ c.title, c.id ] }), prompt: "Select a reward" %>
+    28:   </div>
+    29: 
+    30: 
+  
+app/views/pledges/_form.html.erb:27:in `block in _app_views_pledges__form_html_erb__939744078786328922_70077776491780'
+app/views/pledges/_form.html.erb:1:in `_app_views_pledges__form_html_erb__939744078786328922_70077776491780'
+app/views/pledges/new.html.erb:3:in `_app_views_pledges_new_html_erb__4227461048039147749_70077776588320'
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (15.7ms)
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (5.3ms)
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (60.4ms)
+Started GET "/" for 127.0.0.1 at 2017-05-01 01:05:07 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mProject Load (2.9ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCategory Load (5.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  Rendered home/index.html.erb within layouts/application (66.4ms)
+Completed 200 OK in 391ms (Views: 297.4ms | ActiveRecord: 24.8ms)
+
+
+Started GET "/pledges" for 127.0.0.1 at 2017-05-01 01:05:10 -0300
+Processing by PledgesController#index as HTML
+  Rendering pledges/index.html.erb within layouts/application
+  [1m[36mPledge Load (0.8ms)[0m  [1m[34mSELECT "pledges".* FROM "pledges"[0m
+  Rendered pledges/index.html.erb within layouts/application (9.0ms)
+Completed 200 OK in 80ms (Views: 64.4ms | ActiveRecord: 3.2ms)
+
+
+Started GET "/pledges/new" for 127.0.0.1 at 2017-05-01 01:05:11 -0300
+Processing by PledgesController#new as HTML
+  Rendering pledges/new.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  Rendered pledges/_form.html.erb (803.2ms)
+  Rendered pledges/new.html.erb within layouts/application (805.0ms)
+Completed 500 Internal Server Error in 826ms (ActiveRecord: 12.0ms)
+
+
+  
+ActionView::Template::Error (uninitialized constant ActionView::CompiledTemplates::Rewards):
+    24: 
+    25:   <div class="field">
+    26:     <%= f.label :Reward %>
+    27:     <%= f.select :reward_id, options_for_select(Rewards.all.map{|c| [ c.title, c.id ] }), prompt: "Select a reward" %>
+    28:   </div>
+    29: 
+    30: 
+  
+app/views/pledges/_form.html.erb:27:in `block in _app_views_pledges__form_html_erb__4190168380122549465_69887305366000'
+app/views/pledges/_form.html.erb:1:in `_app_views_pledges__form_html_erb__4190168380122549465_69887305366000'
+app/views/pledges/new.html.erb:3:in `_app_views_pledges_new_html_erb___3227498787285872073_69887305517940'
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (8.3ms)
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.6ms)
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (34.0ms)
+Started GET "/pledges/new" for 127.0.0.1 at 2017-05-01 01:05:24 -0300
+Processing by PledgesController#new as HTML
+  Rendering pledges/new.html.erb within layouts/application
+  [1m[36mUser Load (1.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mProject Load (2.9ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  [1m[36mReward Load (1.0ms)[0m  [1m[34mSELECT "rewards".* FROM "rewards"[0m
+  Rendered pledges/_form.html.erb (49.7ms)
+  Rendered pledges/new.html.erb within layouts/application (51.7ms)
+Completed 200 OK in 163ms (Views: 150.1ms | ActiveRecord: 11.3ms)
+
+
