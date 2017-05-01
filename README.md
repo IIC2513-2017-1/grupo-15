@@ -4,8 +4,6 @@
 
 ## Entrega 02
 
-https://git.heroku.com/safe-journey-94606.git
-
 # TO DO's
 * Tabla pledges
 * Tabla updates
@@ -20,4 +18,5 @@ Miembros del equipo:
 * Rodrigo Hurtado
 * Lucas Marin
 
-
+Link App
+ https://safe-journey-94606.herokuapp.com
