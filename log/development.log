@@ -1,0 +1,419 @@
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (294.4ms)[0m  [1m[35mDROP DATABASE IF EXISTS "fundup_development"[0m
+  [1m[35m (107.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "fundup_test"[0m
+  [1m[35m (2036.6ms)[0m  [1m[35mCREATE DATABASE "fundup_development" ENCODING = 'unicode'[0m
+  [1m[35m (457.4ms)[0m  [1m[35mCREATE DATABASE "fundup_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (71.6ms)[0m  [1m[35mCREATE TABLE "categories" ("id" serial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (14.2ms)[0m  [1m[35mCREATE TABLE "comments" ("id" serial primary key, "content" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" integer, "project_id" integer)[0m
+  [1m[35m (7.2ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_project_id" ON "comments" USING btree ("project_id")[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_user_id" ON "comments" USING btree ("user_id")[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "follows" ("id" serial primary key, "following_id" integer NOT NULL, "follower_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE  INDEX  "index_follows_on_follower_id" ON "follows" USING btree ("follower_id")[0m
+  [1m[35m (33.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_follows_on_following_id_and_follower_id" ON "follows" USING btree ("following_id", "follower_id")[0m
+  [1m[35m (5.3ms)[0m  [1m[35mCREATE  INDEX  "index_follows_on_following_id" ON "follows" USING btree ("following_id")[0m
+  [1m[35m (36.8ms)[0m  [1m[35mCREATE TABLE "pledges" ("id" serial primary key, "amount" decimal, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "project_id" integer, "user_id" integer, "reward_id" integer)[0m
+  [1m[35m (5.7ms)[0m  [1m[35mCREATE  INDEX  "index_pledges_on_project_id" ON "pledges" USING btree ("project_id")[0m
+  [1m[35m (20.9ms)[0m  [1m[35mCREATE  INDEX  "index_pledges_on_reward_id" ON "pledges" USING btree ("reward_id")[0m
+  [1m[35m (8.5ms)[0m  [1m[35mCREATE  INDEX  "index_pledges_on_user_id" ON "pledges" USING btree ("user_id")[0m
+  [1m[35m (8.9ms)[0m  [1m[35mCREATE TABLE "projects" ("id" serial primary key, "name" character varying NOT NULL, "description" text, "start_date" timestamp NOT NULL, "end_date" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" integer, "category_id" integer)[0m
+  [1m[35m (7.4ms)[0m  [1m[35mCREATE  INDEX  "index_projects_on_category_id" ON "projects" USING btree ("category_id")[0m
+  [1m[35m (10.0ms)[0m  [1m[35mCREATE  INDEX  "index_projects_on_user_id" ON "projects" USING btree ("user_id")[0m
+  [1m[35m (12.3ms)[0m  [1m[35mCREATE TABLE "rewards" ("id" serial primary key, "title" character varying, "amount" float, "description" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "project_id" integer)[0m
+  [1m[35m (4.1ms)[0m  [1m[35mCREATE  INDEX  "index_rewards_on_project_id" ON "rewards" USING btree ("project_id")[0m
+  [1m[35m (16.6ms)[0m  [1m[35mCREATE TABLE "updates" ("id" serial primary key, "title" character varying, "description" character varying, "date" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "project_id" integer)[0m
+  [1m[35m (5.8ms)[0m  [1m[35mCREATE  INDEX  "index_updates_on_project_id" ON "updates" USING btree ("project_id")[0m
+  [1m[35m (18.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "name" character varying, "password" character varying NOT NULL, "email" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (7.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (10.2ms)[0m  [1m[35mALTER TABLE "comments" ADD CONSTRAINT "fk_rails_8e3f130030"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+[0m
+  [1m[35m (10.7ms)[0m  [1m[35mALTER TABLE "comments" ADD CONSTRAINT "fk_rails_03de2dc08c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (4.5ms)[0m  [1m[35mALTER TABLE "pledges" ADD CONSTRAINT "fk_rails_faa0583997"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+[0m
+  [1m[35m (5.3ms)[0m  [1m[35mALTER TABLE "pledges" ADD CONSTRAINT "fk_rails_30e8a356aa"
+FOREIGN KEY ("reward_id")
+  REFERENCES "rewards" ("id")
+[0m
+  [1m[35m (6.5ms)[0m  [1m[35mALTER TABLE "pledges" ADD CONSTRAINT "fk_rails_fab7fc217d"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (3.2ms)[0m  [1m[35mALTER TABLE "projects" ADD CONSTRAINT "fk_rails_2ad2693164"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+[0m
+  [1m[35m (15.8ms)[0m  [1m[35mALTER TABLE "projects" ADD CONSTRAINT "fk_rails_b872a6760a"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (3.3ms)[0m  [1m[35mALTER TABLE "rewards" ADD CONSTRAINT "fk_rails_789cbde8b2"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+[0m
+  [1m[35m (3.8ms)[0m  [1m[35mALTER TABLE "updates" ADD CONSTRAINT "fk_rails_427f0272d5"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+[0m
+  [1m[35m (36.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (4.5ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (19.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170501002926)[0m
+  [1m[35m (1.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170430062606),
+(20170427174808),
+(20170427183857),
+(20170430031914),
+(20170427172236),
+(20170430070148),
+(20170427174657),
+(20170430065611),
+(20170430013037),
+(20170427171603),
+(20170430014633),
+(20170427172339),
+(20170427175908),
+(20170430040111);
+
+[0m
+  [1m[35m (7.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-05-01 03:18:10 UTC], ["updated_at", 2017-05-01 03:18:10 UTC]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (275.0ms)[0m  [1m[35mCREATE TABLE "categories" ("id" serial primary key, "name" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (25.7ms)[0m  [1m[35mCREATE TABLE "comments" ("id" serial primary key, "content" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" integer, "project_id" integer)[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_project_id" ON "comments" USING btree ("project_id")[0m
+  [1m[35m (22.2ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_user_id" ON "comments" USING btree ("user_id")[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE TABLE "follows" ("id" serial primary key, "following_id" integer NOT NULL, "follower_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (4.4ms)[0m  [1m[35mCREATE  INDEX  "index_follows_on_follower_id" ON "follows" USING btree ("follower_id")[0m
+  [1m[35m (7.5ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_follows_on_following_id_and_follower_id" ON "follows" USING btree ("following_id", "follower_id")[0m
+  [1m[35m (48.1ms)[0m  [1m[35mCREATE  INDEX  "index_follows_on_following_id" ON "follows" USING btree ("following_id")[0m
+  [1m[35m (47.3ms)[0m  [1m[35mCREATE TABLE "pledges" ("id" serial primary key, "amount" decimal, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "project_id" integer, "user_id" integer, "reward_id" integer)[0m
+  [1m[35m (5.9ms)[0m  [1m[35mCREATE  INDEX  "index_pledges_on_project_id" ON "pledges" USING btree ("project_id")[0m
+  [1m[35m (18.3ms)[0m  [1m[35mCREATE  INDEX  "index_pledges_on_reward_id" ON "pledges" USING btree ("reward_id")[0m
+  [1m[35m (6.1ms)[0m  [1m[35mCREATE  INDEX  "index_pledges_on_user_id" ON "pledges" USING btree ("user_id")[0m
+  [1m[35m (10.3ms)[0m  [1m[35mCREATE TABLE "projects" ("id" serial primary key, "name" character varying NOT NULL, "description" text, "start_date" timestamp NOT NULL, "end_date" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "user_id" integer, "category_id" integer)[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE  INDEX  "index_projects_on_category_id" ON "projects" USING btree ("category_id")[0m
+  [1m[35m (9.7ms)[0m  [1m[35mCREATE  INDEX  "index_projects_on_user_id" ON "projects" USING btree ("user_id")[0m
+  [1m[35m (60.7ms)[0m  [1m[35mCREATE TABLE "rewards" ("id" serial primary key, "title" character varying, "amount" float, "description" text, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "project_id" integer)[0m
+  [1m[35m (11.3ms)[0m  [1m[35mCREATE  INDEX  "index_rewards_on_project_id" ON "rewards" USING btree ("project_id")[0m
+  [1m[35m (33.7ms)[0m  [1m[35mCREATE TABLE "updates" ("id" serial primary key, "title" character varying, "description" character varying, "date" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL, "project_id" integer)[0m
+  [1m[35m (4.8ms)[0m  [1m[35mCREATE  INDEX  "index_updates_on_project_id" ON "updates" USING btree ("project_id")[0m
+  [1m[35m (8.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "name" character varying, "password" character varying NOT NULL, "email" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (13.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users" USING btree ("email")[0m
+  [1m[35m (73.8ms)[0m  [1m[35mALTER TABLE "comments" ADD CONSTRAINT "fk_rails_8e3f130030"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "comments" ADD CONSTRAINT "fk_rails_03de2dc08c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (5.1ms)[0m  [1m[35mALTER TABLE "pledges" ADD CONSTRAINT "fk_rails_faa0583997"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+[0m
+  [1m[35m (4.8ms)[0m  [1m[35mALTER TABLE "pledges" ADD CONSTRAINT "fk_rails_30e8a356aa"
+FOREIGN KEY ("reward_id")
+  REFERENCES "rewards" ("id")
+[0m
+  [1m[35m (6.0ms)[0m  [1m[35mALTER TABLE "pledges" ADD CONSTRAINT "fk_rails_fab7fc217d"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.8ms)[0m  [1m[35mALTER TABLE "projects" ADD CONSTRAINT "fk_rails_2ad2693164"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+[0m
+  [1m[35m (2.7ms)[0m  [1m[35mALTER TABLE "projects" ADD CONSTRAINT "fk_rails_b872a6760a"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (58.0ms)[0m  [1m[35mALTER TABLE "rewards" ADD CONSTRAINT "fk_rails_789cbde8b2"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+[0m
+  [1m[35m (25.7ms)[0m  [1m[35mALTER TABLE "updates" ADD CONSTRAINT "fk_rails_427f0272d5"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+[0m
+  [1m[35m (6.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT version FROM "schema_migrations"[0m
+  [1m[35m (1.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20170501002926)[0m
+  [1m[35m (1.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20170430062606),
+(20170427174808),
+(20170427183857),
+(20170430031914),
+(20170427172236),
+(20170430070148),
+(20170427174657),
+(20170430065611),
+(20170430013037),
+(20170427171603),
+(20170430014633),
+(20170427172339),
+(20170427175908),
+(20170430040111);
+
+[0m
+  [1m[35m (10.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (36.8ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-05-01 03:18:12 UTC], ["updated_at", 2017-05-01 03:18:12 UTC]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (4.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Exists (1.7ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE "categories"."name" = $1 LIMIT $2[0m  [["name", "Music"], ["LIMIT", 1]]
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Music"], ["created_at", 2017-05-01 03:18:12 UTC], ["updated_at", 2017-05-01 03:18:12 UTC]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE "categories"."name" = $1 LIMIT $2[0m  [["name", "Sport"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Sport"], ["created_at", 2017-05-01 03:18:12 UTC], ["updated_at", 2017-05-01 03:18:12 UTC]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "categories" WHERE "categories"."name" = $1 LIMIT $2[0m  [["name", "Technology"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "categories" ("name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["name", "Technology"], ["created_at", 2017-05-01 03:18:12 UTC], ["updated_at", 2017-05-01 03:18:12 UTC]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (1.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "user"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "email@uc.cl"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "password", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "user"], ["password", "holahola"], ["email", "email@uc.cl"], ["created_at", 2017-05-01 03:18:12 UTC], ["updated_at", 2017-05-01 03:18:12 UTC]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Mr. Ariel Tromp"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "troy.swaniawski@hahn.co"], ["LIMIT", 1]]
+  [1m[35mSQL (1.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "password", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Mr. Ariel Tromp"], ["password", "holahola"], ["email", "troy.swaniawski@hahn.co"], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC]]
+  [1m[35m (50.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.9ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Chris Oberbrunner"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "brady.champlin@cremin.org"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "password", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Chris Oberbrunner"], ["password", "holahola"], ["email", "brady.champlin@cremin.org"], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC]]
+  [1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Art Toy"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "kavon.renner@reichertreynolds.info"], ["LIMIT", 1]]
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "password", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Art Toy"], ["password", "holahola"], ["email", "kavon.renner@reichertreynolds.info"], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC]]
+  [1m[35m (13.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."name" = $1 LIMIT $2[0m  [["name", "Hermann Kuphal"], ["LIMIT", 1]]
+  [1m[36mUser Exists (0.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "lyric@abernathy.net"], ["LIMIT", 1]]
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "password", "email", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["name", "Hermann Kuphal"], ["password", "holahola"], ["email", "lyric@abernathy.net"], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC]]
+  [1m[35m (12.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProject Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "projects" WHERE "projects"."name" = $1 LIMIT $2[0m  [["name", "Practical Paper Bottle"], ["LIMIT", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "projects" ("name", "description", "start_date", "end_date", "created_at", "updated_at", "user_id", "category_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Practical Paper Bottle"], ["description", "Accusamus consectetur libero. Deleniti est necessitatibus perspiciatis. Incidunt enim eveniet et veniam iusto eum aut. Magni velit aliquid quas ipsam. Porro hic asperiores sed a tempore. Vero labore consequuntur. Numquam distinctio ut ut. Impedit voluptatem iusto dolor enim et quia. Numquam minus voluptatibus tempore nihil molestiae veniam. Aperiam error molestiae maxime beatae. Quia placeat ut aperiam pariatur. Eaque quia facere odio. Aut mollitia nihil. Temporibus ut beatae fuga et. Ea enim maiores."], ["start_date", 2017-05-01 01:59:22 UTC], ["end_date", 2018-04-20 20:09:57 UTC], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["user_id", 4], ["category_id", 2]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProject Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "projects" WHERE "projects"."name" = $1 LIMIT $2[0m  [["name", "Small Wooden Hat"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "projects" ("name", "description", "start_date", "end_date", "created_at", "updated_at", "user_id", "category_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Small Wooden Hat"], ["description", "Doloremque nihil placeat expedita voluptas veritatis quod aut. Omnis voluptatem sed provident beatae minus vero. Tempore molestiae incidunt ut reiciendis alias cumque tempora. Harum provident voluptas corporis et. Nihil non aut recusandae itaque est laudantium voluptatem. Excepturi voluptatem temporibus. Velit consequatur facilis vero maiores. Totam et praesentium modi dolor. Error illum omnis officia dolorem ex vitae in. Voluptatem nulla sunt quo et voluptate. Maxime perspiciatis doloremque. Repellat non dolores doloremque pariatur dolore et. Assumenda id est iusto. Alias voluptas rerum eaque quod pariatur eos dolorem. Ducimus aspernatur ab consequatur."], ["start_date", 2017-05-01 13:17:07 UTC], ["end_date", 2018-04-10 21:29:05 UTC], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["user_id", 4], ["category_id", 2]]
+  [1m[35m (12.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProject Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "projects" WHERE "projects"."name" = $1 LIMIT $2[0m  [["name", "Enormous Concrete Keyboard"], ["LIMIT", 1]]
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "projects" ("name", "description", "start_date", "end_date", "created_at", "updated_at", "user_id", "category_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Enormous Concrete Keyboard"], ["description", "Provident et eum consectetur. Voluptatem dicta sequi eaque similique quia. Iure tenetur asperiores temporibus. Deleniti architecto in cum est eveniet reiciendis magnam. Quia odit voluptas quia. Amet sapiente ut velit et beatae pariatur nisi. Sapiente et sed. Quae dignissimos iste cupiditate esse. Eum consectetur nemo itaque commodi. Est quae quia quas sit natus minus omnis. Commodi velit asperiores dolorem voluptas dolorum optio. Et autem facilis et accusamus corporis quidem. Eum est dolore quidem et architecto aperiam voluptate. Rerum optio enim in. Aut aut quae rerum cumque. Error architecto incidunt quo delectus. Dolores non enim voluptates aut sed non."], ["start_date", 2017-05-01 15:28:51 UTC], ["end_date", 2017-09-24 22:26:44 UTC], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["user_id", 4], ["category_id", 2]]
+  [1m[35m (14.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProject Exists (1.0ms)[0m  [1m[34mSELECT  1 AS one FROM "projects" WHERE "projects"."name" = $1 LIMIT $2[0m  [["name", "Practical Copper Bench"], ["LIMIT", 1]]
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "projects" ("name", "description", "start_date", "end_date", "created_at", "updated_at", "user_id", "category_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Practical Copper Bench"], ["description", "Molestiae atque quisquam voluptatibus. Eveniet perspiciatis neque. Aut doloremque nemo tempore incidunt harum eos in. Ipsa odio suscipit voluptatibus perspiciatis veritatis corrupti. Aut eaque deleniti sint aliquid omnis. Mollitia eveniet nihil quisquam. Recusandae perferendis pariatur eveniet non. Maxime voluptatem enim et. Sed quos aut distinctio inventore. Fugiat enim vero debitis a doloremque culpa ullam. Voluptate corporis cumque. Vero rerum ipsa. Ratione non ab praesentium qui esse. Eos in voluptate labore. Aperiam explicabo et quis consequuntur minus perspiciatis. Deleniti nobis sapiente enim."], ["start_date", 2017-05-01 12:24:30 UTC], ["end_date", 2018-01-01 22:17:31 UTC], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["user_id", 4], ["category_id", 3]]
+  [1m[35m (8.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCategory Load (0.5ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProject Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "projects" WHERE "projects"."name" = $1 LIMIT $2[0m  [["name", "Small Marble Plate"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "projects" ("name", "description", "start_date", "end_date", "created_at", "updated_at", "user_id", "category_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Small Marble Plate"], ["description", "Libero quia laudantium sit. Facere officia dolorum veniam doloremque. Perspiciatis et aliquid. Quae quibusdam harum ut. Ullam ratione laudantium in et vitae. Ea beatae voluptatem sint earum a nemo ducimus. Architecto iure quia consectetur repellendus mollitia aspernatur. Mollitia consequuntur non voluptas et eum repudiandae. Et est doloremque modi provident ipsa dignissimos deleniti. Quia accusantium esse sit. Rerum aut ut et. Consequuntur voluptas enim accusantium. Veniam facere repellendus debitis cum velit voluptatem ex. Sint recusandae in inventore tempore et. Ut pariatur ullam sint illo. Nihil ex dicta laborum eligendi molestias deserunt."], ["start_date", 2017-05-01 16:42:41 UTC], ["end_date", 2017-11-07 22:21:26 UTC], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["user_id", 5], ["category_id", 1]]
+  [1m[35m (13.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mProject Exists (0.6ms)[0m  [1m[34mSELECT  1 AS one FROM "projects" WHERE "projects"."name" = $1 LIMIT $2[0m  [["name", "Mediocre Wool Lamp"], ["LIMIT", 1]]
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "projects" ("name", "description", "start_date", "end_date", "created_at", "updated_at", "user_id", "category_id") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["name", "Mediocre Wool Lamp"], ["description", "Ex et sit et. Est molestiae qui. Dolorum voluptas corporis sed veritatis exercitationem. Omnis vel pariatur. Quaerat et necessitatibus. Est nobis et exercitationem aliquid. Quia harum reprehenderit eos modi consequatur. Voluptas et excepturi architecto sint accusamus. Aliquid quia quibusdam. Et optio quas eligendi eveniet aut officiis. Libero cumque quaerat aut eligendi est non. Recusandae voluptas dicta iure qui id omnis. Accusamus officiis sint reiciendis quo qui. Id sunt neque ut ut. In ullam voluptas eum saepe deleniti hic. Hic qui doloribus similique veritatis laborum."], ["start_date", 2017-05-01 10:13:27 UTC], ["end_date", 2018-03-03 00:09:27 UTC], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["user_id", 4], ["category_id", 3]]
+  [1m[35m (26.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.3ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "project_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Pork belly cardigan farm-to-table mumblecore poutine vhs ennui pabst."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["user_id", 1], ["project_id", 1]]
+  [1m[35m (23.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "project_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Polaroid wayfarers fixie goth keytar."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["user_id", 3], ["project_id", 6]]
+  [1m[35m (15.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "project_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Banjo letterpress chartreuse distillery."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["user_id", 3], ["project_id", 6]]
+  [1m[35m (15.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "project_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Banjo mlkshk chillwave kinfolk pinterest thundercats wes anderson kale chips banh mi."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["user_id", 4], ["project_id", 3]]
+  [1m[35m (16.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "project_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Trust fund offal mlkshk yolo gentrify loko mumblecore."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["user_id", 2], ["project_id", 5]]
+  [1m[35m (16.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProject Load (3.2ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (4.6ms)[0m  [1m[32mINSERT INTO "comments" ("content", "created_at", "updated_at", "user_id", "project_id") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["content", "Flexitarian lomo freegan scenester squid."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["user_id", 5], ["project_id", 1]]
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (4.4ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Shoreditch direct trade pbr&b."], ["amount", 30.54], ["description", "Williamsburg wayfarers cliche tacos scenester."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 4]]
+  [1m[35m (2.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Migas asymmetrical ramps."], ["amount", 2.95], ["description", "Single-origin coffee paleo migas loko."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 2]]
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Fixie bushwick."], ["amount", 67.41], ["description", "Selfies jean shorts narwhal pitchfork locavore brooklyn."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 6]]
+  [1m[35m (6.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Semiotics cornhole squid."], ["amount", 61.02], ["description", "Bitters fingerstache yolo locavore vinyl cold-pressed keffiyeh pour-over retro."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 4]]
+  [1m[35m (6.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Artisan fixie."], ["amount", 17.53], ["description", "Park asymmetrical lo-fi photo booth squid salvia five dollar toast."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 6]]
+  [1m[35m (1.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Park cornhole tousled."], ["amount", 96.24], ["description", "Church-key bicycle rights brunch disrupt neutra craft beer vinegar."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 4]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Stumptown loko meggings."], ["amount", 90.12], ["description", "Yr hammock selvage normcore cleanse vhs taxidermy 90's food truck."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 5]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Whatever bitters shoreditch."], ["amount", 55.83], ["description", "Tattooed chambray messenger bag truffaut cred helvetica hashtag pinterest."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 1]]
+  [1m[35m (9.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.7ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Pug shoreditch."], ["amount", 8.69], ["description", "Pour-over godard cold-pressed distillery mlkshk twee skateboard typewriter xoxo."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 4]]
+  [1m[35m (6.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Letterpress yuccie forage."], ["amount", 77.01], ["description", "Biodiesel slow-carb beard carry mixtape master pork belly food truck vhs."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 6]]
+  [1m[35m (36.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Pork belly iphone."], ["amount", 41.65], ["description", "3 wolf moon chicharrones cronut kinfolk blue bottle."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 5]]
+  [1m[35m (18.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.7ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Kogi vhs."], ["amount", 26.51], ["description", "Offal ennui hashtag post-ironic ethical."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 1]]
+  [1m[35m (15.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Taxidermy literally."], ["amount", 30.83], ["description", "Chillwave ethical ennui microdosing kogi pour-over marfa offal mustache."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 1]]
+  [1m[35m (18.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Put a bird on it gluten-free franzen."], ["amount", 36.57], ["description", "Pabst retro cliche vhs poutine cardigan ugh health."], ["created_at", 2017-05-01 03:18:13 UTC], ["updated_at", 2017-05-01 03:18:13 UTC], ["project_id", 2]]
+  [1m[35m (9.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Banjo kogi."], ["amount", 61.74], ["description", "Chicharrones health kombucha bicycle rights skateboard tumblr wes anderson keytar pour-over."], ["created_at", 2017-05-01 03:18:14 UTC], ["updated_at", 2017-05-01 03:18:14 UTC], ["project_id", 3]]
+  [1m[35m (1.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY RANDOM() LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "rewards" ("title", "amount", "description", "created_at", "updated_at", "project_id") VALUES ($1, $2, $3, $4, $5, $6) RETURNING "id"[0m  [["title", "Selvage master."], ["amount", 91.09], ["description", "Artisan bushwick retro trust fund kickstarter craft beer yolo."], ["created_at", 2017-05-01 03:18:14 UTC], ["updated_at", 2017-05-01 03:18:14 UTC], ["project_id", 4]]
+  [1m[35m (1.3ms)[0m  [1m[35mCOMMIT[0m
+Started GET "/" for 127.0.0.1 at 2017-05-01 00:18:27 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (2.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mProject Load (6.9ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCategory Load (9.1ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  Rendered home/index.html.erb within layouts/application (129.7ms)
+Completed 200 OK in 1364ms (Views: 1212.8ms | ActiveRecord: 36.1ms)
+
+
+Started GET "/rewards/new" for 127.0.0.1 at 2017-05-01 00:18:32 -0300
+Processing by RewardsController#new as HTML
+  Rendering rewards/new.html.erb within layouts/application
+Started GET "/projects" for 127.0.0.1 at 2017-05-01 00:18:33 -0300
+  [1m[36mProject Load (6.4ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  Rendered rewards/_form.html.erb (1627.4ms)
+  Rendered rewards/new.html.erb within layouts/application (1630.8ms)
+Completed 200 OK in 1819ms (Views: 1761.2ms | ActiveRecord: 27.2ms)
+
+
+Processing by ProjectsController#index as HTML
+Started GET "/users" for 127.0.0.1 at 2017-05-01 00:18:34 -0300
+Started GET "/comments" for 127.0.0.1 at 2017-05-01 00:18:34 -0300
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (1.6ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+Processing by UsersController#index as HTML
+Processing by CommentsController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (12.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (31.0ms)
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCategory Load (7.7ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Load (8.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  Rendered projects/index.html.erb within layouts/application (320.6ms)
+Completed 200 OK in 292ms (Views: 267.8ms | ActiveRecord: 12.8ms)
+
+
+Completed 200 OK in 505ms (Views: 446.4ms | ActiveRecord: 38.4ms)
+
+
+  Rendering comments/index.html.erb within layouts/application
+  [1m[36mComment Load (7.3ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mProject Load (0.5ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mUser Load (10.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mProject Load (0.7ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 4], ["LIMIT", 1]]
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mProject Load (3.7ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  Rendered comments/index.html.erb within layouts/application (129.3ms)
+Completed 200 OK in 630ms (Views: 181.0ms | ActiveRecord: 39.4ms)
+
+
