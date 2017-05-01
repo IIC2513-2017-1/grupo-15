@@ -56,13 +56,6 @@ ActiveRecord::Schema.define(version: 20170430070148) do
     t.index ["user_id"], name: "index_projects_on_user_id", using: :btree
   end
 
-  create_table "projects_categories", force: :cascade do |t|
-    t.integer "project_id"
-    t.integer "category_id"
-    t.index ["category_id"], name: "index_projects_categories_on_category_id", using: :btree
-    t.index ["project_id"], name: "index_projects_categories_on_project_id", using: :btree
-  end
-
   create_table "rewards", force: :cascade do |t|
     t.string   "title"
     t.float    "amount"

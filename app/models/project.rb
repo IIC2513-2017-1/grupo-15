@@ -1,5 +1,5 @@
 class Project < ApplicationRecord
-	validates :title, presence: true, allow_blank: false
+	validates :name, presence: true, allow_blank: false
 	validates :start_date, presence: true
 	validates :end_date, presence: true
 	validate :end_date_after_start_date?
