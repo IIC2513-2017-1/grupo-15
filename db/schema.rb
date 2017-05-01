@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170501002926) do
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20170501002926) do
   end
 
   create_table "pledges", force: :cascade do |t|
-    t.decimal  "amount"
+    t.decimal  "amount",     null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "project_id"
@@ -63,13 +63,14 @@ ActiveRecord::Schema.define(version: 20170501002926) do
     t.integer  "user_id"
     t.integer  "category_id"
     t.index ["category_id"], name: "index_projects_on_category_id", using: :btree
+    t.index ["name"], name: "index_projects_on_name", unique: true, using: :btree
     t.index ["user_id"], name: "index_projects_on_user_id", using: :btree
   end
 
   create_table "rewards", force: :cascade do |t|
-    t.string   "title"
-    t.float    "amount"
-    t.text     "description"
+    t.string   "title",       null: false
+    t.float    "amount",      null: false
+    t.text     "description", null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "project_id"
@@ -77,9 +78,9 @@ ActiveRecord::Schema.define(version: 20170501002926) do
   end
 
   create_table "updates", force: :cascade do |t|
-    t.string   "title"
-    t.string   "description"
-    t.datetime "date"
+    t.string   "title",       null: false
+    t.string   "description", null: false
+    t.datetime "date",        null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "project_id"

@@ -2,11 +2,15 @@
 
 <h1>FundUp</h1>
 <h2>Highlighted projects</h2>
-<%= link_to project_path(id: Project.first.id) do %>
-  <div class="preview">
-    <h3><%= Project.first.name %></h3>
-    <p><%= Project.first.description %></p>
-  </div>
+<% if Project.first %>
+  <%= link_to project_path(id: Project.first.id) do %>
+    <div class="preview">
+      <h3><%= Project.first.name %></h3>
+      <p><%= Project.first.description %></p>
+    </div>
+  <% end %>
+  <%else%>
+    <h3>Actually, there are no projects to show</h3>
 <% end %>
 <div class="categories">
   <h3>Explore by categories</h3>

@@ -466,3 +466,262 @@ Processing by RewardsController#new as HTML
 Completed 200 OK in 868ms (Views: 811.0ms | ActiveRecord: 10.2ms)
 
 
+  [1m[36mActiveRecord::SchemaMigration Load (0.9ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (16.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", :environment]]
+  [1m[35m (626.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "fundup_development"[0m
+  [1m[35m (369.9ms)[0m  [1m[35mDROP DATABASE IF EXISTS "fundup_test"[0m
+  [1m[35m (317.5ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying PRIMARY KEY)[0m
+  [1m[35m (194.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying PRIMARY KEY, "value" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8774501728419989100);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateUsers (20170427171603)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (194.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" serial primary key, "name" character varying, "password" character varying NOT NULL, "email" character varying NOT NULL, "string" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (50.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170427171603"]]
+  [1m[35m (22.6ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateProjects (20170427172236)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (99.7ms)[0m  [1m[35mCREATE TABLE "projects" ("id" serial primary key, "name" character varying NOT NULL, "description" text, "start_date" timestamp NOT NULL, "end_date" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (18.1ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_project_on_name" ON "project"  ("name")[0m
+  [1m[35m (0.7ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT pg_advisory_unlock(8774501728419989100)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8774501728419989100);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateProjects (20170427172236)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (96.6ms)[0m  [1m[35mCREATE TABLE "projects" ("id" serial primary key, "name" character varying NOT NULL, "description" text, "start_date" timestamp NOT NULL, "end_date" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_name_on_project" ON "name"  ("project")[0m
+  [1m[35m (0.5ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT pg_advisory_unlock(8774501728419989100)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_try_advisory_lock(8774501728419989100);[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateProjects (20170427172236)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (93.4ms)[0m  [1m[35mCREATE TABLE "projects" ("id" serial primary key, "name" character varying NOT NULL, "description" text, "start_date" timestamp NOT NULL, "end_date" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (39.2ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_projects_on_name" ON "projects"  ("name")[0m
+  [1m[35mSQL (1.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170427172236"]]
+  [1m[35m (21.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateComments (20170427172339)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (93.1ms)[0m  [1m[35mCREATE TABLE "comments" ("id" serial primary key, "content" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170427172339"]]
+  [1m[35m (24.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUserToComment (20170427174657)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (17.8ms)[0m  [1m[35mALTER TABLE "comments" ADD "user_id" integer[0m
+  [1m[35m (81.9ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_user_id" ON "comments"  ("user_id")[0m
+  [1m[35m (23.4ms)[0m  [1m[35mALTER TABLE "comments" ADD CONSTRAINT "fk_rails_03de2dc08c"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170427174657"]]
+  [1m[35m (31.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddProjectToComment (20170427174808)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "comments" ADD "project_id" integer[0m
+  [1m[35m (55.2ms)[0m  [1m[35mCREATE  INDEX  "index_comments_on_project_id" ON "comments"  ("project_id")[0m
+  [1m[35m (3.0ms)[0m  [1m[35mALTER TABLE "comments" ADD CONSTRAINT "fk_rails_8e3f130030"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170427174808"]]
+  [1m[35m (51.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RemoveStringColumnFromUser (20170427175908)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "users" DROP "string"[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170427175908"]]
+  [1m[35m (4.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddUserToProject (20170427183857)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "projects" ADD "user_id" integer[0m
+  [1m[35m (52.3ms)[0m  [1m[35mCREATE  INDEX  "index_projects_on_user_id" ON "projects"  ("user_id")[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "projects" ADD CONSTRAINT "fk_rails_b872a6760a"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (0.8ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170427183857"]]
+  [1m[35m (18.2ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePledges (20170430013037)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (94.5ms)[0m  [1m[35mCREATE TABLE "pledges" ("id" serial primary key, "title" character varying NOT NULL, "amount" decimal NOT NULL, "description" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.6ms)[0m  [1m[35mALTER TABLE "pledges" ADD "project_id" integer[0m
+  [1m[35m (60.0ms)[0m  [1m[35mCREATE  INDEX  "index_pledges_on_project_id" ON "pledges"  ("project_id")[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "pledges" ADD CONSTRAINT "fk_rails_faa0583997"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "pledges" ADD "user_id" integer[0m
+  [1m[35m (57.2ms)[0m  [1m[35mCREATE  INDEX  "index_pledges_on_user_id" ON "pledges"  ("user_id")[0m
+  [1m[35m (2.2ms)[0m  [1m[35mALTER TABLE "pledges" ADD CONSTRAINT "fk_rails_fab7fc217d"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170430013037"]]
+  [1m[35m (18.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateUpdates (20170430014633)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (118.9ms)[0m  [1m[35mCREATE TABLE "updates" ("id" serial primary key, "title" character varying NOT NULL, "description" character varying NOT NULL, "date" timestamp NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "updates" ADD "project_id" integer[0m
+  [1m[35m (48.1ms)[0m  [1m[35mCREATE  INDEX  "index_updates_on_project_id" ON "updates"  ("project_id")[0m
+  [1m[35m (3.2ms)[0m  [1m[35mALTER TABLE "updates" ADD CONSTRAINT "fk_rails_427f0272d5"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170430014633"]]
+  [1m[35m (17.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCategories (20170430031914)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (96.1ms)[0m  [1m[35mCREATE TABLE "categories" ("id" serial primary key, "name" character varying NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170430031914"]]
+  [1m[35m (19.0ms)[0m  [1m[35mCOMMIT[0m
+Migrating to AddCategoryToProject (20170430040111)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "projects" ADD "category_id" integer[0m
+  [1m[35m (46.4ms)[0m  [1m[35mCREATE  INDEX  "index_projects_on_category_id" ON "projects"  ("category_id")[0m
+  [1m[35m (3.0ms)[0m  [1m[35mALTER TABLE "projects" ADD CONSTRAINT "fk_rails_2ad2693164"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170430040111"]]
+  [1m[35m (25.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateRewards (20170430062606)
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (87.5ms)[0m  [1m[35mCREATE TABLE "rewards" ("id" serial primary key, "title" character varying NOT NULL, "amount" float NOT NULL, "description" text NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (2.4ms)[0m  [1m[35mALTER TABLE "rewards" ADD "project_id" integer[0m
+  [1m[35m (67.2ms)[0m  [1m[35mCREATE  INDEX  "index_rewards_on_project_id" ON "rewards"  ("project_id")[0m
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "rewards" ADD CONSTRAINT "fk_rails_789cbde8b2"
+FOREIGN KEY ("project_id")
+  REFERENCES "projects" ("id")
+[0m
+  [1m[35mSQL (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170430062606"]]
+  [1m[35m (4.5ms)[0m  [1m[35mCOMMIT[0m
+Migrating to ChangeDescriptionTypeInRewards (20170430065611)
+  [1m[35m (0.6ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170430065611"]]
+  [1m[35m (5.8ms)[0m  [1m[35mCOMMIT[0m
+Migrating to RemoveDescriptionAndTitleFromPledges (20170430070148)
+  [1m[35m (1.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "pledges" DROP "description"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "pledges" DROP "title"[0m
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "pledges" ADD "reward_id" integer[0m
+  [1m[35m (45.5ms)[0m  [1m[35mCREATE  INDEX  "index_pledges_on_reward_id" ON "pledges"  ("reward_id")[0m
+  [1m[35m (2.5ms)[0m  [1m[35mALTER TABLE "pledges" ADD CONSTRAINT "fk_rails_30e8a356aa"
+FOREIGN KEY ("reward_id")
+  REFERENCES "rewards" ("id")
+[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170430070148"]]
+  [1m[35m (25.1ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateFollows (20170501002926)
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (54.3ms)[0m  [1m[35mCREATE TABLE "follows" ("id" serial primary key, "following_id" integer NOT NULL, "follower_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  [1m[35m (39.8ms)[0m  [1m[35mCREATE  INDEX  "index_follows_on_follower_id" ON "follows"  ("follower_id")[0m
+  [1m[35m (61.5ms)[0m  [1m[35mCREATE  INDEX  "index_follows_on_following_id" ON "follows"  ("following_id")[0m
+  [1m[35m (39.9ms)[0m  [1m[35mCREATE UNIQUE INDEX  "index_follows_on_following_id_and_follower_id" ON "follows"  ("following_id", "follower_id")[0m
+  [1m[35mSQL (0.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20170501002926"]]
+  [1m[35m (25.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", :environment], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", 2017-05-01 03:49:33 UTC], ["updated_at", 2017-05-01 03:49:33 UTC]]
+  [1m[35m (7.0ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(8774501728419989100)[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Started GET "/" for 127.0.0.1 at 2017-05-01 00:50:00 -0300
+  [1m[36mActiveRecord::SchemaMigration Load (1.7ms)[0m  [1m[34mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mProject Load (4.7ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  Rendered home/index.html.erb within layouts/application (112.9ms)
+Completed 500 Internal Server Error in 219ms (ActiveRecord: 16.3ms)
+
+
+  
+ActionView::Template::Error (undefined method `id' for nil:NilClass):
+    2: 
+    3: <h1>FundUp</h1>
+    4: <h2>Highlighted projects</h2>
+    5: <%= link_to project_path(id: Project.first.id) do %>
+    6:   <div class="preview">
+    7:     <h3><%= Project.first.name %></h3>
+    8:     <p><%= Project.first.description %></p>
+  
+app/views/home/index.html.erb:5:in `_app_views_home_index_html_erb__478185816663824016_46982514877840'
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (18.4ms)
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (4.8ms)
+  Rendering /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (2.9ms)
+  Rendered /home/zlamir/.rbenv/versions/2.4.0/lib/ruby/gems/2.4.0/gems/actionpack-5.0.2/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (97.0ms)
+Started GET "/" for 127.0.0.1 at 2017-05-01 00:53:26 -0300
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mProject Load (2.7ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  Rendered home/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 530ms (Views: 522.7ms | ActiveRecord: 6.2ms)
+
+
+Started GET "/" for 127.0.0.1 at 2017-05-01 00:53:33 -0300
+Processing by HomeController#index as HTML
+  Rendering home/index.html.erb within layouts/application
+  [1m[36mProject Load (0.6ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" ORDER BY "projects"."id" ASC LIMIT $1[0m  [["LIMIT", 1]]
+  [1m[36mCategory Load (0.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  Rendered home/index.html.erb within layouts/application (3.4ms)
+Completed 200 OK in 62ms (Views: 59.6ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2017-05-01 00:53:33 -0300
+Processing by UsersController#index as HTML
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered users/index.html.erb within layouts/application (5.3ms)
+Completed 200 OK in 107ms (Views: 61.1ms | ActiveRecord: 2.4ms)
+
+
+Started GET "/projects" for 127.0.0.1 at 2017-05-01 00:53:34 -0300
+Processing by ProjectsController#index as HTML
+  Rendering projects/index.html.erb within layouts/application
+  [1m[36mProject Load (0.9ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (7.1ms)
+Completed 200 OK in 93ms (Views: 72.8ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/rewards/new" for 127.0.0.1 at 2017-05-01 00:53:34 -0300
+Processing by RewardsController#new as HTML
+  Rendering rewards/new.html.erb within layouts/application
+Started GET "/pledges" for 127.0.0.1 at 2017-05-01 00:53:35 -0300
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT "projects".* FROM "projects"[0m
+  Rendered rewards/_form.html.erb (545.4ms)
+  Rendered rewards/new.html.erb within layouts/application (553.8ms)
+Completed 200 OK in 654ms (Views: 599.3ms | ActiveRecord: 9.9ms)
+
+
+Processing by PledgesController#index as HTML
+  Rendering pledges/index.html.erb within layouts/application
+  [1m[36mPledge Load (0.8ms)[0m  [1m[34mSELECT "pledges".* FROM "pledges"[0m
+  Rendered pledges/index.html.erb within layouts/application (5.4ms)
+Started GET "/comments" for 127.0.0.1 at 2017-05-01 00:53:35 -0300
+Completed 200 OK in 136ms (Views: 99.7ms | ActiveRecord: 2.1ms)
+
+
+Processing by CommentsController#index as HTML
+  Rendering comments/index.html.erb within layouts/application
+  [1m[36mComment Load (2.8ms)[0m  [1m[34mSELECT "comments".* FROM "comments"[0m
+  Rendered comments/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 79ms (Views: 67.0ms | ActiveRecord: 4.9ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2017-05-01 00:53:36 -0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered users/_form.html.erb (8.8ms)
+  Rendered users/new.html.erb within layouts/application (11.2ms)
+Completed 200 OK in 106ms (Views: 64.5ms | ActiveRecord: 20.1ms)
+
+
