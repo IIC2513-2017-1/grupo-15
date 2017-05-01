@@ -1,5 +1,9 @@
 class Project < ApplicationRecord
 	validates :title, presence: true, allow_blank: false
+	validates :start_date, presence: true
+	validates :end_date, presence: true
+
+
 	has_many :comments
 	has_many :pledges
 	has_many :rewards
