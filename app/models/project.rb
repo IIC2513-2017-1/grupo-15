@@ -1,11 +1,23 @@
 class Project < ApplicationRecord
-	validates :title, presence: true, allow_blank: false
+	validates :name, presence: true, allow_blank: false
+	validates :start_date, presence: true
+	validates :end_date, presence: true
+	validate :end_date_after_start_date?
+
 	has_many :comments
 	has_many :pledges
 	has_many :rewards
 	has_many :updates
 	belongs_to :category
 	belongs_to :user
+
+	# Reference:
+	# http://stackoverflow.com/questions/33639833/validate-that-an-end-date-is-later-than-a-start-date-in-rails-4
+	def end_date_after_start_date?
+		if end_date < start_date
+			errors.add :end_date, "must be after start date"
+		end
+	end
 
 	def start
 		self.start_date.strftime('%a, %d %b %Y %H:%M:%S')
