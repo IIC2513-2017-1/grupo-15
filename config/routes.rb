@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   resource :session, only: [:new, :create, :destroy]
-  
   resources :follows, only: [:new,:create, :destroy]
   resources :updates
   resources :pledges, only: [:index, :new, :create]
