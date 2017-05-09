@@ -20,10 +20,19 @@
       </nav>
 
       <div id="user-bar">
-        <%= link_to 'Sign Up', new_user_path %>
+      <% if logged_in? %>
+          <li><%= link_to "My Profile", '#' %></li>
+          <% else %>
+          <li><%= link_to "Log In", new_session_path %></li>
+          
+        <% end %>
+        <li><%= link_to 'Sign Up', new_user_path %></li>
       </div>
     </header>
     <main>
+      <% flash.each do |key, value| %>
+        <%= content_tag :div, value, class: "flash #{key}" %>
+      <% end %>
       <%= yield %>
     </main>
     <footer>
