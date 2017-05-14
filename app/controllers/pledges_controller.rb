@@ -5,12 +5,14 @@ class PledgesController < ApplicationController
   end
 
   def new
+    @project = Project.find(params[:project_id])
+    @reward = Reward.find(params[:reward_id])
     @pledge = Pledge.new
   end
 
   def create
-    @project = Project.find(params[:project_id])
-    raise
+    #@project = Project.find(params[:project_id])
+    #@reward = Reward.find(params[:reward_id])
     @pledge = Pledge.new(pledge_params)
 
     respond_to do |format|
@@ -29,7 +31,7 @@ class PledgesController < ApplicationController
       @pledge = Pledge.find(params[:id])
     end
 
-    def pledge_params #tengo q borrar el project id
-      params.require(:pledge).permit(:user_id, :project_id, :reward_id, :amount)
+    def pledge_params #chequear nested forms
+      params.require(:pledge).permit(:project_id, :reward_id, :amount)
     end
 end

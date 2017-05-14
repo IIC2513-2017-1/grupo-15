@@ -11,20 +11,14 @@
     </div>
   <% end %>
 
-
   <div class="field">
-    <%= f.label :User %>
-    <%= f.select :user_id, options_for_select(User.all.map{|c| [ c.name, c.id ] }), prompt: "Select a user" %>
+    <%= "Project: "+@project.name %>
+    <%= f.hidden_field :project_id, value: @project.id %>
   </div>
 
   <div class="field">
-    <%= f.label :Project %>
-    <%= f.select :project_id, options_for_select(Project.all.map{|c| [ c.name, c.id ] }), prompt: "Select a project" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :Reward %>
-    <%= f.select :reward_id, options_for_select(Reward.all.map{|c| [ c.title, c.id ] }), prompt: "Select a reward" %>
+    <%= "Reward: "+@reward.title %>
+    <%= f.hidden_field :reward_id, value: @reward.id %>
   </div>
 
   <div class="field">

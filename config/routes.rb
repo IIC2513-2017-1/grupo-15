@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   resources :comments
   resources :projects do
     resources :comments
-    resources :pledges
-    resources :rewards
+    resources :rewards do
+      resources :pledges
+    end
   end
   resources :rewards, only: [:index, :new, :create]
   resources :users#, except: [:index]
