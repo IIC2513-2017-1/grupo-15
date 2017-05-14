@@ -10,13 +10,14 @@ Category.create(name:"Music")
 Category.create(name:"Sport")
 Category.create(name:"Technology")
 
-User.create(name: "user", email: "email@uc.cl", password: "holahola")
+User.create(name: "user", email: "email@uc.cl", password: "holahola", password_confirmation: "holahola")
 
 4.times do
 	User.create(
 							name: Faker::Name.name,
 							email: Faker::Internet.unique.email,
-							password: "holahola"
+							password: "holahola",
+							password_confirmation: "holahola"
 							)
 end
 
