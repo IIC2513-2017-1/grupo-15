@@ -1,5 +1,4 @@
 class PledgesController < ApplicationController
-  before_action :set_pledge, only: [:show, :edit, :update, :destroy]
 
   def index
     @pledges = Pledge.all
@@ -10,6 +9,8 @@ class PledgesController < ApplicationController
   end
 
   def create
+    @project = Project.find(params[:project_id])
+    raise
     @pledge = Pledge.new(pledge_params)
 
     respond_to do |format|
