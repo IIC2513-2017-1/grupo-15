@@ -1,5 +1,4 @@
 class RewardsController < ApplicationController
-  before_action :set_reward, except: [:index, :new]
 
   def index
     @project = Project.find(params[:search])

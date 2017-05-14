@@ -29,6 +29,6 @@ class PledgesController < ApplicationController
     end
 
     def pledge_params #tengo q borrar el project id
-      params.require(:pledge).permit(:user_id, :project_id, :reward_id)
+      params.require(:pledge).permit(:user_id, :project_id, :reward_id, :amount)
     end
 end
