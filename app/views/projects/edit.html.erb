@@ -1,8 +1,10 @@
-<h1>Editing Project</h1>
+<div class="form" id="edit-project">
+  <h1>Editing Project</h1>
 
-<%= render 'form', project: @project %>
+  <%= render 'form', project: @project %>
 
-<%= link_to 'Add rewards', rewards_path(search: @project.id) %> |
-<%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
-<%= link_to 'Show', @project %> |
-<%= link_to 'Back', projects_path %>
+  <%= link_to 'Add rewards', project_rewards(params[:project_id]) %> |
+  <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
+  <%= link_to 'Show', @project %> |
+  <%= link_to 'Back', projects_path %>
+</div>

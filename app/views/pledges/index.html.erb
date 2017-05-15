@@ -18,7 +18,7 @@
         <td><%= pledge.user.name %></td>
         <td><%= pledge.project.name %></td>
         <% if pledge.reward%>
-          <td><%= "$"+pledge.reward.amount.to_s%></td>
+          <td><%= "$"+pledge.amount.to_s%></td>
         <% else %>
           <td>0</td>
         <%end%>

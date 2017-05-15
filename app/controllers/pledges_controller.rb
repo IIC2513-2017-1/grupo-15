@@ -1,4 +1,5 @@
 class PledgesController < ApplicationController
+    before_action :current_user
 
   def index
     @pledges = Pledge.all
@@ -11,9 +12,11 @@ class PledgesController < ApplicationController
   end
 
   def create
-    #@project = Project.find(params[:project_id])
-    #@reward = Reward.find(params[:reward_id])
+    @project = Project.find(pledge_params[:project_id])
+    @reward = Reward.find(pledge_params[:reward_id])
     @pledge = Pledge.new(pledge_params)
+    @pledge.user_id = @current_user.id
+
 
     respond_to do |format|
       if @pledge.save

@@ -1,17 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<h1>FundUp</h1>
-<h2>Highlighted projects</h2>
-<% if Project.first %>
-  <%= link_to project_path(id: Project.first.id) do %>
-    <div class="preview">
-      <h3><%= Project.first.name %></h3>
-      <p><%= Project.first.description %></p>
-    </div>
-  <% end %>
+<div class="project">
+  <h2>Highlighted projects</h2>
+  <% if Project.first %>
+      <%= render 'projects/project', project: Project.first %>
   <%else%>
     <h3>Actually, there are no projects to show</h3>
-<% end %>
+  <% end %>
+</div>
+
 <div class="categories">
   <h3>Explore by categories</h3>
   <ul>

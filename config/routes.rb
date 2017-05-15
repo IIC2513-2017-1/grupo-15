@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
   end
   resources :rewards, only: [:index, :new, :create]
-  resources :users#, except: [:index]
+  resources :users
   root 'home#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
