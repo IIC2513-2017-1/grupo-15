@@ -12,7 +12,7 @@ Category.create(name:"Technology")
 
 User.create(name: "user", email: "email@uc.cl", password: "holahola", password_confirmation: "holahola")
 
-4.times do
+10.times do
 	User.create(
 							name: Faker::Name.name,
 							email: Faker::Internet.unique.email,
@@ -21,7 +21,7 @@ User.create(name: "user", email: "email@uc.cl", password: "holahola", password_c
 							)
 end
 
-6.times do
+12.times do
 	Project.create(
 									name: Faker::Commerce.product_name,
 									description: Faker::Lorem.paragraph(15),
@@ -31,7 +31,7 @@ end
 									category_id: Category.order('RANDOM()').first.id)
 end
 
-6.times do
+20.times do
 	Comment.create(
 									content: Faker::Hipster.sentence,
 								 	user_id: User.order('RANDOM()').first.id,
@@ -39,11 +39,20 @@ end
 								 	)
 end
 
-16.times do
+20.times do
 	Reward.create(
 								title: Faker::Hipster.sentence(2, false, 2),
 								amount: Faker::Commerce.price,
 								description: Faker::Hipster.sentence,
 								project_id: Project.order('RANDOM()').first.id
+								)
+end
+20.times do
+	reward = Reward.order('RANDOM()').first
+	Pledge.create(
+								amount: reward.amount + Faker::Commerce.price,
+								project_id: reward.project.id,
+								user_id: reward.project.user.id,
+								reward_id: reward.id
 								)
 end
