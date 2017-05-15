@@ -17,11 +17,6 @@
   </div>
 
   <div class="field">
-    <%= f.label :User %>
-    <%= f.select :user_id, options_for_select(User.all.map{|c| [ c.name, c.id ] }), prompt: "Select a user" %>
-  </div>
-
-  <div class="field">
     <%= f.label :description %>
     <%= f.text_area :description %>
   </div>

@@ -1,0 +1,43 @@
+.project{
+  display: inline-block;
+  img, div{
+    display: inline-block;
+  }
+  img{
+    margin: 10px;
+  }
+  h2{
+    margin-left: 10px;
+  }
+  div{
+    position: relative;
+    top: 18px;
+    width: 50%;
+  }
+  .link{
+    position: relative;
+    top: -30px;
+    left: 32px;
+  }
+  p{
+    margin-top: 25px;
+  }
+  h3{
+    position: relative;
+    left: 32px;
+  }
+}
+
+.categories{
+  padding: 5px;
+  border-left: 1px solid black;
+  display: inline-block;
+  width: 200px;
+  ul{
+    list-style-type: none;
+  }
+}
+
+.link{
+  border-bottom: 1px solid black;
+}

@@ -1,0 +1,8 @@
+<%= link_to project_path(project) do %>
+  <%= image_tag "project_placeholder.png"%>
+<% end %>
+<div>
+  <h3><%= project.name+"by " %></h3>
+  <p><%= project.description %></p>
+  <%= link_to "See more", project_path(project), class: "link" %>
+</div>

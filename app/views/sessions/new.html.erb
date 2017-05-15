@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Login with yours credentials</h1>
-<div id="login-form">
+<div id="login-form" class="form">
+  <h1>Login</h1>
   <%= form_for :session, url: session_path do |f| %>
     <div class="field">
       <%= f.label :email %>
@@ -17,5 +16,3 @@
   <% end %>
   <p>New user? <%= link_to "Sign up now!", new_user_path %></p>
 </div>
-
-
