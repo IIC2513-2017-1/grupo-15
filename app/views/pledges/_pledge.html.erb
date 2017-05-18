@@ -14,5 +14,5 @@
     <%= reward.description %>
   </p>
 
-  <%= button_to 'Pledge $'+reward.amount.to_s, new_project_reward_pledge_path(reward.project, reward), method:"get" %>
+  <%= button_to 'Pledge $'+reward.amount.to_s, new_project_reward_pledge_path(reward.project, reward), method:"get", class: "button" %>
 </div>

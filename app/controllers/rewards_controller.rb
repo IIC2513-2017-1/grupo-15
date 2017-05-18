@@ -1,7 +1,7 @@
 class RewardsController < ApplicationController
+  before_action :set_project, only:[:index, :new, :create]
 
   def index
-    @project = Project.find(params[:search])
   end
 
   def new
@@ -12,11 +12,10 @@ class RewardsController < ApplicationController
   end
 
   def create
-    @reward = Reward.new(reward_params)
-
+    @reward = @project.rewards.new(reward_params)
     respond_to do |format|
       if @reward.save
-        format.html { redirect_to @reward.project, notice: 'Reward was successfully created.' }
+        format.html { redirect_to project_rewards_path(@project), notice: 'Reward was successfully created.' }
         format.json { render :show, status: :created, location: @reward }
       else
         format.html { render :new }
@@ -46,12 +45,12 @@ class RewardsController < ApplicationController
   end
 
   private
-    def set_reward
-      @reward = Reward.find(params[:id])
+    def set_project
+      @project = Project.find(params[:project_id])
     end
 
     def reward_params
-      params.require(:reward).permit(:title, :amount, :description, :project_id)
+      params.require(:reward).permit(:title, :amount, :description)
     end
 
 end
