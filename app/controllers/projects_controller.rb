@@ -2,6 +2,8 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :set_categories, :set_rewards, only: [:edit, :new, :show, :rewards]
   before_action :current_user
+  before_action :is_project_owner?, only: [:edit, :update, :destroy] 
+
 
   def index
     @projects = Project.search(params[:search])
@@ -27,6 +29,10 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
+        (Follow.where(following_id: @current_user.id)).each do |query_result| 
+          to_user = User.find(query_result.follower_id)
+          ProjectMailer.new_project_email(to_user, current_user).deliver_later
+        end
         format.html { redirect_to edit_project_path(@project) , notice: 'Project was successfully created.' }
         format.json { render :show, status: :created, location: @project }
       else

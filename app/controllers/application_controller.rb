@@ -21,7 +21,16 @@ class ApplicationController < ActionController::Base
     !current_user.nil?
   end
 
-  def is_owner?
-    redirect_to(root_path, notice: 'Unauthorized access!')    
+  def is_profile_owner?
+    if not (current_user) or not (current_user.id.to_s == params[:id].to_s)
+     redirect_to(root_path, notice: 'Unauthorized access!')    
+    end
   end
+  def is_project_owner?
+    project = Project.find(params[:id])
+    if not (current_user.id.to_s == project.user_id.to_s)
+     redirect_to(root_path, notice: 'Unauthorized access!')    
+    end
+  end
+    
 end
