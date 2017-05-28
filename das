@@ -1,0 +1,42 @@
+[33mcommit b60f28c09f65e759bd8bcba82ba4302cee04c60c[m
+Author: rrhurtado <rrhurtado@uc.cl>
+Date:   Sun May 28 18:37:04 2017 -0400
+
+    merge and environment fix
+
+[1mdiff --git a/.gitignore b/.gitignore[m
+[1mindex 80b9d8e..c6e3680 100644[m
+[1m--- a/.gitignore[m
+[1m+++ b/.gitignore[m
+[36m@@ -2,3 +2,4 @@[m [mtmp/[m
+ log/[m
+ *.log[m
+ Gemfile.lock[m
+[32m+[m[32m/config/local_env.yml[m
+[1mdiff --git a/config/environments/development.rb b/config/environments/development.rb[m
+[1mindex 1997ff3..ed3f44b 100644[m
+[1m--- a/config/environments/development.rb[m
+[1m+++ b/config/environments/development.rb[m
+[36m@@ -35,8 +35,8 @@[m [mRails.application.configure do[m
+   config.action_mailer.smtp_settings = {[m
+     address: 'smtp.gmail.com',[m
+     port: 587,[m
+[31m-    user_name: ENV['SMTP_USER'],[m
+[31m-    password: ENV['SMTP_PASSWORD'][m
+[32m+[m[32m    user_name: ENV['GMAIL_USERNAME'],[m
+[32m+[m[32m    password: ENV['GMAIL_PASSWORD'][m
+   }[m
+   config.action_mailer.default_url_options = {[m
+     host: 'localhost'[m
+[1mdiff --git a/db/schema.rb b/db/schema.rb[m
+[1mindex f8a5dac..9b02ebf 100644[m
+[1m--- a/db/schema.rb[m
+[1m+++ b/db/schema.rb[m
+[36m@@ -90,6 +90,7 @@[m [mActiveRecord::Schema.define(version: 20170528192348) do[m
+ [m
+   create_table "users", force: :cascade do |t|[m
+     t.string   "name"[m
+[32m+[m[32m    t.string   "password"[m
+     t.string   "email",               null: false[m
+     t.datetime "created_at",          null: false[m
+     t.datetime "updated_at",          null: false[m
