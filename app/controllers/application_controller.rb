@@ -20,4 +20,8 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !current_user.nil?
   end
+
+  def is_owner?
+    redirect_to(root_path, notice: 'Unauthorized access!')    
+  end
 end

@@ -1,6 +1,9 @@
 <p id="notice"><%= notice %></p>
 
 <h2><%= @user.name+"'s Profile" %></h2>
+
+<%= image_tag "profile_placeholder.jpg"%>
+
 <%= link_to 'My projects', edit_user_path(@user) %> | <%= link_to 'Edit profile', edit_user_path(@user) %>
 <p>
   <strong>Email:</strong>
