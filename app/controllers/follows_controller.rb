@@ -8,15 +8,13 @@ before_action :logged_in?
 
   
   def create
-    @follow = Follow.new(pledge_params)
+    @follow = Follow.new(follower_id: params[:follower_id], following_id: params[:following_id])
     follower = User.find(params[:follow][:follower_id])
     following = User.find(params[:follow][:following_id])
     respond_to do |format|
       if @follow.save
-        #FollowMailer.new_follow_email(user, current_user).deliver_later
         FollowMailer.new_follower_email(following, follower).deliver_later
-        
-        format.html { redirect_to @follow.follower, notice: 'Following relationship was successfully created.' }
+        format.html { redirect_to @follow.following}
         format.json { render :show, status: :created, location: @follow }
       else
         format.html { render :new }
@@ -26,12 +24,11 @@ before_action :logged_in?
   end
 
   def destroy
-  end
-
-  private
-
-    def pledge_params #tengo q borrar el project id
-      params.require(:follow).permit(:follower_id,:following_id)
+    @following_relationships = Follow.find_by(follower_id:params[:follower_id], following_id:params[:following_id])
+    @following_relationships.destroy
+    respond_to do |format|
+      format.html { redirect_to user_path(params[:id] )}
+      format.json { head :no_content }
     end
-
+  end
 end

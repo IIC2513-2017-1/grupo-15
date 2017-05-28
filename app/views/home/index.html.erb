@@ -1,19 +1,20 @@
-<p id="notice"><%= notice %></p>
-
-<div class="project">
+<div class="">
   <h2>Highlighted projects</h2>
-  <% if Project.first %>
-      <%= render 'projects/project', project: Project.first %>
-  <%else%>
-    <h3>Actually, there are no projects to show</h3>
-  <% end %>
-</div>
+  <div class="project">
+    <% if Project.first %>
+        <%= render 'projects/project', project: Project.first %>
+    <%else%>
+      <h3>Actually, there are no projects to show</h3>
+    <% end %>
+  </div>
 
-<div class="categories">
-  <h3>Explore by categories</h3>
-  <ul>
-    <% @categories.each do |category| %>
-      <li><%= link_to category.name, projects_path(search: category.id) %></li>
-    <%end%>
-  </ul>
+  <div class="categories">
+    <p class="title2"> Explore by categories </p>
+    <ul>
+      <% @categories.each do |category| %>
+        <li><%= link_to category.name, projects_path(search: category.id) %></li>
+      <%end%>
+    </ul>
+  </div>
+
 </div>

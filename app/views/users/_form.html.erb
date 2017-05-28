@@ -21,6 +21,13 @@
     <%= f.email_field :email, required: true %>
   </div>
 
+  <% if current_user%>
+   <div class="field">
+     <%= f.label :avatar %>
+     <%= f.file_field :avatar %>
+   </div>
+   <% end%>
+
   <div class="field">
     <%= f.label :password %>
     <%= f.password_field :password, required: true, minlength: 6 %>

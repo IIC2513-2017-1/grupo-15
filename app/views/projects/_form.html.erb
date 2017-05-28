@@ -21,6 +21,11 @@
     <%= f.text_area :description %>
   </div>
 
+  <div class="goal">
+    <%= f.label :goal %>
+    <%= f.text_field :goal %>
+  </div>
+
   <div class="field">
     <%= f.label :category %>
     <%= f.select :category_id, options_for_select(@categories.map{|c| [ c.name, c.id ] }), prompt: "Select a category" %>

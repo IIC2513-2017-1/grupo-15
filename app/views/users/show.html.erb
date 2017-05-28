@@ -1,28 +1,40 @@
-<p id="notice"><%= notice %></p>
-
-<h2><%= @user.name+"'s Profile" %></h2>
-
-<%= image_tag "profile_placeholder.jpg"%>
-
-<%= link_to 'My projects', edit_user_path(@user) %> | <%= link_to 'Edit profile', edit_user_path(@user) %>
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
-
-<h3>My projects:</h3>
-<ul>
-  <% @user.projects.each do |project| %>
-    <li><%= link_to project.name, edit_project_path(project) %></li>
+<div class="profile">
+  <%= image_tag @user.avatar.url%>
+  <h2><%= @user.name %></h2>
+  <p><%= @user.email %></p>
+  <%if current_user.follows?(current_user.id, params[:id])&&current_user.id!=params[:id].to_i%>
+    <%= button_to "Follow" , follows_path, method:"post", class: "button" , params: {follower_id: current_user.id, following_id:params[:id]}%>
+  <%elsif !current_user.follows?(current_user.id, params[:id])%>
+    <%= button_to "Unfollow" , {:controller => :follows, :action => 'destroy', :follower_id => current_user.id, :following_id => params[:id]}, :method => :delete %>
   <% end %>
-</ul>
+  <%= link_to 'My projects', edit_user_path(@user) %> | <%= link_to 'Edit profile', edit_user_path(@user) %>
+</div>
 
-<h3>I'm following:</h3>
-<ul>
-  <% @user.following.each do |following| %>
-    <li><%= link_to following.name, following %></li>
-  <% end %>
-</ul>
+<div>
+  <div class="box">
+    <h3>My projects:</h3>
+    <ul>
+      <% @user.projects.each do |project| %>
+        <li><%= link_to project.name, edit_project_path(project) %></li>
+      <% end %>
+    </ul>
+  </div>
 
+  <div class="box">
+    <h3>I'm following:</h3>
+    <ul>
+      <% @user.following.each do |following| %>
+        <li><%= link_to following.name, following %></li>
+      <% end %>
+    </ul>
+  </div>
 
-<%= link_to 'Back', users_path %>
+  <div class="box">
+    <h3>My followers:</h3>
+    <ul>
+      <% @user.followers.each do |follower| %>
+        <li><%= link_to follower.name, follower %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

@@ -6,6 +6,15 @@
   margin-bottom: 10px;
   padding: 10px;
 }
+.box{
+  .title{
+    display: inline-block;
+  }
+  .title+a{
+    font-size: 12px;
+  }
+}
+
 
 #new-project, #edit-project{
   width: 25%;
