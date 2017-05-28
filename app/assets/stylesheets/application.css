@@ -15,9 +15,7 @@
  */
 a{
   text-decoration: none;
-}
-a{
-   color: black;
+  color: #2752ff;
 }
 
 .button{
@@ -27,4 +25,18 @@ a{
   border: 1px solid black;
   border-radius: 6px;
   padding: 4px;
+}
+
+.button:hover{
+  background-color: #b5262a;
+}
+
+.title{
+  font-weight: 900;
+  font-size: 20px;
+}
+
+.title2{
+  font-weight: 900;
+  font-size: 18px;
 }

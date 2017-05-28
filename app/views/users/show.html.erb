@@ -1,25 +1,35 @@
-<p id="notice"><%= notice %></p>
+<div class="profile">
+  <%= image_tag "profile_placeholder.png"%>
+  <h2><%= @user.name %></h2>
+  <p><%= @user.email %></p>
+  <%= link_to 'My projects', edit_user_path(@user) %> | <%= link_to 'Edit profile', edit_user_path(@user) %>
+</div>
 
-<h2><%= @user.name+"'s Profile" %></h2>
-<%= link_to 'My projects', edit_user_path(@user) %> | <%= link_to 'Edit profile', edit_user_path(@user) %>
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+<div>
+  <div class="box">
+    <h3>My projects:</h3>
+    <ul>
+      <% @user.projects.each do |project| %>
+        <li><%= link_to project.name, edit_project_path(project) %></li>
+      <% end %>
+    </ul>
+  </div>
 
-<h3>My projects:</h3>
-<ul>
-  <% @user.projects.each do |project| %>
-    <li><%= link_to project.name, edit_project_path(project) %></li>
-  <% end %>
-</ul>
+  <div class="box">
+    <h3>I'm following:</h3>
+    <ul>
+      <% @user.following.each do |following| %>
+        <li><%= link_to following.name, following %></li>
+      <% end %>
+    </ul>
+  </div>
 
-<h3>I'm following:</h3>
-<ul>
-  <% @user.following.each do |following| %>
-    <li><%= link_to following.name, following %></li>
-  <% end %>
-</ul>
-
-
-<%= link_to 'Back', users_path %>
+  <div class="box">
+    <h3>My followers:</h3>
+    <ul>
+      <% @user.followers.each do |follower| %>
+        <li><%= link_to follower.name, follower %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>

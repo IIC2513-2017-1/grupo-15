@@ -1,7 +1,4 @@
-
 <div class="box">
-  <p id="notice"><%= notice %></p>
-
   <h1><%= @project.name %></h1>
   <%= link_to "by "+@project.user.name, @project.user %>
 
@@ -45,7 +42,7 @@
     <%= form_for([@project, Comment.new]) do |f| %>
       <p>
         <%= f.label :content %><br>
-        <%= f.text_area :content %>
+        <%= f.text_area :content, rows: 5, cols: 60 %>
       </p>
       <p>
         <%= f.submit %>
