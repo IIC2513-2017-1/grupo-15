@@ -1,60 +1,38 @@
-<div class="box">
-  <p class="title"><%= @project.name %></p>
-  <%= link_to "by "+@project.user.name, @project.user %>
-
-  <p>
-    <strong>Creator:</strong>
-    <%= @project.user.name %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= @project.description %>
-  </p>
-  
-  <p>
-    <strong>Goal:</strong>
-    <%= @project.goal%>
-  </p>
-
-  <p>
-    <strong>Start date:</strong>
-    <%= @project.start %>
-  </p>
-
-  <p>
-    <strong>End date:</strong>
-    <%= @project.end %>
-  </p>
-
-  <p>
-    <strong>Category:</strong>
-    <%= @project.category.name %>
-  </p>
+<div class="project-show">
+  <%= image_tag "project-ph2.png"%>
+  <div >
+    <p class="title"><%= @project.name %></p>
+    <%= link_to "by "+@project.user.name, @project.user %>
+    <p> <strong>Creator:</strong> <%= @project.user.name %> </p>
+    <p> <strong>Description:</strong> <%= @project.description %> </p>
+    <p> <strong>Goal:</strong> <%= @project.goal%></p>
+    <div class="bar">
+      <div class="fill"></div>
+    </div>
+    <p> <strong>End date:</strong> <%= @project.end %> </p>
+    <p> <strong>Category:</strong> <%= @project.category.name %></p>
+  </div>
 </div>
 
-<div class="pledges">
-  <h2>Pledges</h2>
-    <% @project.rewards.each do |reward| %>
-      <%= render 'pledges/pledge', reward: reward %>
-    <% end %>
+<div>
+  <div class="project-content">
+    <div class="comments">
+      <h2>Comments</h2>
+        <%= render @project.comments %>
+        <%= form_for([@project, Comment.new]) do |f| %>
+          <p>
+            <%= f.text_area :content, rows: 5, cols: 60 %>
+          </p>
+          <p>
+            <%= f.submit "Send  "%>
+          </p>
+        <% end %>
+    </div>
+  </div>
+  <div class="pledges">
+    <h2>Pledges</h2>
+      <% @project.rewards.each do |reward| %>
+        <%= render 'pledges/pledge', reward: reward %>
+      <% end %>
+  </div>
 </div>
-
-<div class="comments">
-  <h2>Comments</h2>
-    <%= render @project.comments %>
-  <h2>Add a comment:</h2>
-    <%= form_for([@project, Comment.new]) do |f| %>
-      <p>
-        <%= f.label :content %><br>
-        <%= f.text_area :content, rows: 5, cols: 60 %>
-      </p>
-      <p>
-        <%= f.submit %>
-      </p>
-    <% end %>
-</div>
-
-
-
-<%= link_to 'Back', projects_path %>

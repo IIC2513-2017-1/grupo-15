@@ -6,16 +6,97 @@
   margin-bottom: 10px;
   padding: 10px;
 }
-.box{
-  .title{
+
+.project-show{
+  .title, .title+a, img{
     display: inline-block;
   }
-  .title+a{
-    font-size: 12px;
+  img{
+    vertical-align: top;
+    height: 300px;
+    width: 470px;
+  }
+  img+div{
+    display: inline-block;
+    max-width: 60%;
   }
 }
 
+.bar{
+  border: 1px solid black;
+  height: 8px;
+  margin-left: 8px;
+  margin-right: 8px;
+}
 
-#new-project, #edit-project{
-  width: 25%;
+.fill{
+  height: 8px;
+  max-width: 80%;
+  background-color: red;
+
+}
+
+.pledges{
+  margin: 10px;
+  max-width: 20%;
+  position: absolute;
+  top: 395px;
+  right: 20px;
+}
+
+.project-content{
+  margin-top: 16px;
+  max-width: 75%;
+  div{
+    margin: 10px;
+  }
+}
+
+.comments{
+  h2{
+    padding-bottom: 10px;
+    margin-left: 20px;
+    border-bottom: 1px solid black;
+  }
+  p span{
+    color: #bab8b8;
+    font-size: 10px;
+  }
+  p+p{
+    color: #5b5959;
+  }
+  form{
+    margin: 10px;
+  }
+}
+
+.project-form{
+  h1{
+    border-bottom: 1px solid black;
+    padding-bottom: 10px;
+  }
+  h1,form, a{
+    margin: 8px 20px 8px 20px;
+  }
+  .field{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    label, textarea, input{
+      display: inline-block;
+    }
+    label{
+      min-width: 15%;
+      font-weight: bold;
+    }
+    textarea, input{
+      vertical-align: middle;
+    }
+  }
+  margin-left: 0px;
+  margin-right: 0px;
+  padding: 20px;
+}
+
+.goal{
+  max-width: 50px;
 }

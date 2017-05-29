@@ -22,6 +22,8 @@ class ApplicationController < ActionController::Base
   end
 
   def is_owner?
-    redirect_to(root_path, notice: 'Unauthorized access!')    
+    if current_user.nil? || current_user.id != params[:id].to_i
+      redirect_to(root_path, notice: 'Unauthorized access!')
+    end
   end
 end

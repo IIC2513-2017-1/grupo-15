@@ -4,7 +4,7 @@
 
 .profile{
   text-align: center;
-  background-color: #F8F9FD;
+  background-color: #d4d4d6;
   padding: 10px 20px 10px 20px;
   margin: 0px;
   img{
@@ -18,12 +18,17 @@
   }
 }
 
+.profile+div{
+  padding-left: 20%;
+  padding-right: 15%;
+}
+
 .box{
   padding: 10px;
   margin-top: 20px;
   margin-right: 10px;
   display: inline-block;
-  min-width: 15%;
+  min-width: 220px;
   min-height: 400px;
   border: 1px solid black;
   vertical-align: top;
