@@ -7,9 +7,9 @@ class ProjectsController < ApplicationController
 
   def index
     @projects = Project.search(params[:search])
-    if @project.nil? && params[:search]
+    if (@projects.nil?||@projects.length==0) && params[:search]
       redirect_to root_path, notice: "Match not found"
-    elsif !@project.nil? && @projects.length ==1
+    elsif @projects.length>0 && params[:search].to_i==0
       redirect_to @projects[0]
     end
     #raise
