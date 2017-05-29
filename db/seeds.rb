@@ -28,7 +28,8 @@ end
 									start_date: Faker::Time.between(DateTime.now - 1, DateTime.now),
 									end_date: Faker::Time.forward(365, :evening),
 									user_id: User.order('RANDOM()').first.id,
-									category_id: Category.order('RANDOM()').first.id)
+									category_id: Category.order('RANDOM()').first.id,
+									goal: (rand*(100000)).to_i)
 end
 
 20.times do
@@ -42,12 +43,13 @@ end
 20.times do
 	Reward.create(
 								title: Faker::Hipster.sentence(2, false, 2),
-								amount: Faker::Commerce.price,
+								amount: Faker::Commerce.price.to_i,
 								description: Faker::Hipster.sentence,
 								project_id: Project.order('RANDOM()').first.id
 								)
 end
-20.times do
+
+50.times do
 	reward = Reward.order('RANDOM()').first
 	Pledge.create(
 								amount: reward.amount + Faker::Commerce.price,

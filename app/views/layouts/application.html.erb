@@ -17,11 +17,19 @@
       </div>
       <nav id="main-menu">
         <%= link_to 'Home', root_path %>
-        <%= link_to 'Users', users_path %>
         <%= link_to 'Projects', projects_path %>
-        <%= link_to 'Pledges', pledges_path %>
-        <%= link_to 'Comments', comments_path %>
       </nav>
+
+      <div id="search-bar">
+      <%= form_tag("/projects", method: "get") do %>
+        <%= text_field_tag :search, "Search for a project" %>
+        <%= submit_tag("Search") %>
+      <% end %>
+      </div>
+
+      <%if logged_in?%>
+        <%= link_to 'New Project', new_project_path , class:"button"%>
+      <%end%>  
 
       <div id="user-bar">
 	  <% if logged_in? %>

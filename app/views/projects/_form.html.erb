@@ -1,4 +1,4 @@
-<%= form_for(project) do |f| %>
+<%= form_for(project) do |f|%>
   <% if project.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(project.errors.count, "error") %> prohibited this project from being saved:</h2>
@@ -18,12 +18,12 @@
 
   <div class="field">
     <%= f.label :description %>
-    <%= f.text_area :description %>
+    <%= f.text_area :description , rows:5, cols:60 %>
   </div>
 
-  <div class="goal">
+  <div class="field">
     <%= f.label :goal %>
-    <%= f.text_field :goal %>
+    <%= f.text_field :goal, class:"goal", placeholder:"$5" %>
   </div>
 
   <div class="field">

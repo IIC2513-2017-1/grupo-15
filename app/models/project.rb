@@ -29,7 +29,7 @@ class Project < ApplicationRecord
 
 	def self.search(search)
 		if search
-			where(category_id: search)
+			where(name: search)
 		else
 			all
 		end

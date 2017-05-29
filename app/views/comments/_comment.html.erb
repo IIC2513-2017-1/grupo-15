@@ -1,11 +1,4 @@
-<div class="reward">
-  <p>
-    <strong>User:</strong>
-    <%= comment.user.name %>
-  </p>
-
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.content %>
-  </p>
+<div class="comment">
+  <p><strong><%= comment.user.name %> <span><%= comment.created_at %></span> </strong></p>
+  <p><%= comment.content %></p>
 </div>
