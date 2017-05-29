@@ -28,7 +28,9 @@ class Project < ApplicationRecord
 	end
 
 	def self.search(search)
-		if search
+		if search.to_i> 0
+			where(category_id: search)
+		elsif search
 			where(name: search)
 		else
 			all
