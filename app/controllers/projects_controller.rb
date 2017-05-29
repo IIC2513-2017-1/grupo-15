@@ -2,15 +2,17 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_action :set_categories, :set_rewards, only: [:edit, :new, :show, :rewards]
   before_action :current_user
-  before_action :is_project_owner?, only: [:edit, :update, :destroy] 
+  before_action :is_project_owner?, only: [:edit, :update, :destroy]
 
 
   def index
     @projects = Project.search(params[:search])
-    if (@projects.nil?||@projects.length==0) && params[:search]
-      redirect_to root_path, notice: "Match not found"
-    elsif @projects.length>0 && params[:search].to_i==0
-      redirect_to @projects[0]
+    if params[:search]
+      if (@projects.nil?||@projects.length==0) && params[:search]
+        redirect_to root_path, notice: "Match not found"
+      elsif @projects.length>0 && params[:search].to_i==0
+        redirect_to @projects[0]
+      end
     end
     #raise
   end
@@ -34,7 +36,7 @@ class ProjectsController < ApplicationController
 
     respond_to do |format|
       if @project.save
-        (Follow.where(following_id: @current_user.id)).each do |query_result| 
+        (Follow.where(following_id: @current_user.id)).each do |query_result|
           to_user = User.find(query_result.follower_id)
           ProjectMailer.new_project_email(to_user, current_user).deliver_later
         end
