@@ -9,8 +9,8 @@ before_action :logged_in?
   
   def create
     @follow = Follow.new(follower_id: params[:follower_id], following_id: params[:following_id])
-    follower = User.find(params[:follow][:follower_id])
-    following = User.find(params[:follow][:following_id])
+    follower = User.find(params[:follower_id])
+    following = User.find(params[:following_id])
     respond_to do |format|
       if @follow.save
         FollowMailer.new_follower_email(following, follower).deliver_later
