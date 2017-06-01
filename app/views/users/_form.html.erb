@@ -1,6 +1,6 @@
 <%= form_for(user) do |f| %>
   <% if user.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="centered">
       <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
       <ul>
@@ -10,35 +10,37 @@
       </ul>
     </div>
   <% end %>
+  <%= content_tag :div ,class:"form centered", id: id do %>
+  <h1> <%= var %> </h1>
+    <div class="field">
+      <%= f.label :name %>
+      <%= f.text_field :name, required: true, pattern: ".*[^ ].*" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, required: true, pattern: ".*[^ ].*" %>
-  </div>
+    <div class="field">
+      <%= f.label :email %>
+      <%= f.email_field :email, required: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, required: true %>
-  </div>
+    <% if current_user%>
+     <div class="field">
+       <%= f.label :avatar %>
+       <%= f.file_field :avatar %>
+     </div>
+     <% end%>
 
-  <% if current_user%>
-   <div class="field">
-     <%= f.label :avatar %>
-     <%= f.file_field :avatar %>
-   </div>
-   <% end%>
+    <div class="field">
+      <%= f.label :password %>
+      <%= f.password_field :password, required: true, minlength: 6 %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password, required: true, minlength: 6 %>
-  </div>
+    <div class="field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, required: true %>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, required: true %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
 <% end %>
