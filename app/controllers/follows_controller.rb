@@ -1,18 +1,18 @@
 class FollowsController < ApplicationController
 
 before_action :logged_in?
-  
+
   def new
     @follow = Follow.new
   end
 
-  
+
   def create
     @follow = Follow.new(follower_id: params[:follower_id], following_id: params[:following_id])
-    follower = User.find(params[:follower_id])
-    following = User.find(params[:following_id])
     respond_to do |format|
       if @follow.save
+        follower = User.find(params[:follower_id])
+        following = User.find(params[:following_id])
         FollowMailer.new_follower_email(following, follower).deliver_later
         format.html { redirect_to @follow.following}
         format.json { render :show, status: :created, location: @follow }
