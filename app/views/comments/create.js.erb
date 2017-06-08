@@ -1,0 +1,4 @@
+var comments = $(".comment");
+$(comments[comments.length-1]).after("<%= escape_javascript(render partial: 'comment', locals: { comment: @project.comments.last } ) %>");
+$(".comments textarea").val('');
+scrollBottom();

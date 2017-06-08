@@ -3,6 +3,7 @@ class ProjectsController < ApplicationController
   before_action :set_categories, :set_rewards, only: [:edit, :new, :show, :rewards]
   before_action :current_user
   before_action :is_project_owner?, only: [:edit, :update, :destroy]
+  before_action :set_current_amount, only: [:show]
 
 
   def index
@@ -73,6 +74,10 @@ class ProjectsController < ApplicationController
 
     def set_project
       @project = Project.find(params[:id])
+    end
+
+    def set_current_amount
+      @current_amount = Pledge.where(project_id:params[:id]).sum(:amount)
     end
 
     def set_rewards

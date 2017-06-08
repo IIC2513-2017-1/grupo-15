@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  <%= content_tag :div ,class:"form centered", id: id do %>
+  <%= content_tag :div ,class:"form centered", id:id do %>
   <h1> <%= var %> </h1>
     <div class="field">
       <%= f.label :name %>
@@ -42,5 +42,8 @@
     <div class="actions">
       <%= f.submit %>
     </div>
+    <% if var=="Edit"%>
+      <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |  <%= link_to 'Back to profile', @user %>
+    <%end%>
   <% end %>
 <% end %>

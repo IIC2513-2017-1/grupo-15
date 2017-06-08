@@ -13,11 +13,6 @@
  *= require_tree .
  *= require_self
  */
-a{
-  text-decoration: none;
-  color: #2752ff;
-}
-
 .button{
   text-align: center;
   color: white;
@@ -32,11 +27,13 @@ a{
 }
 
 .title{
+  color: black;
   font-weight: 900;
   font-size: 20px;
 }
 
 .title2{
+  color: black;
   font-weight: 900;
   font-size: 18px;
 }

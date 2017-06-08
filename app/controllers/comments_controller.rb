@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :edit, :update, :destroy]
   before_action :current_user
-  before_action :is_owner?, only: [:edit, :update, :destroy] 
+  before_action :is_owner?, only: [:edit, :update, :destroy]
 
   # GET /comments
   # GET /comments.json
@@ -28,16 +28,22 @@ class CommentsController < ApplicationController
   def create
     @project = Project.find(params[:project_id])
     @comment = @project.comments.build(content: comment_params[:content], user_id: @current_user.id)
-    if @comment.save
-      flash[:notice] = "Successfully created comment"
-      redirect_to project_path(@project)
+    respond_to do |format|
+      if @comment.save
+        format.html { redirect_to @project, notice: 'Comment was successfully created.' }
+        format.js
+        format.json { render :show, status: :ok, location: @comment }
+      else
+        format.html { render :edit }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   def update
     respond_to do |format|
       if @comment.update(comment_params)
-        format.html { redirect_to @comment, notice: 'Comment was successfully updated.' }
+        format.html { redirect_to @comment, notice: 'Comment was successfully updated.'}
         format.json { render :show, status: :ok, location: @comment }
       else
         format.html { render :edit }

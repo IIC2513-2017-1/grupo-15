@@ -37,7 +37,7 @@ nav#main-menu, #logo {
   }
 }
 
-nav#main-menu {
+nav#main-menu{
   margin-left: 10px;
   a {
     padding: 10px;
@@ -105,6 +105,13 @@ header{
     margin: 0 auto;
     margin-top: 20px;
     margin-bottom: 20px;
+}
+
+.wrap{
+  white-space: pre-line;
+  word-wrap:break-word;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 footer{

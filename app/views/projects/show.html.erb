@@ -6,8 +6,9 @@
     <p> <strong>Creator:</strong> <%= @project.user.name %> </p>
     <p> <strong>Description:</strong> <%= @project.description %> </p>
     <p> <strong>Goal:</strong> <%= @project.goal%></p>
-    <div class="bar">
-      <div class="fill"></div>
+    <div id="bar">
+      <%= content_tag :div, id:"fill", data:{rate:(@current_amount/@project.goal)} do %>
+      <%end%>
     </div>
     <p> <strong>End date:</strong> <%= @project.end %> </p>
     <p> <strong>Category:</strong> <%= @project.category.name %></p>
@@ -18,15 +19,19 @@
   <div class="project-content">
     <div class="comments">
       <h2>Comments</h2>
+      <div id="comments-list">
         <%= render @project.comments %>
-        <%= form_for([@project, Comment.new]) do |f| %>
-          <p>
-            <%= f.text_area :content, rows: 5, cols: 60 %>
-          </p>
-          <p>
-            <%= f.submit "Send  "%>
-          </p>
-        <% end %>
+      </div>
+        <% if !current_user.nil? %>
+          <%= form_for([@project, Comment.new], remote:true) do |f| %>
+            <p>
+              <%= f.text_area :content, rows: 5, cols: 60 %>
+            </p>
+            <p>
+              <%= f.submit "Send  "%>
+            </p>
+          <% end %>
+        <%end%>
     </div>
   </div>
   <div class="pledges">

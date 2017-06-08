@@ -1,8 +1,1 @@
-<div class="form" id="edit-user">
-  <h1>Editing User</h1>
-
-  <%= render 'form', user: @user %>
-
-  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |
-  <%= link_to 'Back to profile', @user %>
-</div>
+<%= render 'form', user: @user, var: 'Edit', id:"register" %>

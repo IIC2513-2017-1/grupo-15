@@ -6,7 +6,8 @@
     <%if current_user.follows?(current_user.id, params[:id])&&current_user.id!=params[:id].to_i%>
       <%= button_to "Follow" , follows_path, method:"post", class: "button" , params: {follower_id: current_user.id, following_id:params[:id]}%>
     <%elsif !current_user.follows?(current_user.id, params[:id])%>
-      <%= button_to "Unfollow" , {:controller => :follows, :action => 'destroy', :follower_id => current_user.id, :following_id => params[:id]}, class:"button", :method => :delete %>
+      <%= button_to "Unfollow" , {:controller => :follows, :action => 'destroy', :follower_id => current_user.id, :following_id => params[:id]},
+       class:"button", :method => :delete %>
     <% end %>
     <%if current_user.id == params[:id].to_i%>
       <%= link_to 'Edit profile', edit_user_path(@user) %>

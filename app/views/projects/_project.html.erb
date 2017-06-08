@@ -2,7 +2,7 @@
   <%= image_tag "project_placeholder.png"%>
 <% end %>
 <div>
-  <p class ="title"><%= project.name %><p>
-  <p><%= project.description %></p>
-  <%= link_to "See more", project_path(project), class: "button" %>
+  <%= link_to project.name, project_path(project), class:"title wrap" %>
+  <p class="wrap"><%= project.description %></p>
+
 </div>
