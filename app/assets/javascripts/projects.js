@@ -14,6 +14,8 @@ $(document).on('turbolinks:load', function() {
 });
 
 var scrollBottom = function(){
-  var box = $("#comments-list");
-  box[0].scrollTop = box[0].scrollHeight;
+  if ($(".comments").length > 0){
+    var box = $("#comments-list");
+    box[0].scrollTop = box[0].scrollHeight;
+  }
 };

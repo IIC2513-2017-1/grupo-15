@@ -2,8 +2,7 @@
   <%= image_tag "project-ph2.png"%>
   <div >
     <p class="title"><%= @project.name %></p>
-    <%= link_to "by "+@project.user.name, @project.user %>
-    <p> <strong>Creator:</strong> <%= @project.user.name %> </p>
+    <span>by <%= link_to @project.user.name, @project.user %></span>  
     <p> <strong>Description:</strong> <%= @project.description %> </p>
     <p> <strong>Goal:</strong> <%= @project.goal%></p>
     <div id="bar">

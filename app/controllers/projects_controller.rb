@@ -18,10 +18,6 @@ class ProjectsController < ApplicationController
     #raise
   end
 
-  def rewards
-    @reward = Reward.new
-  end
-
   def show
   end
 

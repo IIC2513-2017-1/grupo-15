@@ -1,14 +1,19 @@
 class PledgesController < ApplicationController
     before_action :current_user
-    
+    before_action :is_profile_owner?, only:[:create]
+
   def index
     @pledges = Pledge.all
   end
 
   def new
-    @project = Project.find(params[:project_id])
-    @reward = Reward.find(params[:reward_id])
-    @pledge = Pledge.new
+    if logged_in?
+      @project = Project.find(params[:project_id])
+      @reward = Reward.find(params[:reward_id])
+      @pledge = Pledge.new
+    else
+      redirect_to new_user_path, notice:"Log-in to continue"
+    end
   end
 
   def create

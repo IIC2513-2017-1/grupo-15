@@ -1,5 +1,7 @@
 class RewardsController < ApplicationController
   before_action :set_project, only:[:index, :new, :create]
+  before_action :is_profile_owner?
+  before_action :is_project_owner?
 
   def index
   end

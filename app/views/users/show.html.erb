@@ -20,7 +20,7 @@
     <h3>My projects:</h3>
     <ul>
       <% @user.projects.each do |project| %>
-        <li><%= link_to project.name, edit_project_path(project) %></li>
+        <li><%= link_to project.name, (logged_in? and (project.user_id==current_user.id)) ? edit_project_path(project) : project_path(project)%></li>
       <% end %>
     </ul>
   </div>

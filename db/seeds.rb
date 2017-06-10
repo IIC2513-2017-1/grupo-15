@@ -12,7 +12,7 @@ Category.create(name:"Technology")
 
 User.create(name: "user", email: "email@uc.cl", password: "holahola", password_confirmation: "holahola")
 
-10.times do
+20.times do
 	User.create(
 							name: Faker::Name.name,
 							email: Faker::Internet.unique.email,
@@ -57,4 +57,13 @@ end
 								user_id: reward.project.user.id,
 								reward_id: reward.id
 								)
+end
+
+30.times do
+	users = User.order('RANDOM()')
+	u1 = users.first
+	u2 = users.last
+	if Follow.find_by(follower_id: u2.id,following_id: u1.id).nil?
+		Follow.create(follower_id: u2.id, following_id: u1.id)
+	end
 end
