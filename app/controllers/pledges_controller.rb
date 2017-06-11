@@ -1,7 +1,7 @@
 class PledgesController < ApplicationController
     before_action :current_user
     before_action :is_profile_owner?, only:[:create]
-
+  
   def index
     @pledges = Pledge.all
   end

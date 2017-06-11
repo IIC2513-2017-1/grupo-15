@@ -13,6 +13,9 @@
  *= require_tree .
  *= require_self
  */
+ /*
+ *= require font-awesome
+ */
 .button{
   text-align: center;
   color: white;
@@ -20,6 +23,7 @@
   border: 1px solid black;
   border-radius: 6px;
   padding: 4px;
+  cursor: pointer;
 }
 
 .button:hover{

@@ -16,8 +16,8 @@
         <% end %>
       </div>
       <nav id="main-menu">
-        <%= link_to 'Home', root_path %>
-        <%= link_to 'Projects', projects_path %>
+        <%= link_to 'Home', root_path , class:"nav-link"%>
+        <%= link_to 'Projects', projects_path, class:"nav-link" %>
       </nav>
 
       <div id="search-bar">
@@ -29,17 +29,30 @@
 
       <%if logged_in?%>
         <%= link_to 'New Project', new_project_path , class:"button"%>
-      <%end%>  
+      <%end%>
 
-      <div id="user-bar">
-	  <% if logged_in? %>
-            <li><%= link_to "Welcome, #{current_user.name}", user_path(current_user.id) %></li>
-            <li><%= link_to "Log Out", session_path, method: :delete %></li>
-          <% else %>
-            <li><%= link_to "Log In", new_session_path %></li>
-            <li><%= link_to 'Sign Up', new_user_path %></li>
-          <% end %>
+    <div id="user-menu">
+      <% if logged_in? %>
+        <div id="dropdown-wrapper">
+          <button class="dropbtn">
+            <div class="">
+              <%= image_tag current_user.avatar.url, class:"icon"%>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </div>
+          </button>
+          <div id="user-dropdown" class="dropdown-content">
+            <%= link_to "Profile", user_path(current_user) %>
+            <%= link_to "Settings", edit_user_path(current_user) %>
+            <%= link_to "Log Out", session_path, method: :delete %></li>
+          </div>
+        </div>
+      <% else %>
+      <div id="guest-bar">
+        <%= link_to "Log In", new_session_path, class:"nav-link" %>
+        <%= link_to 'Sign Up', new_user_path, class:"nav-link" %>
       </div>
+      <% end %>
+    </div>
     </header>
     <main>
       <p id="notice"><%= notice %></p>

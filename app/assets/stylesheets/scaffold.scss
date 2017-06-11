@@ -34,7 +34,7 @@ main>div:first-of-type{
   padding-top: 20px;
 }
 
-main>div{
+main>div{ /*todos los div dentro del main tienen margen*/
  margin-left: 20px;
  margin-right: 20px;
 }

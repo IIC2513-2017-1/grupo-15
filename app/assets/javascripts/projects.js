@@ -11,7 +11,38 @@ $(document).on('turbolinks:load', function() {
 
   var largo = $("#bar").width()*$("#fill").data("rate");
   $("#fill").css("width", largo);
+
+  //-------------------------MOOAL--------------------------------
+
+  // Get the modal
+  var modal = $('#modalWindow');
+  // Get the button that opens the modal
+  var btns = $(".modal-btn");
+  // Get the <span> element that closes the modal
+  var span = $(".close").first();
+  // When the user clicks the button, open the modal
+  btns.each(function(index) {
+    $(this).on("click", function(){
+      modal.css("display" , "block");
+      console.log($(this).data("reward-id"))
+      $("#pledge_reward_id").val($(this).data("reward-id"));
+    });
+  });
+
+  // When the user clicks on <span> (x), close the modal
+  span.click(function() {
+    modal.css("display" , "none");
+  });
+
+  // When the user clicks anywhere outside of the modal, close it
+  $(window).click (function(event) {
+      if (event.target == modal[0]) {
+          modal.css("display" , "none");
+      }
+  });
 });
+
+
 
 var scrollBottom = function(){
   if ($(".comments").length > 0){
