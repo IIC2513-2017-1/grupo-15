@@ -10,7 +10,7 @@
   img{
     margin: 10px;
   }
-  div{
+  .preview-content{
     margin-top: 10px;
     max-width: 50%;
     min-width: 600px;
@@ -25,6 +25,23 @@
     margin-top: 10px;
     max-height: 90px;
   }
+}
+
+.preview-content{
+  #bar{
+    width: 97%;
+  }
+  .percent{
+    float: right;
+    font-weight: 900;
+  }
+  .days{
+    float: left;
+  }
+}
+
+.font-dark{
+  font-weight: 900;
 }
 
 .categories{

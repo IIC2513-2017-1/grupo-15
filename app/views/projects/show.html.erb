@@ -2,8 +2,7 @@
   <%= image_tag "project-ph2.png"%>
   <div >
     <p class="title"><%= @project.name %></p>
-    <%= link_to "by "+@project.user.name, @project.user %>
-    <p> <strong>Creator:</strong> <%= @project.user.name %> </p>
+    <span>by <%= link_to @project.user.name, @project.user %></span>
     <p> <strong>Description:</strong> <%= @project.description %> </p>
     <p> <strong>Goal:</strong> <%= @project.goal%></p>
     <div id="bar">
@@ -40,4 +39,53 @@
         <%= render 'pledges/pledge', reward: reward %>
       <% end %>
   </div>
+</div>
+
+<!-- The Modal -->
+<div id="modalWindow" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Modal Header</h2>
+    </div>
+    <div class="modal-body">
+      <%= form_for([@project, @pledge], remote:true, url:{controller:"pledges", action:"create"}) do |f| %>
+        <% if @pledge.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@pledge.errors.count, "error") %> prohibited this pledge from being saved:</h2>
+
+            <ul>
+            <% @pledge.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label "Project: "+@project.name %>
+          <%= f.hidden_field :project_id, value: @project.id %>
+        </div>
+
+        <div class="field">
+          <%= f.label "Reward:" %>
+          <%= f.hidden_field :reward_id, value: "" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :amount %>
+          <%= f.text_field :amount %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Confirm pledge" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <h2>Modal Footer</h2>
+    </div>
+  </div>
+
 </div>

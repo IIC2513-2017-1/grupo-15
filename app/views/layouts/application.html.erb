@@ -16,8 +16,8 @@
         <% end %>
       </div>
       <nav id="main-menu">
-        <%= link_to 'Home', root_path %>
-        <%= link_to 'Projects', projects_path %>
+        <%= link_to 'Home', root_path , class:"nav-link red-hover"%>
+        <%= link_to 'Projects', projects_path, class:"nav-link red-hover" %>
       </nav>
 
       <div id="search-bar">
@@ -28,33 +28,43 @@
       </div>
 
       <%if logged_in?%>
-        <%= link_to 'New Project', new_project_path , class:"button"%>
-      <%end%>  
+        <%= link_to 'New Project', new_project_path , class:"button btn-red"%>
+      <%end%>
 
-      <div id="user-bar">
-	  <% if logged_in? %>
-            <li><%= link_to "Welcome, #{current_user.name}", user_path(current_user.id) %></li>
-            <li><%= link_to "Log Out", session_path, method: :delete %></li>
-          <% else %>
-            <li><%= link_to "Log In", new_session_path %></li>
-            <li><%= link_to 'Sign Up', new_user_path %></li>
-          <% end %>
+    <div id="user-menu">
+      <% if logged_in? %>
+        <div id="dropdown-wrapper">
+          <button class="dropbtn">
+            <div class="">
+              <%= image_tag current_user.avatar.url, class:"icon"%>
+              <i class="fa fa-caret-down" aria-hidden="true"></i>
+            </div>
+          </button>
+          <div id="user-dropdown" class="dropdown-content">
+            <%= link_to "Profile", user_path(current_user) %>
+            <%= link_to "Settings", edit_user_path(current_user) %>
+            <%= link_to "Log Out", session_path, method: :delete %></li>
+          </div>
+        </div>
+      <% else %>
+      <div id="guest-bar">
+        <%= link_to 'Log In', new_session_path, class:"nav-link red-hover"%>
+        <%= link_to 'Sign Up', new_user_path, class:"nav-link red-hover" %>
       </div>
+      <% end %>
+    </div>
     </header>
     <main>
       <p id="notice"><%= notice %></p>
       <%= yield %>
     </main>
     <footer>
-     <hr>
       <div id="project">© Fundup 2017</div>
       <div id="license">
         <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
           <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/>
         </a>
       </div>
-
-
     </footer>
   </body>
 </html>

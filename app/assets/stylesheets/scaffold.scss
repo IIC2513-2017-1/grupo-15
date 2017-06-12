@@ -4,10 +4,10 @@ html, body {
 }
 
 body{
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;;
   color: #333;
   background-color: #fff;
-  padding-top: 75px;
+  padding-top: 50px;
   line-height: 18px;
 }
 
@@ -16,7 +16,7 @@ a{
   color:#2752ff;
 }
 
-p, ol, ul, td, a {
+p, ol, ul, td, a, span {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 15px;
   line-height: 18px;
@@ -30,11 +30,7 @@ main>div:first-of-type{
   padding-top: 20px;
 }
 
-main>div:first-of-type{
-  padding-top: 20px;
-}
-
-main>div{
+main>div{ /*todos los div dentro del main tienen margen*/
  margin-left: 20px;
  margin-right: 20px;
 }

@@ -38,6 +38,8 @@ gem 'faker', '~> 1.7', '>= 1.7.3' #la pusimos para que heroku este con seeds (bo
 
 gem "paperclip", "~> 5.0.0"
 
+gem "font-awesome-rails";
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

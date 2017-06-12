@@ -14,5 +14,5 @@
     <%= reward.description %>
   </p>
 
-  <%= button_to 'Pledge $'+reward.amount.to_s, new_project_reward_pledge_path(reward.project, reward), method:"get", class: "button" %>
+  <%=content_tag :button, "Get this" , class:"modal-btn button", data:{reward_id: reward.id, reward_title:reward.title} %>
 </div>

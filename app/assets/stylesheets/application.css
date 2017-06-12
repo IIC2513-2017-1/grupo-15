@@ -13,27 +13,6 @@
  *= require_tree .
  *= require_self
  */
-.button{
-  text-align: center;
-  color: white;
-  background-color: #C1292E;
-  border: 1px solid black;
-  border-radius: 6px;
-  padding: 4px;
-}
-
-.button:hover{
-  background-color: #b5262a;
-}
-
-.title{
-  color: black;
-  font-weight: 900;
-  font-size: 20px;
-}
-
-.title2{
-  color: black;
-  font-weight: 900;
-  font-size: 18px;
-}
+ /*
+ *= require font-awesome
+ */

@@ -2,9 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.profile{
+#profile{
   text-align: center;
-  background-color: #d4d4d6;
+  background-color: #efefef;
   padding: 10px 20px 10px 20px;
   margin: 0px;
   img{
@@ -18,7 +18,7 @@
   }
 }
 
-.profile+div{
+#profile+div{
   padding-left: 20%;
   padding-right: 15%;
 }

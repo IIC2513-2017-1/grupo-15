@@ -1,8 +1,15 @@
-<%= link_to project_path(project) do %>
-  <%= image_tag "project_placeholder.png"%>
-<% end %>
-<div>
-  <%= link_to project.name, project_path(project), class:"title wrap" %>
-  <p class="wrap"><%= project.description %></p>
-
+<div class="project">
+  <%= link_to project_path(project) do %>
+    <%= image_tag "project_placeholder.png"%>
+  <% end %>
+  <div class="preview-content">
+    <%= link_to project.name, project_path(project), class:"title wrap" %>
+    <p class="wrap"><%= project.description %></p>
+    <p class="days font-dark"> <%= (((project.end_date-project.start_date)/ (24 * 60 * 60)).to_i).to_s+" days to go" %> </p>
+    <p class="percent font-dark"> <%= ((project.current_amount/project.goal*100).to_i).to_s+"%" %> </p>
+    <div id="bar">
+      <%= content_tag :div, id:"fill", data:{rate:(project.current_amount/project.goal)} do %>
+      <%end%>
+    </div>
+  </div>
 </div>
