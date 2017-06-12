@@ -11,17 +11,16 @@
 </div>
 
 <div class="tab">
-  
-    <button class="tablinks" data-tab="user-projects" >Projects</button>
-    <button class="tablinks defaultOpen" data-tab="user-following" >Following</button>
-    <button class="tablinks" data-tab="user-followers" >Followers</button>
+    <button class="tablinks button defaultOpen" data-tab="user-projects" >Projects</button>
+    <button class="tablinks button" data-tab="user-following" >Following</button>
+    <button class="tablinks button" data-tab="user-followers" >Followers</button>
   
 </div>
 
 <div>
   <div class="user-projects tabcontent box", id="tab-1">
     <h3>My projects:</h3>
-    <ul class="user-projects">
+    <ul>
       <% @user.projects.each do |project| %>
         <li><%= link_to project.name, (logged_in? and (project.user_id==current_user.id)) ? edit_project_path(project) : project_path(project)%></li>
       <% end %>

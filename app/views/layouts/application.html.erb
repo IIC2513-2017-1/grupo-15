@@ -26,11 +26,11 @@
         <%= submit_tag("Search") %>
       <% end %>
       </div>
+      
 
-      <%if logged_in?%>
-        <%= link_to 'New Project', new_project_path , class:"button btn-red"%>
-      <%end%>
-
+        <%if logged_in?%>
+          <%= link_to 'New Project', new_project_path , class:"button btn-red new-project"%>
+        <%end%>
     <div id="user-menu">
       <% if logged_in? %>
         <div id="dropdown-wrapper">
