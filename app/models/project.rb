@@ -19,6 +19,10 @@ class Project < ApplicationRecord
 		end
 	end
 
+	def current_amount
+		Pledge.where(project_id:id).sum(:amount)
+	end
+
 	def start
 		self.start_date.strftime('%a, %d %b %Y %H:%M:%S')
 	end

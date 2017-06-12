@@ -22,6 +22,17 @@
   }
 }
 
+.project-index{
+  margin-top: 30px;
+  padding: 10px;
+  h1{
+    margin-bottom: 20px;
+  }
+  .button{
+    margin-left: 10px;
+  }
+}
+
 #bar{
   border: 1px solid black;
   height: 8px;
@@ -31,9 +42,7 @@
 
 #fill{
   height: 8px;
-  max-width: 100%;
   background-color: red;
-
 }
 
 .pledges{
@@ -76,7 +85,7 @@
   overflow-y: scroll;
 }
 
-.project-form{
+.standard-form{
   h1{
     border-bottom: 1px solid black;
     padding-bottom: 10px;
@@ -91,16 +100,17 @@
       display: inline-block;
     }
     label{
-      min-width: 15%;
+      width: 220px;
+      min-width: 20%;
       font-weight: bold;
     }
     textarea, input{
       vertical-align: middle;
     }
   }
-  margin-left: 0px;
-  margin-right: 0px;
-  padding: 20px;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 20px 20px 20px;
+  background-color: #f2f8fc;
 }
 
 .goal{
@@ -112,7 +122,6 @@
   margin: 0px;
 }
 .modal {
-
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 2; /* Sit on top */

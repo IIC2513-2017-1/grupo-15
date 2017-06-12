@@ -1,14 +1,9 @@
-<div class="profile">
+<div id="profile">
   <%= image_tag @user.avatar.url%>
   <h2><%= @user.name %></h2>
   <p><%= @user.email %></p>
-  <%if  !current_user.nil? %>
-    <%if current_user.follows?(current_user.id, params[:id])&&current_user.id!=params[:id].to_i%>
-      <%= button_to "Follow" , follows_path, method:"post", class: "button" , params: {follower_id: current_user.id, following_id:params[:id]}%>
-    <%elsif !current_user.follows?(current_user.id, params[:id])%>
-      <%= button_to "Unfollow" , {:controller => :follows, :action => 'destroy', :follower_id => current_user.id, :following_id => params[:id]},
-       class:"button", :method => :delete %>
-    <% end %>
+  <%= following_button(@user) %>
+  <%unless current_user.nil?%>
     <%if current_user.id == params[:id].to_i%>
       <%= link_to 'Edit profile', edit_user_path(@user) %>
     <%end%>

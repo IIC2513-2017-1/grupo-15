@@ -6,7 +6,6 @@ before_action :logged_in?
     @follow = Follow.new
   end
 
-
   def create
     @follow = Follow.new(follower_id: params[:follower_id], following_id: params[:following_id])
     respond_to do |format|
@@ -15,10 +14,8 @@ before_action :logged_in?
         following = User.find(params[:following_id])
         FollowMailer.new_follower_email(following, follower).deliver_later
         format.html { redirect_to @follow.following}
-        format.json { render :show, status: :created, location: @follow }
       else
-        format.html { render :new }
-        format.json { render json: @follow.errors, status: :unprocessable_entity }
+        redirect_to users_path(@user), notice: "an error has ocurred, you can't follow this user"
       end
     end
   end

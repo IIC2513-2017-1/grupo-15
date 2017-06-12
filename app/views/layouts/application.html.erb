@@ -16,8 +16,8 @@
         <% end %>
       </div>
       <nav id="main-menu">
-        <%= link_to 'Home', root_path , class:"nav-link"%>
-        <%= link_to 'Projects', projects_path, class:"nav-link" %>
+        <%= link_to 'Home', root_path , class:"nav-link red-hover"%>
+        <%= link_to 'Projects', projects_path, class:"nav-link red-hover" %>
       </nav>
 
       <div id="search-bar">
@@ -28,7 +28,7 @@
       </div>
 
       <%if logged_in?%>
-        <%= link_to 'New Project', new_project_path , class:"button"%>
+        <%= link_to 'New Project', new_project_path , class:"button btn-red"%>
       <%end%>
 
     <div id="user-menu">
@@ -48,8 +48,8 @@
         </div>
       <% else %>
       <div id="guest-bar">
-        <%= link_to "Log In", new_session_path, class:"nav-link" %>
-        <%= link_to 'Sign Up', new_user_path, class:"nav-link" %>
+        <%= link_to 'Log In', new_session_path, class:"nav-link red-hover"%>
+        <%= link_to 'Sign Up', new_user_path, class:"nav-link red-hover" %>
       </div>
       <% end %>
     </div>
@@ -59,15 +59,12 @@
       <%= yield %>
     </main>
     <footer>
-     <hr>
       <div id="project">© Fundup 2017</div>
       <div id="license">
         <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
           <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/>
         </a>
       </div>
-
-
     </footer>
   </body>
 </html>
