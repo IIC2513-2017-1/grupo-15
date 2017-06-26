@@ -5,7 +5,7 @@
   <%= following_button(@user) %>
   <%unless current_user.nil?%>
     <%if current_user.id == params[:id].to_i%>
-      <%= link_to 'Edit profile', edit_user_path(@user) %>
+      <%= link_to 'Edit profile', edit_user_path(@user), class:"button btn-blue" %>
     <%end%>
   <%end%>
 </div>

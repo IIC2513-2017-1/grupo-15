@@ -1,13 +1,30 @@
-<div class="">
-  <h2>Highlighted projects</h2>
-  <%= render 'projects/project', project: Project.first %>
-  <div class="categories">
-    <p class="title2"> Explore by categories </p>
-    <ul>
-      <% @categories.each do |category| %>
-        <li><%= link_to category.name, projects_path(search: category.id)%></li>
-      <%end%>
-    </ul>
+<div class="main-content">
+  <div class="row">
+      <h1 class="preview title">Highlighted projects</h1>
   </div>
-
+  <div class="home-container-wrapper gray-border-b pb20">
+    <div class="home-preview-container row">
+      <div class="home-projects-preview">
+          <!--<% @projects.each do |preview| %>
+            <%= render 'projects/project', project: preview , index: @projects.index(preview) %>
+          <% end %>-->
+          <%= render 'projects/project_index', project: @projects.third %>
+      </div>
+      <div class="categories-container">
+        <ul class="categories-list">
+          <% @categories.each do |category| %>
+            <li class="category-item"><%= link_to category.name, root_path(category: category.id), class:"category-link", action:"index", method:"get", remote:true, type:"json"%></li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row mt60">
+    <h1 class="title">Recently created</h1>
+  </div>
+  <div class="discovery-container row">
+    <% @projects.last(6).each do |discovery| %>
+      <%= render "projects/discovery_card", project: discovery  %>
+    <% end %>
+  </div>
 </div>

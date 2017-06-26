@@ -1,13 +1,16 @@
-html, body {
+html,body {
    margin: 0;
    padding: 0;
+   height: 100%;
+   width: 100%;
+   display:table; //para que se expanda más allá del viewport
 }
 
 body{
   font-family: "Helvetica Neue", Helvetica, Arial, "Liberation Sans", FreeSans, sans-serif;;
   color: #333;
   background-color: #fff;
-  padding-top: 50px;
+  padding-top: 62px;
   line-height: 18px;
 }
 
@@ -16,23 +19,24 @@ a{
   color:#2752ff;
 }
 
-p, ol, ul, td, a, span {
+div, p, ol, ul, td, a, span {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 15px;
-  line-height: 18px;
+  font-size: 14px;
 }
 
-div h1,h2,p{
-  margin: 8px;
+div, p{
+  margin: 0 0 20px 0;
 }
 
-main>div:first-of-type{
-  padding-top: 20px;
+
+
+h1,h2,h3{
+  margin: 0;
+  font-weight: normal;
 }
 
-main>div{ /*todos los div dentro del main tienen margen*/
- margin-left: 20px;
- margin-right: 20px;
+h1{
+  line-height: 40px;
 }
 
 textarea{
@@ -41,7 +45,7 @@ textarea{
 
 div {
   &.field, &.actions {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 }
 
@@ -86,4 +90,14 @@ div {
 
 label {
   display: block;
+}
+
+@font-face {
+  font-family: "Caminata One";
+  src: font-url('/assets/Caminata-One-demo-FFP.ttf') format("truetype");
+}
+
+@font-face {
+  font-family: "Adumu";
+  src: font-url('/assets/Adumu.ttf') format("truetype");
 }

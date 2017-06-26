@@ -5,8 +5,8 @@
     <span>by <%= link_to @project.user.name, @project.user %></span>
     <p> <strong>Description:</strong> <%= @project.description %> </p>
     <p> <strong>Goal:</strong> <%= @project.goal%></p>
-    <div id="bar">
-      <%= content_tag :div, id:"fill", data:{rate:(@current_amount/@project.goal)} do %>
+    <div class="bar">
+      <%= content_tag :div, class:"fill", data:{rate:(@current_amount/@project.goal)} do %>
       <%end%>
     </div>
     <p> <strong>End date:</strong> <%= @project.end %> </p>

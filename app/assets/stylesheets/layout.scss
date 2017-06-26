@@ -1,84 +1,152 @@
+$h: 60px;
 header{
   position: fixed;
   top: 0px;
   width: 100%;
-  padding: 12px 20px 10px 20px;
   background: white;
   box-shadow: 0 2px 6px 0 rgba(0,0,0,0.17);
   z-index: 2;
-}
-footer{
-  max-height: 40px;
-  padding: 15px 0px 10px 0px;
-  border-top: 1px solid black;
-  div{
-    display: inline-block;
-    vertical-align: middle;
-    padding-left: 10px;
-  }
-}
-main{
-  min-height: 520px;
-  padding-bottom: 20px;
+  height: $h;
 }
 
-nav#main-menu, #logo, #search-bar, #user-menu {
+footer{
+  box-sizing: border-box;
+  background-color: #2a3132;
+  color: white;
+  height: 44px;
+  padding: 9px;
+  line-height: 26px;
+  font-size: 13px;
+}
+
+footer div{
   display: inline-block;
+}
+
+main{
+  min-height: 92.5%;
+  width: 100%;
+}
+
+//----------------------------NAVIGATION----------------------------------
+
+nav#site-nav{
+  height: 100%;
+  width: 100%;
+}
+
+header nav, nav>div, .main-menu>a, .user-menu>div, .session-options>a{ //center elements vertically
+  display: inline-block;
+  line-height: ($h)-3px;
   vertical-align: middle;
+  height: 100%;
+}
+
+.user-menu>div{
+  float: right;
 }
 
 #logo{
-  a {
-    text-decoration: none;
-    color: #d9534f;
-  }
-  a:hover {
-    background-color: white;
-  }
+  color: #d9534f;
+  margin-left: 30px;
+  margin-right: 10px;
+  height: 48px;
 }
 
-nav#main-menu{
-  margin-left: 10px;
+.logo-font{
+  font-family: "Adumu";
+}
+
+.fnt-big{
+  font-size: 35px;
+}
+
+.fnt-med{
+  font-size: 20px;
+}
+
+.color{
+  color: blue;
+}
+
+.main-menu a{
+  margin-left: 20px;
+}
+
+.session-options a{
+  margin: 0 10px 0 10px;
 }
 
 .nav-link{
-    height: 20px;
-    padding: 10px 10px 16px 10px;
-    margin-left: 20px;
-    text-decoration: none;
-    color: black;
-    font-size: 16px;
+  text-decoration: none;
+  color: black;
 }
 
 .red-hover:hover{
   color: #d9534f;
-  background-color: white;
-  border-bottom: 3px solid #C1292E;
+  border-bottom: 3px solid #d9534f;
 }
 
+//--------------------SEARCH BAR------------------------
 #search-bar{
+  line-height: 60px;
+  margin-right: 20px;
+}
+.search-icon {
+  vertical-align: middle;
   display: inline-block;
-  margin-left: 20px;
+  cursor: pointer;
+  opacity: 0.5;
+  height: 20px;
+}
+.search-icon:hover {
+  opacity: 0.75;
 }
 
-
-#guest-bar {
-  position: absolute;
-  right: 50px;
-  top: 20px;
+#search-form{
+  display: inline-block;
+  margin-right: 5px;
+  max-width: 146px;
+  input{
+    display: none;
+    vertical-align: middle;
+    width: 100%;
+    font-size: 15px;
+    border:none;
+    box-shadow: 4px 4px 18px 0 rgba(0,0,0,0.3);
+    padding:5px;
+    &[type="text"]{
+      opacity: 0.8;
+      color: #6d6d6c  ;
+    }
+  }
+  input[type="text"]:focus{
+    outline: none;
+    &:focus::-webkit-input-placeholder
+    {
+      color: transparent;
+    }
+  }
 }
 
-/* DROPDDOWN*/
+//------------------------DROPDOWN--------------------------
 .dropbtn{
-  position: absolute;
-  top: 0px;
-  right: 0px;
+  cursor: pointer;
+  outline: 0;
+}
+
+.dropbtn-profile{
+  line-height: 60px;
   margin-right: 0px;
-  height: 56px;
+  height: 60px;
   background-color: #F7F7F9;
+  width: 100%;
   padding: 9px;
   border: none;
-  cursor: pointer;
+}
+
+.dropbtn-profile:hover, .dropbtn-profile:focus {
+    background-color: #dbdbd9;
 }
 
 .dropbtn .fa{
@@ -88,34 +156,36 @@ nav#main-menu{
 }
 
 .dropbtn .fa,img{
-  vertical-align: middle;
+  vertical-align: text-bottom;
 }
 
-.dropbtn:hover, .dropbtn:focus {
-    background-color: #dbdbd9;
-}
-
-.dropbtn{
-  outline: 0;
+.dropbtn-content{ //what's inside button
+  margin: 0;
+  height: 100%;
 }
 
 /*container*/
 #dropdown-wrapper{
-  position: relative;
-  top: -43px;
-  left: 224px;
+  min-width: 85px;
 }
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
   display: none;
-  position: absolute;
-  top:56px;
-  right: 0px;
   background-color: #f9f9f9;
-  min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
+}
+
+.drop-profile-content{
+  position: absolute;
+  top:60px;
+  right: 0px;
+  min-width: 160px;
+}
+
+#dropdown-wrapper .dropdown-content{
+  line-height: 18px;
 }
 
 /* Links inside the dropdown */
@@ -128,36 +198,6 @@ nav#main-menu{
 
 /* Change color of dropdown links on hover */
 .dropdown-content a:hover {background-color: #f1f1f1}
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;}
-
-
-#dropdown-wrapper{
-  position: absolute;
-  top: 0px;
-  right: 40px;
-}
-
-.icon{
-  height: 40px;
-  width: 40px;
-  border-radius: 10px;
-}
-
-header{
-  .button{
-    display: inline-block;
-    margin-left: 420px;
-  }
-}
-
-.wrap{
-  white-space: pre-line;
-  word-wrap:break-word;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
 footer{
   text-align: center;

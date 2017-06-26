@@ -1,0 +1,35 @@
+<%= content_tag :div, class:"disc-card inline-block" do %>
+  <%= link_to project_path(project) do %>
+    <%= image_tag "project_placeholder.png", class:"full-width" %>
+  <% end %>
+  <div class="disc-card-content">
+    <div class="disc-card-info">
+      <%= link_to projects_path, class:"link-hov light-gray" do%>
+        <%=(project.category.name).upcase%>
+      <% end %>
+      <div class="disc-card-summary">
+        <%= link_to project_path(project), class:"title wrap" do %>
+          <h3 class="strong "><%= project.name %></h3>
+        <%end%>
+        <p class="grey-dark wrap"><%= project.description %></p>
+        <p class="grey-dark f12"><%= "by "+project.user.name %></p>
+      </div>
+    </div>
+    <div class="disc-card-progress">
+      <div class="disc-card-labels grey-dark">
+        <p class="disc-ammount strong f16"> <%= "$"+(project.current_amount.to_i).to_s %> </p>
+        <span class="f14"> pledged </p>
+      </div>
+      <div class="project-stats-bar row">
+        <div class="progress-bar">
+          <%= content_tag :div, class:"filler", data:{rate:(project.current_amount/project.goal)} do %>
+          <%end%>
+        </div>
+      </div>
+      <div class="disc-card-labels grey-dark">
+        <p class="disc-percent strong f12"> <%= ((project.current_amount/project.goal*100).to_i).to_s+"% funded" %> </p>
+        <p class="disc-days strong f12"> <%= (((project.end_date-project.start_date)/ (24 * 60 * 60)).to_i).to_s+" days to go" %> </p>
+      </div>
+    </div>
+  </div>
+<% end %>

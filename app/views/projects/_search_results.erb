@@ -1,0 +1,15 @@
+<%if params[:search]%>
+  <% if projects.present? %>
+      <%= content_tag :h2, "Results for "+"\""+params[:search]+"\""  , class:"text-centered mb30"%>
+  <% else %>
+    <p class="text-centered">There are no posts containing the term(s) <%= params[:search] %>.</p>
+  <% end %>
+<%end%>
+<div class="discovery-container row">
+  <% projects.each do |discovery| %>
+    <%= render "discovery_card", project: discovery  %>
+  <% end %>
+</div>
+<div id="page_links" class="text-centered">
+  <%= paginate projects %>
+</div>

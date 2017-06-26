@@ -1,0 +1,40 @@
+<%= content_tag :div, class:"project-card-container" do %>
+  <div class="project-card-thumbnail">
+    <%= link_to project_path(project),  class:"project-link" do%>
+      <%= image_tag "project_placeholder.png" %>
+    <% end %>
+  </div><!--
+  --><div class="project-card-content">
+    <%= link_to project_path(project), class:"project-link" do%>
+      <h2 class="project-card-title title wrap"><%= project.name %></h2>
+    <%end%>
+    <p class="project-card-owner f12 grey-dark"><%= "by "+project.user.name %></p>
+    <p class="project-card-description wrap grey-dark"><%= project.description %></p>
+    <div class="status-labels">
+      <%= link_to projects_path, class:"project-label link-hov grey-dark strong" do%>
+        <p class="fa fa-tag"></p>
+        <p><%=project.category.name%></p>
+      <% end %>
+    </div>
+    <div class="project-stats-bar row">
+      <div class="progress-bar">
+        <%= content_tag :div, class:"filler", data:{rate:(project.current_amount/project.goal)} do %>
+        <%end%>
+      </div>
+    </div>
+    <ul class="project-stats-text list f12 m0">
+      <li class="percent inline-block mr15">
+        <p class="f16"><%= ((project.current_amount/project.goal*100).to_i).to_s+"%" %></p>
+        <p class="">funded</p>
+      </li>
+      <li class="ammount inline-block mr15">
+        <p class="f16 "><%= "$"+((project.goal*100).to_i).to_s %></p>
+        <p class="">pledged</p>
+      </li>
+      <li class="days inline-block mr15">
+        <p class="f16 "><%= (((project.end_date-project.start_date)/ (24 * 60 * 60)).to_i).to_s %></p>
+        <p class="">days to go</p>
+      </li>
+    </ul>
+  </div><!--
+--><% end %>
