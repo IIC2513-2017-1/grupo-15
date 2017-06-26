@@ -6,15 +6,22 @@ class ProjectsController < ApplicationController
 
 
   def index
-    @projects = Project.search(params[:search])
+    @categories = Category.all
+    @projects = Project.all
     if params[:search]
-      if (@projects.nil?||@projects.length==0) && params[:search]
-        redirect_to root_path, notice: "Match not found"
-      elsif @projects.length>0 && params[:search].to_i==0
-        redirect_to @projects[0]
-      end
+      @projects = Project.search(params[:search])
+    elsif params[:category] && params[:category].to_i != 0
+      @projects = Project.where(category_id: params[:category].to_i)
+    else
+      @projects = Project.all.order('created_at DESC')
     end
-    #raise
+    @projects = @projects.paginate(:page => params[:page], :per_page => 9)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+
   end
 
   def show
@@ -23,6 +30,9 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    if !logged_in?
+      redirect_to new_session_path, notice: "Log in to continue"
+    end
     @project = Project.new
   end
 

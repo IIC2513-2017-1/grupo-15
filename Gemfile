@@ -44,6 +44,15 @@ gem 'kaminari', '~> 1.0.1'
 
 gem 'active_model_serializers', '~> 0.10.6'
 
+gem 'will_paginate', '~> 3.1.0'
+
+#APIs
+gem 'httparty'
+
+gem 'oauth'
+
+gem 'figaro'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

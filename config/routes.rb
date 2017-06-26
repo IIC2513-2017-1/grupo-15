@@ -13,6 +13,14 @@ Rails.application.routes.draw do
   end
   resources :rewards, only: [:index, :new, :create]
   resources :users
+
+  #----------------------------------API----------------------------------
+  namespace :api, defaults: {format: 'json'} do
+    namespace :v1 do
+      resources :projects
+    end
+  end
+
   root 'home#index'
 
   namespace :api do

@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_project_owner?
-    project = Project.find(params[:id])
+    project = (params[:id]) ? Project.find(params[:id]) : Project.find(params[:project_id])
     if !(current_user.id.to_s == project.user_id.to_s)
      redirect_to(root_path, notice: 'Unauthorized access!')
     end

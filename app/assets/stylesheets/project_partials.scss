@@ -1,0 +1,143 @@
+//-------------------DISCOVER CARDS-----------------------
+.disc-card{
+  box-shadow: 0 2px 6px -2px rgba(22,22,22,0.45);
+  border-color: #E8E8E8;
+  border: 0.1rem solid #DCDEDD;
+  border-radius: 2px;
+  width: 30%;
+  height: 485px;
+}
+
+.disc-card div,p,img{
+  display: block;
+}
+
+.disc-card-content{
+  padding: 18px;
+  height: 50%;
+  margin: 0;
+}
+
+.disc-card-summary p{
+  height: 36px;
+}
+
+.disc-card-progress{
+  height: 20%;
+  margin-top: 20px;
+  .project-stats-bar{
+    margin: 4px 0 8px 0;
+  }
+}
+
+.disc-card-progress div{
+  margin: 0;
+}
+
+.disc-card-labels p{
+  display: inline-block;
+  margin: 0;
+}
+
+.disc-days{
+  float: right;
+}
+
+.disc-percent{
+  float: left;
+}
+
+.disc-card{
+  &:nth-child(3n-1){
+    margin: 0 54px;
+  }
+}
+
+//---------------------PROJECT CARD--------------------
+
+.home-preview-container{
+  display: flex;
+}
+
+.project-card-container{
+  display: flex;
+}
+
+.project-card-thumbnail{
+  width: 50%;
+  img{
+    width: 100%;
+  }
+}
+
+.project-card-content{
+  width: 50%;
+  padding: 0 15px;
+}
+
+.project-card-{
+  &thumbnail, &content{
+    margin: 0;
+  }
+}
+
+.home-projects-preview, .project-card-container{
+  margin: 0;
+}
+
+.project-card-container div,img{
+  display: inline-block;
+  vertical-align: top;
+}
+
+.project-card-title{
+  margin-bottom: 5px;
+}
+
+.project-card-description{
+  height: 50px;
+}
+
+.status-labels{
+  margin-bottom: 15px;
+}
+
+.project-label p{
+  margin: 0;
+}
+
+//------------------------BOTH-------------------------
+
+.project-label p{
+  display: inline-block;
+}
+
+.project-stats-text p{
+  margin: 0;
+}
+
+.project-stats-bar, .progress-bar{
+  width: 100%;
+}
+
+.project-stats-bar{
+  max-height: 10px;
+  min-height: 8px;
+  height: 3.2%;
+}
+
+.progress-bar{
+  height: 100%;
+  width: 100%;
+  background-color: rgba(161,159,159,0.4);
+}
+
+.filler{
+  background-color: #d9534f;
+  height: 100%;
+  max-width: 100%;
+}
+
+.progress-bar, .filler{
+  border-radius: 5px;
+}

@@ -9,8 +9,22 @@ $(document).on('turbolinks:load', function() {
     }
   });
 
-  var largo = $("#bar").width()*$("#fill").data("rate");
-  $("#fill").css("width", largo);
+  $(".progress-bar").each(function(){
+    bar =  $(this);
+    filler = $(this).children(".filler");
+    var largo = bar.first().width()*filler.data("rate");
+    filler.css("width", largo);
+  });
+
+
+  //-------------------------DROPDOWN-------------------------------
+
+  $(".category-click").each(function(){
+    $(this).click(function(e){
+      $("#dropdown-text").html($(this).html());
+      $("#explore-dropdown").toggleClass("block");
+    })
+  });
 
   //-------------------------MOOAL--------------------------------
 
@@ -24,7 +38,6 @@ $(document).on('turbolinks:load', function() {
   btns.each(function(index) {
     $(this).on("click", function(){
       modal.css("display" , "block");
-      console.log($(this).data("reward-id"))
       $("#pledge_reward_id").val($(this).data("reward-id"));
     });
   });
@@ -42,7 +55,11 @@ $(document).on('turbolinks:load', function() {
   });
 });
 
-
+var loadProjectBar = function(bar){
+    filler = bar.children(".filler");
+    var largo = bar.first().width()*filler.data("rate");
+    filler.css("width", largo);
+};
 
 var scrollBottom = function(){
   if ($(".comments").length > 0){

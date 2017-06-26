@@ -1,0 +1,5 @@
+$("#index-search-results").html("<%= escape_javascript(render partial: 'search_results', locals:{projects: @projects}) %>");
+console.log($(".progress-bar"))
+$(".progress-bar").each(function(){
+  loadProjectBar($(this));
+});

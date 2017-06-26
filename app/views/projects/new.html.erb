@@ -1,5 +1,7 @@
-<div class="project-form">
-  <h1>Project creation</h1>
-  <%= render 'form', project: @project %>
-  <%= link_to 'Back', projects_path %>
+<div class="main-content bg-light-gray">
+  <div class="project-form">
+    <h1>Project creation</h1>
+    <%= render 'form', project: @project, action:"Create" %>
+    <%= link_to 'Back', projects_path %>
+  </div>
 </div>

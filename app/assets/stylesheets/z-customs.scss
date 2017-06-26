@@ -1,0 +1,270 @@
+//-----------------BUTTONS-------------------
+.button{
+  color: #333;
+  background-color: #deddde;
+  border-color: #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+.button:hover{
+  color: #333;
+  background-color: #d4d4d4;
+  border-color: #e7e7e7;
+  text-decoration: none
+}
+
+.btn-red{
+  color: #fff;
+  background-color: #d9534f;
+  border-color: #d43f3a;
+}
+
+.btn-red:hover{
+  color: #fff;
+  background-color: #c9302c;
+  border-color: #ac2925;
+}
+
+.btn-blue {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+.btn-blue:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+//BUTTONS: DROPDOWN
+
+.dropbtn-explore{
+    text-align: left;
+    height: 50px;
+    border-radius: 0;
+    color: #d9534f;
+    background-color: #ffffff;
+    border: 1px solid #d9534f;
+    padding: 0 10px;
+    width: 100%;
+}
+
+.dropbtn-explore .dropbtn-content p{
+  font-size: 20px;
+  line-height: 50px;
+  margin: 0;
+  height: 100%;
+}
+
+.dropbtn-content .fa{
+  text-align: center;
+  padding: 0;
+  line-height: 50px;
+  font-weight: 900;
+  float: right;
+}
+
+.dropbtn-content *{
+  vertical-align: top;
+}
+
+.dropdown-wrapper{
+  position: relative;
+  margin: 0 auto;
+}
+
+.drop-explore-content{
+  position: absolute;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
+//------------------INTPUTS----------------------
+
+.input-text{
+  border-radius: 6px;
+  background: white;
+  border: 1px solid #dad7d4;
+  color: #020621;
+  margin: 0;
+  padding: 12px;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+.button option{
+  background-color: white;
+}
+
+//-----------------PAGINATION----------------------
+
+
+.pagination { padding: 3px; margin: 3px; }
+.pagination a { padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #d9534f; text-decoration: none; color: #d9534f; }
+.pagination a:hover,
+.pagination a:active { border: 1px solid #d43f3a; color: #fff; background-color: #d9534f; }
+.pagination em.current { padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #d43f3a; font-weight: bold; background-color: #d9534f; color: #FFF; cursor:not-allowed;}
+.pagination span.disabled { padding: 2px 5px 2px 5px; margin: 2px; border: 1px solid #eee; color: #ddd; }
+
+
+
+//-------------------LINKS----------------------
+
+.link-hov{
+  opacity: 0.8;
+}
+
+.link-hov:hover{
+   opacity: 1;
+}
+
+//---------------------IMAGES----------------------
+
+.icon{
+  height: 40px;
+  width: 40px;
+  border-radius: 10px;
+}
+
+.medium{
+  height: 250px;
+  width: 368px;
+}
+
+//----------------------FONTS-------------------------
+
+.f12{
+  font-size: 12px;
+}
+
+.f14{
+  font-size: 14px;
+}
+
+.f16{
+  font-size: 16px;
+}
+
+.strong{
+  font-weight: 900;
+}
+
+.title{
+  color: black;
+  font-weight: normal;
+}
+
+.text-centered{
+  text-align: center;
+}
+
+//-----------------MARGINS AND PADDINGS-----------------
+
+.mr15{
+  margin-right: 15px;
+}
+
+.m0{
+  margin: 0;
+}
+
+.mt60{
+  margin-top: 60px;
+}
+
+.pb20{
+  padding-bottom: 20px;
+}
+
+.mb30{
+  margin-bottom: 30px;
+}
+
+.mb60{
+  margin-bottom: 60px;
+}
+
+//------------------------COLORS----------------------------
+
+.grey-dark {
+    color: #4c4c4b;
+}
+
+.light-gray{
+  color: #686767;
+}
+
+.bg-light-gray{
+  background-color: rgba(234, 234, 234, 0.5);
+}
+
+.black{
+  color: black;
+}
+
+//------------------------DISPLAY---------------------------
+
+.hidden{
+  display: none;
+}
+
+.inline-block{
+  display: inline-block;
+}
+
+.block{
+  display: block;
+}
+
+//-------------------------SIZING------------------------
+
+.width-25{
+  width: 25%;
+}
+
+.full-width{
+  width: 100%;
+}
+
+.full-height{
+  height: 100%;
+}
+//--------------------------OTHERS------------------------
+
+.wrap{
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.centered{
+  margin: 0 auto;
+}
+
+.list{
+  list-style: none;
+  padding-left: 0;
+}
+
+.lh60{
+  line-height: 60px;
+}
+
+.gray-border-b{
+  border-bottom: 0.1rem solid #DCDEDD;
+}

@@ -1,0 +1,37 @@
+<%= form_for(user) do |f| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation" class="centered">
+      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+      <ul>
+      <% user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_field :name, required: true, pattern: ".*[^ ].*", placeholder:"Name", class:"input-text full-width" %>
+  </div>
+
+  <div class="field">
+    <%= f.email_field :email, required: true, placeholder:"Email", class:"input-text full-width" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password, required: true, minlength: 6, placeholder:"Password", class:"input-text full-width" %>
+  </div>
+
+  <div class="field">
+    <%= f.password_field :password_confirmation, required: true, placeholder:"Password confirmation", class:"input-text full-width" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit action+" User", class:"button btn-red full-width"%>
+  </div>
+
+  <div class="info">
+    Have an account? <%= link_to "Log in", new_session_path %>    
+  </div>
+
+<% end %>

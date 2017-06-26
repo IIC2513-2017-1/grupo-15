@@ -23,7 +23,7 @@
   <% if current_user%>
    <div class="field">
      <%= f.label :avatar %>
-     <%= f.file_field :avatar %>
+     <%= f.file_field :avatar, class:"inputfile"%>
    </div>
    <% end%>
 
@@ -38,7 +38,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit action+" User", class:"button"%>
   </div>
-  
+
 <% end %>

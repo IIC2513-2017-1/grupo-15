@@ -13,22 +13,22 @@
 
   <div class="field">
     <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, class:"input-text" %>
   </div>
 
   <div class="field">
     <%= f.label :description %>
-    <%= f.text_area :description , rows:5, cols:60 %>
+    <%= f.text_area :description, class:"input-text" , rows:5, cols:60 %>
   </div>
 
   <div class="field">
     <%= f.label :goal %>
-    <%= f.text_field :goal, class:"goal", placeholder:"$5" %>
+    <%= f.text_field :goal, class:"input-text", placeholder:"$5" %>
   </div>
 
   <div class="field">
     <%= f.label :category %>
-    <%= f.select :category_id, options_for_select(@categories.map{|c| [ c.name, c.id ] }), prompt: "Select a category" %>
+    <%= f.select :category_id, options_for_select(@categories.map{|c| [ c.name, c.id ] }), {prompt: "Select a category"},{class:"button"} %>
   </div>
 
   <div class="field">
@@ -42,6 +42,6 @@
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit action, class:"button width-25" %>
   </div>
 <% end %>

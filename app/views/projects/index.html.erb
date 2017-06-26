@@ -1,10 +1,22 @@
-<div class="project-index">
-  <h1>Some of our projects</h1>
-  <% @projects.first(10).each do |project| %>
-    <%= render 'projects/project', project: project %>
-  <% end %>
-  <br>
-  <% if logged_in? %>
-    <%= link_to 'Create a project', new_project_path, class:"button btn-red" %>
-  <% end %>
+<div class="main-content">
+  <div class="row mb60">
+    <h1 class="text-centered mb30">Find projects you'd love</h1>
+    <div id="dropdown-wrapper" class="dropdown-wrapper width-25">
+      <button class="dropbtn dropbtn-explore block centered">
+        <div class="dropbtn-content">
+          <p class="inline-block" id="dropdown-text">All categories</p>
+          <i class="fa fa-angle-down" aria-hidden="true"></i>
+        </div>
+      </button>
+      <div id="explore-dropdown" class="dropdown-content drop-explore-content">
+        <%= link_to "All categories", projects_path(category: 0), remote:true, class:"category-click" %>
+        <% @categories.each do |category| %>
+          <%= link_to category.name, projects_path(category: category.id), remote:true, class:"category-click" %>
+        <%end%>
+      </div>
+    </div>
+  </div>
+  <div id="index-search-results">
+    <%= render "search_results", projects: @projects  %>
+  </div>
 </div>

@@ -1,15 +1,20 @@
-<div class="project">
+<%= content_tag :div, class:"project hidden", data:{index:index} do %>
   <%= link_to project_path(project) do %>
-    <%= image_tag "project_placeholder.png"%>
+    <%= image_tag "project_placeholder.png", class:"medium"%>
   <% end %>
   <div class="preview-content">
     <%= link_to project.name, project_path(project), class:"title wrap" %>
+    <p><%= "by "+project.user.name %></p>
     <p class="wrap"><%= project.description %></p>
-    <p class="days font-dark"> <%= (((project.end_date-project.start_date)/ (24 * 60 * 60)).to_i).to_s+" days to go" %> </p>
-    <p class="percent font-dark"> <%= ((project.current_amount/project.goal*100).to_i).to_s+"%" %> </p>
-    <div id="bar">
-      <%= content_tag :div, id:"fill", data:{rate:(project.current_amount/project.goal)} do %>
+    <p class="days strong"> <%= (((project.end_date-project.start_date)/ (24 * 60 * 60)).to_i).to_s+" days to go" %> </p>
+    <p class="percent strong"> <%= ((project.current_amount/project.goal*100).to_i).to_s+"%" %> </p>
+    <div class="bar">
+      <%= content_tag :div, class:"fill", data:{rate:(project.current_amount/project.goal)} do %>
       <%end%>
     </div>
+    <%= link_to projects_path, class:"link strong" do%>
+      <p class="fa fa-tag"></p>
+      <p><%=project.category.name%></p>
+    <% end %>
   </div>
-</div>
+<% end %>

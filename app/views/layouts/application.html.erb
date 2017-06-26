@@ -2,69 +2,58 @@
 <html>
   <head>
     <title>FundUp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <header>
-      <div id="logo">
-        <%= link_to root_path do %>
-        <h1>FundUP</h1>
-        <% end %>
-      </div>
-      <nav id="main-menu">
-        <%= link_to 'Home', root_path , class:"nav-link red-hover"%>
-        <%= link_to 'Projects', projects_path, class:"nav-link red-hover" %>
-      </nav>
-
-      <div id="search-bar">
-      <%= form_tag("/projects", method: "get") do %>
-        <%= text_field_tag :search, "Search for a project" %>
-        <%= submit_tag("Search") %>
-      <% end %>
-      </div>
-      
-
-        <%if logged_in?%>
-          <%= link_to 'New Project', new_project_path , class:"button btn-red new-project"%>
-        <%end%>
-    <div id="user-menu">
-      <% if logged_in? %>
-        <div id="dropdown-wrapper">
-          <button class="dropbtn">
-            <div class="">
-              <%= image_tag current_user.avatar.url, class:"icon"%>
-              <i class="fa fa-caret-down" aria-hidden="true"></i>
+      <nav id="site-nav" class="row">
+        <div class="main-menu col-4">
+          <%= link_to "FundUP", root_path, id:"logo" , class:"logo-font fnt-big"%>
+          <%= link_to 'Explore', projects_path, class:"nav-link red-hover" %>
+          <%= link_to 'Start a project', new_project_path , class:"nav-link red-hover"%>
+        </div>
+        <div class="col-5">
+        </div>
+        <div class="user-menu col-3">
+          <% if logged_in? %>
+            <div id="dropdown-wrapper">
+              <button class="dropbtn dropbtn-profile">
+                <div class="dropbtn-content">
+                  <%= image_tag current_user.avatar.url, class:"icon"%>
+                  <i class="fa fa-caret-down" aria-hidden="true"></i>
+                </div>
+              </button>
+              <div id="user-dropdown" class="dropdown-content drop-profile-content">
+                <%= link_to "Profile", user_path(current_user) %>
+                <%= link_to "Settings", edit_user_path(current_user) %>
+                <%= link_to "Log Out", session_path, method: :delete %></li>
+              </div>
             </div>
-          </button>
-          <div id="user-dropdown" class="dropdown-content">
-            <%= link_to "Profile", user_path(current_user) %>
-            <%= link_to "Settings", edit_user_path(current_user) %>
-            <%= link_to "Log Out", session_path, method: :delete %></li>
+          <% else %>
+            <div class="session-options">
+              <%= link_to 'Log In', new_session_path, class:"nav-link red-hover"%>
+              <%= link_to 'Sign Up', new_user_path, class:"nav-link red-hover" %>
+            </div>
+          <% end %>
+          <div id="search-bar">
+            <%= form_tag(projects_path, :method => "get", id: "search-form") do %>
+              <%= text_field_tag :search, params[:search], placeholder: "Search" %>
+            <% end %>
+            <i class="fa fa-search search-icon" aria-hidden="true"></i>
           </div>
         </div>
-      <% else %>
-      <div id="guest-bar">
-        <%= link_to 'Log In', new_session_path, class:"nav-link red-hover"%>
-        <%= link_to 'Sign Up', new_user_path, class:"nav-link red-hover" %>
-      </div>
-      <% end %>
-    </div>
+      </nav>
     </header>
     <main>
       <p id="notice"><%= notice %></p>
       <%= yield %>
     </main>
     <footer>
-      <div id="project">© Fundup 2017</div>
-      <div id="license">
-        <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
-          <img alt="Creative Commons License" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png"/>
-        </a>
-      </div>
+      © Fundup 2017 - Chile
     </footer>
   </body>
 </html>
