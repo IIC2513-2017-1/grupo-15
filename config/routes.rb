@@ -15,10 +15,15 @@ Rails.application.routes.draw do
   resources :users
   root 'home#index'
 
-   namespace :api do
+  namespace :api do
     namespace :v1 do
-      resources :project, only: [:index, :create, :show]
-      resources :users, only: [:show]
+      #resources :projects, only: [:index, :create, :show]
+      
+      resources :projects, only: [:index, :create, :show] do
+        resources :rewards, only: [:show]
+        resources :comments, only: [:show]
+      end
+      resources :users, only: [:index, :show]
     end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

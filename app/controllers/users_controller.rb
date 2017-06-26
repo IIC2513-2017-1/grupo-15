@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :is_profile_owner?, only: [:edit, :update, :destroy] 
-  before_create :
+
   # GET /users
   # GET /users.json
   def index
