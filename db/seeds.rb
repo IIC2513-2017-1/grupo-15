@@ -10,15 +10,16 @@ Category.create(name:"Music")
 Category.create(name:"Sport")
 Category.create(name:"Technology")
 
-User.create(name: "user", email: "email@uc.cl", password: "holahola", password_confirmation: "holahola")
+User.create(name: "fundup", email: "fundup@uc.cl", password: "fundup", password_confirmation: "fundup")
 
 20.times do
-	User.create(
+	u = User.create(
 							name: Faker::Name.name,
 							email: Faker::Internet.unique.email,
 							password: "holahola",
 							password_confirmation: "holahola"
 							)
+	u.generate_token_and_save	
 end
 
 12.times do
@@ -29,7 +30,8 @@ end
 									end_date: Faker::Time.forward(365, :evening),
 									user_id: User.order('RANDOM()').first.id,
 									category_id: Category.order('RANDOM()').first.id,
-									goal: (rand*(10000)).to_i)
+									goal: (rand*(10000)).to_i
+									)
 end
 
 20.times do
