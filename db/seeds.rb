@@ -29,7 +29,7 @@ end
 									end_date: Faker::Time.forward(365, :evening),
 									user_id: User.order('RANDOM()').first.id,
 									category_id: Category.order('RANDOM()').first.id,
-									goal: (rand*(100000)).to_i)
+									goal: (rand*(10000)).to_i)
 end
 
 20.times do
@@ -49,7 +49,7 @@ end
 								)
 end
 
-50.times do
+150.times do
 	reward = Reward.order('RANDOM()').first
 	Pledge.create(
 								amount: reward.amount + Faker::Commerce.price,
