@@ -14,13 +14,12 @@
     <button class="tablinks button defaultOpen" data-tab="user-projects" >Projects</button>
     <button class="tablinks button" data-tab="user-following" >Following</button>
     <button class="tablinks button" data-tab="user-followers" >Followers</button>
-  
 </div>
 
 <div>
   <div class="user-projects tabcontent box", id="tab-1">
-    <h3>My projects:</h3>
-    <ul>
+    <h2 class="mb30">My projects:</h2>
+    <ul class="categories-list">
       <% @user.projects.each do |project| %>
         <li><%= link_to project.name, (logged_in? and (project.user_id==current_user.id)) ? edit_project_path(project) : project_path(project)%></li>
       <% end %>
@@ -28,8 +27,8 @@
   </div>
 
   <div class="user-following tabcontent box", id="tab-2">
-    <h3>I'm following:</h3>
-    <ul>
+    <h2 class="mb30">I'm following:</h2>
+    <ul class="categories-list">
       <% @user.following.each do |following| %>
         <li><%= link_to following.name, following %></li>
       <% end %>
@@ -37,8 +36,8 @@
   </div>
 
   <div class="user-followers tabcontent box", id="tab-3">
-    <h3>My followers:</h3>
-    <ul>
+    <h2 class="mb30">My followers:</h2>
+    <ul class="categories-list">
       <% @user.followers.each do |follower| %>
         <li><%= link_to follower.name, follower %></li>
       <% end %>

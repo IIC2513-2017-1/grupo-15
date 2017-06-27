@@ -1,91 +1,126 @@
-<div class="project-show">
-  <%= image_tag "project-ph2.png"%>
-  <div >
-    <p class="title"><%= @project.name %></p>
-    <span>by <%= link_to @project.user.name, @project.user %></span>
-    <p> <strong>Description:</strong> <%= @project.description %> </p>
-    <p> <strong>Goal:</strong> <%= @project.goal%></p>
-    <div class="bar">
-      <%= content_tag :div, class:"fill", data:{rate:(@current_amount/@project.goal)} do %>
-      <%end%>
-    </div>
-    <p> <strong>End date:</strong> <%= @project.end %> </p>
-    <p> <strong>Category:</strong> <%= @project.category.name %></p>
-  </div>
-</div>
-
-<div>
-  <div class="project-content">
-    <div class="comments">
-      <h2>Comments</h2>
-      <div id="comments-list">
-        <%= render @project.comments %>
-      </div>
-        <% if !current_user.nil? %>
-          <%= form_for([@project, Comment.new], remote:true) do |f| %>
-            <p>
-              <%= f.text_area :content, rows: 5, cols: 60 %>
-            </p>
-            <p>
-              <%= f.submit "Send  "%>
-            </p>
+<div class="main-content">
+  <div class="project-show row">
+    <%= content_tag :div, class:"project-card-container" do %>
+      <div class="project-card-thumbnail col-5">
+        <%= link_to project_path(@project),  class:"project-link" do%>
+          <%= image_tag @project.image.url %>
+        <% end %>
+      </div><!--
+      --><div class="project-card-content col-7">
+        <div class="gray-border-b">
+          <h1 class="title"><%= @project.name%></h1>
+          <span>by <%= link_to @project.user.name, @project.user %></span>
+        </div>
+        <p class="grey-dark"><%= @project.description %></p>
+        <div class="status-labels">
+          <%= link_to projects_path, class:"project-label link-hov grey-dark strong" do%>
+            <p class="fa fa-tag"></p>
+            <p><%= @project.category.name%></p>
           <% end %>
-        <%end%>
-    </div>
+        </div>
+        <div class="project-stats-bar row">
+          <div class="progress-bar">
+            <%= content_tag :div, class:"filler", data:{rate:(@project.current_amount/@project.goal)} do %>
+            <%end%>
+          </div>
+        </div>
+        <ul class="project-stats-text list f12 m0">
+          <li class="percent inline-block mr15">
+            <p class="f16"><%= ((@project.current_amount/@project.goal*100).to_i).to_s+"%" %></p>
+            <p class="">funded</p>
+          </li>
+          <li class="ammount inline-block mr15">
+            <p class="f16 "><%= "$"+((@project.goal*100).to_i).to_s %></p>
+            <p class="">pledged</p>
+          </li>
+          <li class="days inline-block mr15">
+            <p class="f16 "><%= (((@project.end_date-@project.start_date)/ (24 * 60 * 60)).to_i).to_s %></p>
+            <p class="">days to go</p>
+          </li>
+        </ul>
+      </div><!--
+    --><% end %>
   </div>
-  <div class="pledges">
-    <h2>Pledges</h2>
-      <% @project.rewards.each do |reward| %>
-        <%= render 'pledges/pledge', reward: reward %>
-      <% end %>
-  </div>
-</div>
 
-<!-- The Modal -->
-<div id="modalWindow" class="modal">
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">&times;</span>
-      <h2>Modal Header</h2>
-    </div>
-    <div class="modal-body">
-      <%= form_for([@project, @pledge], remote:true, url:{controller:"pledges", action:"create"}) do |f| %>
-        <% if @pledge.errors.any? %>
-          <div id="error_explanation">
-            <h2><%= pluralize(@pledge.errors.count, "error") %> prohibited this pledge from being saved:</h2>
-
-            <ul>
-            <% @pledge.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
+  <div>
+    <div class="project-content row">
+      <div class="comments col-9 pr">
+        <div id="project-tab" class="gray-border-b">
+          <h2 class="project-tab-option inline-block option-selected" data-section="comments">Comments</h2>
+          <h2 class="project-tab-option inline-block" data-section="updates">Updates</h2>
+        </div>
+        <div id="comments-list">
+          <%= render @project.comments %>
+        </div>
+          <% if !current_user.nil? %>
+            <%= form_for([@project, Comment.new], remote:true) do |f| %>
+              <div class="field">
+                <%= f.text_area :content, rows: 5, cols: 60, class:"input-text inline-block" %>
+                <%= f.submit "Send", class:"button btn-red inline-block"%>
+              </div>
             <% end %>
-            </ul>
+          <%end%>
+          <div id="updates">
+            <h2>Updates</h2>
+            <% @tweets.each do |tweet|%>
+              <div class="field">
+                <p class="strong">Text</p>
+                <p> <%= tweet[:text] %> </p>
+              </div>
+              <div class="field">
+                <p class="strong">Date</p>
+                <p> <%= tweet[:date] %> </p>
+              </div>
+            <%end%>
+          </div>
+      </div><!--
+      --><div class="pledges col-3">
+        <h2 class="text-centered">Pledges</h2>
+          <% @project.rewards.each do |reward| %>
+            <%= render 'pledges/pledge', reward: reward %>
+          <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Modal -->
+  <div id="modalWindow" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content width-25">
+      <div class="modal-body">
+        <%= form_for([@project, @pledge], remote:true, url:{controller:"pledges", action:"create"}) do |f| %>
+          <% if @pledge.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(@pledge.errors.count, "error") %> prohibited this pledge from being saved:</h2>
+
+              <ul>
+              <% @pledge.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+            <h2 class="text-centered gray-border-b m20"><%="Pledge for: "+@project.name %></h2>
+            <%= f.hidden_field :project_id, value: @project.id %>
+          </div>
+
+          <div class="field">
+            <%= f.label "Reward:", id:"pledge-reward-title", class:"strong text-centered"%>
+            <%= f.hidden_field :reward_id, value: "" %>
+          </div>
+
+          <div class="field">
+          <%= "Enter the ammount to pledge" %>
+          <%= f.text_field :amount, class:"input-text", placholder:"Ammount" %>
+          </div>
+
+          <div class="actions">
+            <%= f.submit "Confirm pledge", class:"button btn-red full-width" %>
           </div>
         <% end %>
-
-        <div class="field">
-          <%= f.label "Project: "+@project.name %>
-          <%= f.hidden_field :project_id, value: @project.id %>
-        </div>
-
-        <div class="field">
-          <%= f.label "Reward:" %>
-          <%= f.hidden_field :reward_id, value: "" %>
-        </div>
-
-        <div class="field">
-          <%= f.label :amount %>
-          <%= f.text_field :amount %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit "Confirm pledge" %>
-        </div>
-      <% end %>
-    </div>
-    <div class="modal-footer">
-      <h2>Modal Footer</h2>
+      </div>
     </div>
   </div>
-
 </div>

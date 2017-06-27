@@ -27,6 +27,11 @@ class ProjectsController < ApplicationController
   def show
     @current_amount = @project.current_amount
     @pledge = Pledge.new
+    response = get_tweets("nasa")
+    @tweets = []
+    response["statuses"].each do |tweet|
+      @tweets<< {text: tweet["text"], date: tweet["created_at"]}
+    end
   end
 
   def new
@@ -88,6 +93,30 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name, :description, :category_id, :user_id, :start_date, :end_date, :goal)
+      params.require(:project).permit(:name, :description, :category_id, :user_id, :start_date, :end_date, :goal, :image)
     end
+
+    def get_tweets(project_name)
+      access_token = prepare_access_token()
+      response = access_token.request(:get, "https://api.twitter.com/1.1/search/tweets.json?q=%40#{project_name}")
+      if response
+        return JSON.parse(response.body)
+      else
+        return response
+      end
+    end
+
+    def prepare_access_token()
+      defaults = {consumerKey: Figaro.env.consumer_key, consumerSecret: Figaro.env.consumer_secret,
+        token: Figaro.env.token, token_secret: Figaro.env.token_secret, callback_url: "http://127.0.0.1:3000/oauth/callback"}
+      consumer = OAuth::Consumer.new(defaults[:consumerKey], defaults[:consumerSecret], { :site => "https://api.twitter.com", :scheme => :header })
+
+      # now create the access token object from passed values
+      token_hash = { :oauth_token => defaults[:token], :oauth_token_secret => defaults[:token_secret] }
+      access_token = OAuth::AccessToken.from_hash(consumer, token_hash )
+
+      return access_token
+    end
+
+
 end

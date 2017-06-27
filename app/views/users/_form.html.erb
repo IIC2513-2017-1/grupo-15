@@ -10,35 +10,35 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
-    <%= f.text_field :name, required: true, pattern: ".*[^ ].*" %>
+  <div class="field row">
+    <%= f.label :name, class:"strong col-3" %>
+    <%= f.text_field :name, required: true, pattern: ".*[^ ].*", class:"input-text" %>
   </div>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, required: true %>
+  <div class="field row">
+    <%= f.label :email, class:"strong col-3" %>
+    <%= f.email_field :email, required: true, class:"input-text" %>
   </div>
 
   <% if current_user%>
-   <div class="field">
-     <%= f.label :avatar %>
-     <%= f.file_field :avatar, class:"inputfile"%>
+   <div class="field row">
+     <%= f.label :avatar, class:"strong col-3" %>
+     <%= f.file_field :avatar%>
    </div>
    <% end%>
 
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password, required: true, minlength: 6 %>
+  <div class="field row">
+    <%= f.label :password, class:"strong col-3" %>
+    <%= f.password_field :password, required: true, minlength: 6, class:"input-text" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, required: true %>
+  <div class="field row">
+    <%= f.label :password_confirmation, class:"strong col-3" %>
+    <%= f.password_field :password_confirmation, required: true, class:"input-text" %>
   </div>
 
   <div class="actions">
-    <%= f.submit action+" User", class:"button"%>
+    <%= f.submit action+" User", class:"button btn-blue width-25"%>
   </div>
 
 <% end %>

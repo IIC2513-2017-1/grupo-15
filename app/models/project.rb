@@ -4,6 +4,9 @@ class Project < ApplicationRecord
 	validates :end_date, presence: true, allow_blank: false
 	validate :end_date_after_start_date?
 
+	has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "project-ph2.png"
+	validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+
 	has_many :comments
 	has_many :pledges
 	has_many :rewards

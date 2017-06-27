@@ -1,6 +1,6 @@
 <%= content_tag :div, class:"project hidden", data:{index:index} do %>
   <%= link_to project_path(project) do %>
-    <%= image_tag "project_placeholder.png", class:"medium"%>
+    <%= image_tag project.image.url, class:"medium"%>
   <% end %>
   <div class="preview-content">
     <%= link_to project.name, project_path(project), class:"title wrap" %>

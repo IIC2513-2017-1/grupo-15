@@ -1,7 +1,7 @@
-<div class="pledges">
-  <h1><%=@project.name+"'s Rewards"%></h3>
-      <%= render @project.rewards %>
+<div class="main-content bg-light-gray">
+    <h1 class="text-centered mb30"><%=@project.name+"'s Rewards"%></h1>
+        <%= render @project.rewards %>
+  <div class="form-container width-25 centered">
+    <%= render 'rewards/form'%>
+  </div>
 </div>
-
-<%= link_to 'New reward', new_project_reward_path %> |
-<%= link_to 'Back', root_path %>

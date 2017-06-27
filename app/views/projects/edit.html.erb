@@ -1,10 +1,12 @@
-<div class="standard-form">
-  <h1>Editing Project</h1>
+<div class="main-content bg-light-gray">
+  <div class="form-container">
+    <div class="row gray-border-b">
+      <h1 class="pb20"> <%= "Editing Project: '#{@project.name}'" %> </h1>
+    </div>
+    <%= render 'form', project: @project, action:"Update" %>
 
-  <%= render 'form', project: @project, action:"Update" %>
-
-  <%= link_to 'Add rewards', project_rewards_path(@project) %> |
-  <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
-  <%= link_to 'Show', @project %> |
-  <%= link_to 'Back', projects_path %>
+    <%= link_to 'Add rewards', project_rewards_path(@project) %> |
+    <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?' } %> |
+    <%= link_to 'Show', @project %>
+  </div>
 </div>

@@ -17,6 +17,13 @@ $(document).on('turbolinks:load', function() {
   });
 
 
+  // $(".project-tab-option").each(function(){
+  //   $(this).click(function(){
+  //     $(this).toggleClass("hidden");
+  //   });
+  // });
+
+
   //-------------------------DROPDOWN-------------------------------
 
   $(".category-click").each(function(){
@@ -39,6 +46,7 @@ $(document).on('turbolinks:load', function() {
     $(this).on("click", function(){
       modal.css("display" , "block");
       $("#pledge_reward_id").val($(this).data("reward-id"));
+      $("#pledge-reward-title").html($(this).data("reward-title"));
     });
   });
 

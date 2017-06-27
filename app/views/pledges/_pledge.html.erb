@@ -1,18 +1,16 @@
-<div class="reward">
-  <p>
-    <strong>Title:</strong>
-    <%= reward.title %>
-  </p>
+<div class="form-container pledge-card">
+  <p class="strong text-centered gray-border-b pb20"><%= reward.title %></p>
 
-  <p>
-    <strong>Amount:</strong>
-    <%= reward.amount %>
-  </p>
+  <div class="display-field row">
+    <p class=" strong inline-block m0">Amount: </p>
+    <p class="inline-block"><%= "$"+(reward.amount).to_s %></p>
+  </div>
 
-  <p>
-    <strong>Description:</strong>
-    <%= reward.description %>
-  </p>
+  <div class="display-field row">
+    <p class="strong inline-block m0">Description:</p>
+    <p class="inline-block"><%= reward.description %></p>
+  </div>
 
-  <%=content_tag :button, "Get this" , class:"modal-btn button", data:{reward_id: reward.id, reward_title:reward.title} %>
+    <%=content_tag :button, "Get this" , class:"modal-btn button full-width", data:{reward_id: reward.id, reward_title:reward.title} %>
 </div>
+<div class="mb30">

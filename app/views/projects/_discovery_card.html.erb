@@ -1,6 +1,6 @@
 <%= content_tag :div, class:"disc-card inline-block" do %>
   <%= link_to project_path(project) do %>
-    <%= image_tag "project_placeholder.png", class:"full-width" %>
+    <%= image_tag project.image.url, class:"full-width" %>
   <% end %>
   <div class="disc-card-content">
     <div class="disc-card-info">

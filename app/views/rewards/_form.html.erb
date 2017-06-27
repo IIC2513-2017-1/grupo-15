@@ -1,22 +1,18 @@
-<%= form_for([@project, @reward]) do |f| %>
-
+<h2 class="mb30 text-centered">Add a new reward</h2>
+<%= form_for([@project, @project.rewards.build]) do |f| %>
   <div class="field">
-    <%= f.label :title %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, placeholder: "Title", class:"input-text full-width" %>
   </div>
 
   <div class="field">
-    <%= f.label :amount %>
-    <%= f.number_field :amount, step: 0.01, min: 1, required: true,
-    placeholder: "Monto mínimo de $1" %>
+    <%= f.number_field :amount, step: 0.01, min: 1, required: true, placeholder: "Ammount", class:"input-text full-width" %>
   </div>
 
   <div class="field">
-    <%= f.label :description %>
-    <%= f.text_field :description %>
+    <%= f.text_field :description, placeholder: "Description", class:"input-text full-width" %>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Add Reward", class:"button btn-red full-width" %>
   </div>
 <% end %>

@@ -1,7 +1,7 @@
 <%= content_tag :div, class:"project-card-container" do %>
   <div class="project-card-thumbnail">
     <%= link_to project_path(project),  class:"project-link" do%>
-      <%= image_tag "project_placeholder.png" %>
+      <%= image_tag project.image.url %>
     <% end %>
   </div><!--
   --><div class="project-card-content">

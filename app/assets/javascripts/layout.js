@@ -16,6 +16,9 @@ $(document).on('turbolinks:load', function() {
       form_input.focus();
     });
   });
+
+  $("#notice").css("left", ($(window).width()-$("#notice").width())/2)
+
 });
 
 var dropdownToggle = function(btn, dropdown) {

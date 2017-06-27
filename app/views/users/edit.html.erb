@@ -1,5 +1,9 @@
-<div class="standard-form ">
-  <h1>Edit Profile</h1>
-  <%= render 'form', user: @user, action:"Update" %>
-  <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |  <%= link_to 'Back to profile', @user %>
+<div class="main-content bg-light-gray">
+  <div class="form-container">
+    <div class="row gray-border-b">
+      <h1 class="pb20"> <%= "Editing User" %> </h1>
+    </div>
+    <%= render 'form', user: @user, action:"Update" %>
+    <%= link_to 'Destroy', @user, method: :delete, data: { confirm: 'Are you sure?' } %> |  <%= link_to 'Back to profile', @user %>
+  </div>
 </div>

@@ -11,37 +11,42 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %>
+  <div class="field row">
+    <%= f.label :name ,class:"strong col-3"%>
     <%= f.text_field :name, class:"input-text" %>
   </div>
 
-  <div class="field">
-    <%= f.label :description %>
+  <div class="field row">
+    <%= f.label :description,class:"strong col-3" %>
     <%= f.text_area :description, class:"input-text" , rows:5, cols:60 %>
   </div>
 
-  <div class="field">
-    <%= f.label :goal %>
+  <div class="field row">
+    <%= f.label :image,class:"strong col-3" %>
+    <%= f.file_field :image, class:"inputfile"%>
+  </div>
+
+  <div class="field row">
+    <%= f.label :goal, class:"strong col-3" %>
     <%= f.text_field :goal, class:"input-text", placeholder:"$5" %>
   </div>
 
-  <div class="field">
-    <%= f.label :category %>
+  <div class="field row">
+    <%= f.label :category, class:"strong col-3" %>
     <%= f.select :category_id, options_for_select(@categories.map{|c| [ c.name, c.id ] }), {prompt: "Select a category"},{class:"button"} %>
   </div>
 
-  <div class="field">
-    <%= f.label :start_date %>
+  <div class="field row">
+    <%= f.label :start_date,class:"strong col-3" %>
     <%= f.datetime_select :start_date %>
   </div>
 
-  <div class="field">
-    <%= f.label :end_date %>
+  <div class="field row">
+    <%= f.label :end_date,class:"strong col-3" %>
     <%= f.datetime_select :end_date %>
   </div>
 
-  <div class="actions">
-    <%= f.submit action, class:"button width-25" %>
+  <div class="actions row">
+    <%= f.submit action, class:"button btn-blue width-25" %>
   </div>
 <% end %>
