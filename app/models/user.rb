@@ -4,8 +4,8 @@ class User < ApplicationRecord
 
   validates :name, presence:true, uniqueness: true, allow_blank: false
   validates :password, length: { minimum: 6 }, allow_nil: true
-  #validates :password, presence:true#, allow_blank: false, length: {minimum: 6} #confirmation: true
-  #validates :password_confirmation, presence: true #comentado para poder utilizar seeds ya existentes
+  validates :password, presence:true#, allow_blank: false, length: {minimum: 6} #confirmation: true
+  validates :password_confirmation, presence: true #comentado para poder utilizar seeds ya existentes
 
   #https://quickleft.com/blog/rails-tip-validating-users-with-has_secure_password/
 
@@ -30,4 +30,12 @@ class User < ApplicationRecord
   def follows? (fr_id,fg_id )
     Follow.find_by(follower_id: fr_id, following_id: fg_id.to_i).nil?
   end
+  
+  def generate_token_and_save
+    loop do
+      self.token = SecureRandom.hex(64)
+      break if save
+    end
+  end
+
 end

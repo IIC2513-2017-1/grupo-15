@@ -22,5 +22,19 @@ Rails.application.routes.draw do
   end
 
   root 'home#index'
+
+  namespace :api do
+    namespace :v1 do
+      #resources :projects, only: [:index, :create, :show]
+      
+      resources :projects, only: [:index, :create, :show] do
+        resources :comments, only: [:show] 
+        resources :rewards, only: [:show] do
+          resources :pledges, only: [:create, :new]
+        end
+      end
+      resources :users, only: [:index, :show]
+    end
+  end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

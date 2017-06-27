@@ -38,7 +38,11 @@ gem 'faker', '~> 1.7', '>= 1.7.3' #la pusimos para que heroku este con seeds (bo
 
 gem "paperclip", "~> 5.0.0"
 
-gem "font-awesome-rails";
+gem "font-awesome-rails"
+
+gem 'kaminari', '~> 1.0.1'
+
+gem 'active_model_serializers', '~> 0.10.6'
 
 gem 'will_paginate', '~> 3.1.0'
 

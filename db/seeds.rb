@@ -10,15 +10,17 @@ Category.create(name:"Music")
 Category.create(name:"Sport")
 Category.create(name:"Technology")
 
-User.create(name: "user", email: "email@uc.cl", password: "holahola", password_confirmation: "holahola")
+u = User.create(name: "fundup", email: "fundup@uc.cl", password: "fundup", password_confirmation: "fundup")
+u.generate_token_and_save
 
 20.times do
-	User.create(
+	u = User.create(
 							name: Faker::Name.name,
 							email: Faker::Internet.unique.email,
 							password: "holahola",
 							password_confirmation: "holahola"
 							)
+	u.generate_token_and_save
 end
 
 12.times do
