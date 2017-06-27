@@ -28,8 +28,10 @@ Rails.application.routes.draw do
       #resources :projects, only: [:index, :create, :show]
       
       resources :projects, only: [:index, :create, :show] do
-        resources :rewards, only: [:show]
-        resources :comments, only: [:show]
+        resources :comments, only: [:show] 
+        resources :rewards, only: [:show] do
+          resources :pledges, only: [:create, :new]
+        end
       end
       resources :users, only: [:index, :show]
     end
