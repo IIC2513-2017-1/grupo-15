@@ -10,7 +10,7 @@ Category.create(name:"Music")
 Category.create(name:"Sport")
 Category.create(name:"Technology")
 
-User.create(name: "fundup", email: "fundup@uc.cl", password: "fundup", password_confirmation: "fundup")
+u = User.create(name: "fundup", email: "fundup@uc.cl", password: "fundup", password_confirmation: "fundup")
 u.generate_token_and_save
 
 20.times do

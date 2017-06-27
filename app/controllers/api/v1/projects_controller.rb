@@ -23,5 +23,6 @@ module Api::V1
       params.require(:project).permit(:name, :description, :start_date, 
       																:end_date, :category_id, :goal)
 		end
+    
 	end
 end
