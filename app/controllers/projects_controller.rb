@@ -29,8 +29,10 @@ class ProjectsController < ApplicationController
     @pledge = Pledge.new
     response = get_tweets("nasa")
     @tweets = []
-    response["statuses"].each do |tweet|
-      @tweets<< {text: tweet["text"], date: tweet["created_at"]}
+    if response["statuses"]
+      response["statuses"].each do |tweet|
+        @tweets<< {text: tweet["text"], date: tweet["created_at"]}
+      end
     end
   end
 
