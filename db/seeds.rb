@@ -32,7 +32,9 @@ end
 									user_id: User.order('RANDOM()').first.id,
 									category_id: Category.order('RANDOM()').first.id,
 									goal: (rand*(10000)).to_i,
-									image: File.open("#{Rails.root}/app/assets/images/project_images/img"+(rand(1..7)).to_s+".jpg")
+									#image: File.open("#{Rails.root}/app/assets/images/project_images/img"+(rand(1..7)).to_s+".jpg")
+									
+									image: File.open("/app/assets/images/project_images/img"+(rand(1..7)).to_s+".jpg")
 									)
 end
 
