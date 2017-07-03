@@ -27,8 +27,8 @@ class ProjectsController < ApplicationController
   def show
     @current_amount = @project.current_amount
     @pledge = Pledge.new
-    response = get_tweets('nasa')
-    #response = get_tweets(@project.name)
+    #response = get_tweets('nasa')
+    response = get_tweets(@project.name)
     @tweets = []
     if response["statuses"]
       response["statuses"].each do |tweet|
