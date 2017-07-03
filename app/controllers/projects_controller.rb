@@ -27,7 +27,8 @@ class ProjectsController < ApplicationController
   def show
     @current_amount = @project.current_amount
     @pledge = Pledge.new
-    response = get_tweets("nasa")
+    response = get_tweets('nasa')
+    #response = get_tweets(@project.name)
     @tweets = []
     if response["statuses"]
       response["statuses"].each do |tweet|
@@ -101,6 +102,7 @@ class ProjectsController < ApplicationController
     def get_tweets(project_name)
       access_token = prepare_access_token()
       response = access_token.request(:get, "https://api.twitter.com/1.1/search/tweets.json?q=%40#{project_name}")
+      #byebug
       if response
         return JSON.parse(response.body)
       else
