@@ -24,9 +24,11 @@ u.generate_token_and_save
 end
 
 12.times do
+	name = Faker::Commerce.product_name
 	Project.create(
-									name: Faker::Commerce.product_name,
+									name: name,
 									description: Faker::Lorem.paragraph(15),
+									twitter_account: name,
 									start_date: Faker::Time.between(DateTime.now - 1, DateTime.now),
 									end_date: Faker::Time.forward(365, :evening),
 									user_id: User.order('RANDOM()').first.id,
