@@ -5,9 +5,6 @@
   <div class="home-container-wrapper gray-border-b pb20">
     <div class="home-preview-container row">
       <div class="home-projects-preview">
-          <!--<% @projects.each do |preview| %>
-            <%= render 'projects/project', project: preview , index: @projects.index(preview) %>
-          <% end %>-->
           <%= render 'projects/project_index', project: @projects.third %>
       </div>
       <div class="categories-container">

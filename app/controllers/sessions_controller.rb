@@ -9,8 +9,7 @@ class SessionsController < ApplicationController
       log_in user
       redirect_to root_path, notice: 'Login successful'
     else
-      #flash[:danger] = 'Invalid email/password combination' # Not quite right!
-      #render 'new'
+      flash[:danger] = 'Invalid email/password combination'
       redirect_to new_session_path, alert: "Wrong email/password combination"
     end
   end

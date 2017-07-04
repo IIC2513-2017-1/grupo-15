@@ -28,13 +28,14 @@ class ProjectsController < ApplicationController
     @current_amount = @project.current_amount
     @pledge = Pledge.new
     #response = get_tweets('nasa')
-    response = get_tweets(@project.name)
+    response = get_tweets(@project.twitter_account)
     @tweets = []
     if response["statuses"]
       response["statuses"].each do |tweet|
         @tweets<< {text: tweet["text"], date: tweet["created_at"]}
       end
     end
+    @tweets = @tweets.last(5)
   end
 
   def new
@@ -96,7 +97,7 @@ class ProjectsController < ApplicationController
     end
 
     def project_params
-      params.require(:project).permit(:name, :description, :category_id, :user_id, :start_date, :end_date, :goal, :image)
+      params.require(:project).permit(:name, :description, :category_id, :user_id, :start_date, :end_date, :goal, :image, :twitter_account)
     end
 
     def get_tweets(project_name)

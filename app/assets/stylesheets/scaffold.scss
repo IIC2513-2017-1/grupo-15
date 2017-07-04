@@ -49,6 +49,15 @@ div {
   }
 }
 
+#alert-container{
+  position: absolute;
+  top: 70px;
+}
+
+.alert{
+  color: red; 
+}
+
 #notice {
   position: absolute;
   top: 70px;

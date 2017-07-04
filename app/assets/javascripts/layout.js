@@ -18,6 +18,7 @@ $(document).on('turbolinks:load', function() {
   });
 
   $("#notice").css("left", ($(window).width()-$("#notice").width())/2)
+  $("#alert-container").css("left", ($(window).width()-$("#alert-container").width())/2)
 
 });
 

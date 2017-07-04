@@ -100,7 +100,7 @@
 .input-text{
   border-radius: 6px;
   background: white;
-  border: 1px solid #dad7d4;
+  border: 1px solid #cbcccb;
   color: #020621;
   margin: 0;
   padding: 12px;
@@ -200,6 +200,10 @@
   margin-bottom: 60px;
 }
 
+.pt100{
+    padding-top: 100px;
+}
+
 //------------------------COLORS----------------------------
 
 .grey-dark {
@@ -266,7 +270,7 @@
 }
 
 .gray-border-b{
-  border-bottom: 0.1rem solid #DCDEDD;
+  border-bottom: 0.1rem solid #cbcccb;
 }
 
 .box-shadow{
