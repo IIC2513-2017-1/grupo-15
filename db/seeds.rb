@@ -30,7 +30,7 @@ end
 									description: Faker::Lorem.paragraph(15),
 									twitter_account: name,
 									start_date: Faker::Time.between(DateTime.now - 1, DateTime.now),
-									end_date: Faker::Time.forward(365, :evening),
+									end_date: Faker::Time.forward(125, :evening),
 									user_id: User.order('RANDOM()').first.id,
 									category_id: Category.order('RANDOM()').first.id,
 									goal: (rand*(10000)).to_i,
