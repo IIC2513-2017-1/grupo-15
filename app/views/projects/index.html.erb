@@ -4,7 +4,9 @@
     <div id="dropdown-wrapper" class="dropdown-wrapper width-25">
       <button class="dropbtn dropbtn-explore block centered">
         <div class="dropbtn-content">
-          <p class="inline-block" id="dropdown-text">All categories</p>
+          <%= content_tag :p,  class:"inline-block", id:"dropdown-text", data:{category: category_name} do%>
+            <%= "All categories" %>
+          <%end%>
           <i class="fa fa-angle-down" aria-hidden="true"></i>
         </div>
       </button>

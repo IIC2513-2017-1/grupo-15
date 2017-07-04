@@ -19,8 +19,14 @@ $(document).on('turbolinks:load', function() {
       var filler = $(".project-card-container").find(".filler").first();
       var bar = $(".project-card-container").find(".progress-bar").first();
       filler.data("rate", data.rate);
-      $(".project-link").attr("href", "/projects/"+data.id)
-      $(".preview").html("Highlighted projects: "+$(this).html())
+      $(".project-link").attr("href", "/projects/"+data.id);
+      $(".project-link img").attr("src", data.url);
+      $(".preview").html("Highlighted projects: "+$(this).html());
+      $(".percent p:first-of-type").html(Math.round(data.rate*100)+"%");
+      $(".ammount p:first-of-type").html(data.pledged);
+      $(".days p:first-of-type").html(data.days);
+      $(".project-label p+p ").html(data.category);
+      $(".project-label").attr("href", "/projects?category="+data.category_id);
       loadProjectBar(bar);
     }).on('ajax:error', function (e, data) {
       console.log(data);

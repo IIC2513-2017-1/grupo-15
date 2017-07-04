@@ -13,7 +13,11 @@ class HomeController < ApplicationController
         owner: project.user.name,
         goal: project.goal,
         pledged: project.current_amount.to_i,
-        rate: project.current_amount/project.goal
+        rate: project.current_amount/project.goal,
+        url: project.image.url,
+        days: (((project.end_date-project.start_date)/ (24 * 60 * 60)).to_i).to_s,
+        category: project.category.name,
+        category_id: project.category.id
       }
     end
   end

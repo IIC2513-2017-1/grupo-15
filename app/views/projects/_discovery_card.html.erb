@@ -4,7 +4,7 @@
   <% end %>
   <div class="disc-card-content">
     <div class="disc-card-info">
-      <%= link_to projects_path, class:"link-hov light-gray" do%>
+      <%= link_to projects_path(category: project.category.id), class:"link-hov light-gray" do%>
         <%=(project.category.name).upcase%>
       <% end %>
       <div class="disc-card-summary">

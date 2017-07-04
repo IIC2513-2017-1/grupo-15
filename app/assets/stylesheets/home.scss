@@ -28,10 +28,11 @@
 }
 
 .category-item.selected{
-  border-left: 3px solid black;
+  border-left: 3px solid #d9534f;
   margin-left: 0px;
 }
 
 .selected .category-link{
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #d9534f;
+  color: #d9534f;
 }

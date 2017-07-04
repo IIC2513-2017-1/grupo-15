@@ -1,18 +1,15 @@
 Rails.application.routes.draw do
 
+  root 'home#index'
   resource :session, only: [:new, :create, :destroy]
   resources :follows, only: [:new,:create, :destroy]
   resources :updates
-  resources :pledges, only: [:index, :new, :create]
-  resources :comments
   resources :projects do
-    resources :comments
-    resources :rewards do
-      resources :pledges
-    end
+    resources :comments, only: [:create]
+    resources :rewards, except: [:show]
   end
-  resources :rewards, only: [:index, :new, :create]
   resources :users
+  resources :pledges, only: [:index, :new, :create]
 
   #----------------------------------API----------------------------------
   namespace :api, defaults: {format: 'json'} do
@@ -21,14 +18,12 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'home#index'
-
   namespace :api do
     namespace :v1 do
       #resources :projects, only: [:index, :create, :show]
-      
+
       resources :projects, only: [:index, :create, :show] do
-        resources :comments, only: [:show] 
+        resources :comments, only: [:show]
         resources :rewards, only: [:show] do
           resources :pledges, only: [:create, :new]
         end

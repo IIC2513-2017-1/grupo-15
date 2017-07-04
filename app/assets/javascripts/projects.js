@@ -33,6 +33,9 @@ $(document).on('turbolinks:load', function() {
     })
   });
 
+  var category = $(".dropbtn-explore p").data("category");
+  $(".dropbtn-explore p").html(category);
+
   //-------------------------MOOAL--------------------------------
 
   // Get the modal

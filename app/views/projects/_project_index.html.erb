@@ -11,7 +11,7 @@
     <p class="project-card-owner f12 grey-dark"><%= "by "+project.user.name %></p>
     <p class="project-card-description wrap grey-dark"><%= project.description %></p>
     <div class="status-labels">
-      <%= link_to projects_path, class:"project-label link-hov grey-dark strong" do%>
+      <%= link_to projects_path(category: project.category.id), class:"project-label link-hov grey-dark strong" do%>
         <p class="fa fa-tag"></p>
         <p><%=project.category.name%></p>
       <% end %>
@@ -28,7 +28,7 @@
         <p class="">funded</p>
       </li>
       <li class="ammount inline-block mr15">
-        <p class="f16 "><%= "$"+((project.goal*100).to_i).to_s %></p>
+        <p class="f16 "><%= "$"+((project.goal).to_i).to_s %></p>
         <p class="">pledged</p>
       </li>
       <li class="days inline-block mr15">
